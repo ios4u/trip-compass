@@ -27,6 +27,17 @@
 		3D62762D1781C65B00A4B675 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D6276031781C65B00A4B675 /* CoreData.framework */; };
 		3D6276351781C65B00A4B675 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3D6276331781C65B00A4B675 /* InfoPlist.strings */; };
 		3D6276381781C65B00A4B675 /* TripCompassTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D6276371781C65B00A4B675 /* TripCompassTests.m */; };
+		3D6276421781C7A000A4B675 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D6276411781C7A000A4B675 /* CoreLocation.framework */; };
+		3D6276441781D33A00A4B675 /* arrow-up.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3D6276431781D33A00A4B675 /* arrow-up.jpg */; };
+		3D8E2CE61787B44900AA0F0D /* CompassHelperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D8E2CE51787B44900AA0F0D /* CompassHelperTests.m */; };
+		3D8E2CE817887CA400AA0F0D /* compass.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3D8E2CE717887CA400AA0F0D /* compass.jpg */; };
+		3D8E2CEB178B21FE00AA0F0D /* compass.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D8E2CE9178B21FE00AA0F0D /* compass.png */; };
+		3D8E2CEC178B21FE00AA0F0D /* needle.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D8E2CEA178B21FE00AA0F0D /* needle.png */; };
+		3D8E2CEF178EF4AD00AA0F0D /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D8E2CEE178EF4AD00AA0F0D /* SearchViewController.m */; };
+		3D8E2CF2179049CC00AA0F0D /* Place.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D8E2CF1179049CC00AA0F0D /* Place.m */; };
+		3DA654AA179D7B4A00424430 /* Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA654A9179D7B4A00424430 /* Util.m */; };
+		3DD93F2E1787A6F1003908A7 /* CompassHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DD93F2D1787A6F1003908A7 /* CompassHelper.m */; };
+		A01548ADA0B341BEB2D8F853 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E8ADDE2DB8744F0B935F7809 /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +77,23 @@
 		3D6276341781C65B00A4B675 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3D6276361781C65B00A4B675 /* TripCompassTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TripCompassTests.h; sourceTree = "<group>"; };
 		3D6276371781C65B00A4B675 /* TripCompassTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TripCompassTests.m; sourceTree = "<group>"; };
+		3D6276411781C7A000A4B675 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		3D6276431781D33A00A4B675 /* arrow-up.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "arrow-up.jpg"; sourceTree = "<group>"; };
+		3D8E2CE41787B44900AA0F0D /* CompassHelperTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompassHelperTests.h; sourceTree = "<group>"; };
+		3D8E2CE51787B44900AA0F0D /* CompassHelperTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompassHelperTests.m; sourceTree = "<group>"; };
+		3D8E2CE717887CA400AA0F0D /* compass.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = compass.jpg; sourceTree = "<group>"; };
+		3D8E2CE9178B21FE00AA0F0D /* compass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = compass.png; sourceTree = "<group>"; };
+		3D8E2CEA178B21FE00AA0F0D /* needle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = needle.png; sourceTree = "<group>"; };
+		3D8E2CED178EF4AD00AA0F0D /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
+		3D8E2CEE178EF4AD00AA0F0D /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
+		3D8E2CF0179049CC00AA0F0D /* Place.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Place.h; sourceTree = "<group>"; };
+		3D8E2CF1179049CC00AA0F0D /* Place.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Place.m; sourceTree = "<group>"; };
+		3DA654A8179D7B4A00424430 /* Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Util.h; sourceTree = "<group>"; };
+		3DA654A9179D7B4A00424430 /* Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Util.m; sourceTree = "<group>"; };
+		3DD93F2C1787A6F1003908A7 /* CompassHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompassHelper.h; sourceTree = "<group>"; };
+		3DD93F2D1787A6F1003908A7 /* CompassHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompassHelper.m; sourceTree = "<group>"; };
+		71BB837CDB524BE6BD1B4999 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
+		E8ADDE2DB8744F0B935F7809 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,10 +101,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3D6276421781C7A000A4B675 /* CoreLocation.framework in Frameworks */,
 				3D6275FE1781C65B00A4B675 /* UIKit.framework in Frameworks */,
 				3D6276001781C65B00A4B675 /* Foundation.framework in Frameworks */,
 				3D6276021781C65B00A4B675 /* CoreGraphics.framework in Frameworks */,
 				3D6276041781C65B00A4B675 /* CoreData.framework in Frameworks */,
+				A01548ADA0B341BEB2D8F853 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -97,10 +127,12 @@
 		3D6275F11781C65B00A4B675 = {
 			isa = PBXGroup;
 			children = (
+				3D6276411781C7A000A4B675 /* CoreLocation.framework */,
 				3D6276051781C65B00A4B675 /* TripCompass */,
 				3D6276301781C65B00A4B675 /* TripCompassTests */,
 				3D6275FC1781C65B00A4B675 /* Frameworks */,
 				3D6275FB1781C65B00A4B675 /* Products */,
+				71BB837CDB524BE6BD1B4999 /* Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -121,6 +153,7 @@
 				3D6276011781C65B00A4B675 /* CoreGraphics.framework */,
 				3D6276031781C65B00A4B675 /* CoreData.framework */,
 				3D6276291781C65B00A4B675 /* SenTestingKit.framework */,
+				E8ADDE2DB8744F0B935F7809 /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -132,8 +165,16 @@
 				3D62760F1781C65B00A4B675 /* AppDelegate.m */,
 				3D6276171781C65B00A4B675 /* MainStoryboard.storyboard */,
 				3D62761D1781C65B00A4B675 /* MainViewController.h */,
+				3DD93F2C1787A6F1003908A7 /* CompassHelper.h */,
+				3D8E2CF0179049CC00AA0F0D /* Place.h */,
+				3D8E2CF1179049CC00AA0F0D /* Place.m */,
+				3DD93F2D1787A6F1003908A7 /* CompassHelper.m */,
 				3D62761E1781C65B00A4B675 /* MainViewController.m */,
+				3D8E2CED178EF4AD00AA0F0D /* SearchViewController.h */,
+				3D8E2CEE178EF4AD00AA0F0D /* SearchViewController.m */,
 				3D6276201781C65B00A4B675 /* FlipsideViewController.h */,
+				3DA654A8179D7B4A00424430 /* Util.h */,
+				3DA654A9179D7B4A00424430 /* Util.m */,
 				3D6276211781C65B00A4B675 /* FlipsideViewController.m */,
 				3D62761A1781C65B00A4B675 /* TripCompass.xcdatamodeld */,
 				3D6276061781C65B00A4B675 /* Supporting Files */,
@@ -144,6 +185,10 @@
 		3D6276061781C65B00A4B675 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				3D8E2CE717887CA400AA0F0D /* compass.jpg */,
+				3D8E2CE9178B21FE00AA0F0D /* compass.png */,
+				3D8E2CEA178B21FE00AA0F0D /* needle.png */,
+				3D6276431781D33A00A4B675 /* arrow-up.jpg */,
 				3D6276071781C65B00A4B675 /* TripCompass-Info.plist */,
 				3D6276081781C65B00A4B675 /* InfoPlist.strings */,
 				3D62760B1781C65B00A4B675 /* main.m */,
@@ -161,6 +206,8 @@
 				3D6276361781C65B00A4B675 /* TripCompassTests.h */,
 				3D6276371781C65B00A4B675 /* TripCompassTests.m */,
 				3D6276311781C65B00A4B675 /* Supporting Files */,
+				3D8E2CE41787B44900AA0F0D /* CompassHelperTests.h */,
+				3D8E2CE51787B44900AA0F0D /* CompassHelperTests.m */,
 			);
 			path = TripCompassTests;
 			sourceTree = "<group>";
@@ -181,9 +228,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3D62763B1781C65B00A4B675 /* Build configuration list for PBXNativeTarget "TripCompass" */;
 			buildPhases = (
+				DA130F9B94F24FD8B086699B /* Check Pods Manifest.lock */,
 				3D6275F61781C65B00A4B675 /* Sources */,
 				3D6275F71781C65B00A4B675 /* Frameworks */,
 				3D6275F81781C65B00A4B675 /* Resources */,
+				78FF85E55EA54AE497140A65 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -250,6 +299,10 @@
 				3D6276141781C65B00A4B675 /* Default@2x.png in Resources */,
 				3D6276161781C65B00A4B675 /* Default-568h@2x.png in Resources */,
 				3D6276191781C65B00A4B675 /* MainStoryboard.storyboard in Resources */,
+				3D6276441781D33A00A4B675 /* arrow-up.jpg in Resources */,
+				3D8E2CE817887CA400AA0F0D /* compass.jpg in Resources */,
+				3D8E2CEB178B21FE00AA0F0D /* compass.png in Resources */,
+				3D8E2CEC178B21FE00AA0F0D /* needle.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -277,6 +330,36 @@
 			shellPath = /bin/sh;
 			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
 		};
+		78FF85E55EA54AE497140A65 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DA130F9B94F24FD8B086699B /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -289,6 +372,10 @@
 				3D62761C1781C65B00A4B675 /* TripCompass.xcdatamodeld in Sources */,
 				3D62761F1781C65B00A4B675 /* MainViewController.m in Sources */,
 				3D6276221781C65B00A4B675 /* FlipsideViewController.m in Sources */,
+				3DD93F2E1787A6F1003908A7 /* CompassHelper.m in Sources */,
+				3D8E2CEF178EF4AD00AA0F0D /* SearchViewController.m in Sources */,
+				3D8E2CF2179049CC00AA0F0D /* Place.m in Sources */,
+				3DA654AA179D7B4A00424430 /* Util.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -297,6 +384,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3D6276381781C65B00A4B675 /* TripCompassTests.m in Sources */,
+				3D8E2CE61787B44900AA0F0D /* CompassHelperTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -396,22 +484,28 @@
 		};
 		3D62763C1781C65B00A4B675 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 71BB837CDB524BE6BD1B4999 /* Pods.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer: Eduardo Sasso (P9L3K9LEWJ)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TripCompass/TripCompass-Prefix.pch";
 				INFOPLIST_FILE = "TripCompass/TripCompass-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
 		};
 		3D62763D1781C65B00A4B675 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 71BB837CDB524BE6BD1B4999 /* Pods.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer: Eduardo Sasso (P9L3K9LEWJ)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TripCompass/TripCompass-Prefix.pch";
 				INFOPLIST_FILE = "TripCompass/TripCompass-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -469,6 +563,7 @@
 				3D62763D1781C65B00A4B675 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3D62763E1781C65B00A4B675 /* Build configuration list for PBXNativeTarget "TripCompassTests" */ = {
 			isa = XCConfigurationList;
@@ -477,6 +572,7 @@
 				3D6276401781C65B00A4B675 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

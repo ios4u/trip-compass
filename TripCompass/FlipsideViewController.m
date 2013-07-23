@@ -25,6 +25,14 @@
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+  NSLog(@"You entered %@",self.nameField.text);
+  [self.nameField resignFirstResponder];
+  return YES;
+}
+
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

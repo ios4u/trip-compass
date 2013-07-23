@@ -14,9 +14,11 @@
 - (void)flipsideViewControllerDidFinish:(FlipsideViewController *)controller;
 @end
 
-@interface FlipsideViewController : UIViewController
+@interface FlipsideViewController : UIViewController <UITextFieldDelegate>
 
 @property (weak, nonatomic) id <FlipsideViewControllerDelegate> delegate;
+@property (weak, nonatomic) IBOutlet UITextField *nameField;
+
 
 - (IBAction)done:(id)sender;
 
