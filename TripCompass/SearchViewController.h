@@ -14,4 +14,6 @@
 @property (retain, nonatomic) NSArray *results;
 @property (retain, nonatomic) NSMutableArray *places;
 @property (nonatomic, assign) CLLocationCoordinate2D currentLocation;
+
+//-(void)btnAddClick:(id)sender;
 @end

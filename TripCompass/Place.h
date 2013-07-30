@@ -18,5 +18,5 @@
 @property (nonatomic, strong) NSString *address;
 
 -(double)distanceTo:(CLLocationCoordinate2D)currentLocation toFormat:(NSString *)format;
-
+-(CLLocationCoordinate2D)getCoordinate;
 @end

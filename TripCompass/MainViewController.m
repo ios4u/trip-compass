@@ -17,6 +17,7 @@
   CLLocationManager *locationManager;
   NSString *selectedLocation;
   UIImageView *image;
+  float GeoAngle;
 }
 
 - (void)viewDidLoad
@@ -51,6 +52,7 @@
     self.navigationItem.title = self.place.name;
     double distance = [self.place distanceTo:self.currentLocation.coordinate toFormat:@"mi"];
     self.navigationItem.prompt = [Util stringWithDistance:distance];
+    GeoAngle = [Util setLatLonForDistanceAndAngle:self.currentLocation.coordinate toCoordinate:[self.place getCoordinate]];
   }
   
 //  NSString *lat = [NSString stringWithFormat:@"%.5f", self.currentLocation.coordinate.latitude];
@@ -61,19 +63,24 @@
 - (void)locationManager:(CLLocationManager*)manager
        didUpdateHeading:(CLHeading*)newHeading {
   
-//  NSLog(@"New magnetic heading: %f", newHeading.magneticHeading);
-//  NSLog(@"New true heading: %f", newHeading.trueHeading);
   if (newHeading.headingAccuracy > 0) {
     float magneticHeading = newHeading.magneticHeading;
-    float trueHeading = newHeading.trueHeading;
-    
-    _magneticHeadingLabel.text = [NSString stringWithFormat:@"%f", magneticHeading];
-    _trueHeadingLabel.text = [NSString stringWithFormat:@"%f", trueHeading];
+//    float trueHeading = newHeading.trueHeading;
     
     float heading = -1.0f * M_PI * magneticHeading / 180.0f;
 //    image.transform = CGAffineTransformMakeRotation(heading);
-    _compassImage.transform = CGAffineTransformScale(_compassImage.transform, 0.5, 0.5);
-    _compassImage.transform = CGAffineTransformMakeRotation(heading);
+    self.compassImage.transform = CGAffineTransformScale(self.compassImage.transform, 0.5, 0.5);
+    self.compassImage.transform = CGAffineTransformMakeRotation(heading);
+    
+    if (self.place) {
+//      float bearing = [Util getHeadingForDirectionFromCoordinate:self.currentLocation.coordinate toCoordinate:[self.place getCoordinate]];
+//      float bearing = [Util setLatLonForDistanceAndAngle:self.currentLocation.coordinate toCoordinate:[self.place getCoordinate]];
+//      float destinationHeading =  heading - bearing;
+      self.needleImage.transform = CGAffineTransformScale(self.needleImage.transform, 0.5, 0.5);
+//    self.needleImage.transform = CGAffineTransformMakeRotation(destinationHeading);
+      float direction = -newHeading.trueHeading;
+      self.needleImage.transform = CGAffineTransformMakeRotation((direction* M_PI / 180)+ GeoAngle);
+    }
   }
 }
 

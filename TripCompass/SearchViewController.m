@@ -42,7 +42,7 @@
   // self.navigationItem.rightBarButtonItem = self.editButtonItem;
   self.places = [[NSMutableArray alloc] init];
   
-  NSString *api = [NSString stringWithFormat:@"http://api.gogobot.com/api/v2/search/nearby.json?&sort=best_match&lng=%@&lat=%@&term=restaurants&source=trip&bypass=1", lon, lat];
+  NSString *api = [NSString stringWithFormat:@"http://api.gogobot.com/api/v2/search/nearby.json?_v=2.3.8&page=1&lng=%@&lat=%@&per_page=20&source=explore&bypass=1", lon, lat];
 
   NSURL *url = [NSURL URLWithString:api];
   NSURLRequest *request = [NSURLRequest requestWithURL:url];
@@ -89,6 +89,11 @@
 //  [[cell textLabel] setText:@"Los Prados Park"];
 //  [[cell detailTextLabel] setText:@"0.2 miles"];
   
+  UIButton *button = [UIButton buttonWithType:UIButtonTypeContactAdd];
+  button.tag = indexPath.row;
+  [button addTarget:self action:@selector(btnAddClick:) forControlEvents:UIControlEventTouchUpInside];
+  cell.accessoryView = button;
+  
   NSDictionary *result = [self.results objectAtIndex:indexPath.row];
   
   Place *place = [[Place alloc] init];
@@ -123,6 +128,24 @@
 //  [[cell detailTextLabel] setText:[formatter stringFromDate:(NSDate *)sightingAtIndex.date]];
 //  return cell;
 
+}
+
+-(void)btnAddClick:(id)sender
+{
+  
+  UIButton* btnAdd = (UIButton *) sender;
+  
+  // here btn is the selected button...
+  NSLog(@"Button %d is selected",btnAdd.tag);
+//  Place *place = [self.places objectAtIndex:btnAdd.tag];
+  
+  UITableViewCell *cell = (UITableViewCell *)[btnAdd superview];
+  cell.userInteractionEnabled = NO;
+  cell.textLabel.enabled = NO;
+  cell.detailTextLabel.enabled = NO;
+  cell.accessoryView = nil;
+  
+  // Show appropriate alert by tag values
 }
 
 #pragma mark - Table view delegate

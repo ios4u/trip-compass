@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3D4985FF17A16A5500CB2CF2 /* border.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D4985FC17A16A5500CB2CF2 /* border.png */; };
+		3D49860017A16A5500CB2CF2 /* numbers.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D4985FD17A16A5500CB2CF2 /* numbers.png */; };
+		3D49860117A16A5500CB2CF2 /* pointer.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D4985FE17A16A5500CB2CF2 /* pointer.png */; };
 		3D6275FE1781C65B00A4B675 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D6275FD1781C65B00A4B675 /* UIKit.framework */; };
 		3D6276001781C65B00A4B675 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D6275FF1781C65B00A4B675 /* Foundation.framework */; };
 		3D6276021781C65B00A4B675 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D6276011781C65B00A4B675 /* CoreGraphics.framework */; };
@@ -28,11 +31,7 @@
 		3D6276351781C65B00A4B675 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3D6276331781C65B00A4B675 /* InfoPlist.strings */; };
 		3D6276381781C65B00A4B675 /* TripCompassTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D6276371781C65B00A4B675 /* TripCompassTests.m */; };
 		3D6276421781C7A000A4B675 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D6276411781C7A000A4B675 /* CoreLocation.framework */; };
-		3D6276441781D33A00A4B675 /* arrow-up.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3D6276431781D33A00A4B675 /* arrow-up.jpg */; };
 		3D8E2CE61787B44900AA0F0D /* CompassHelperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D8E2CE51787B44900AA0F0D /* CompassHelperTests.m */; };
-		3D8E2CE817887CA400AA0F0D /* compass.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3D8E2CE717887CA400AA0F0D /* compass.jpg */; };
-		3D8E2CEB178B21FE00AA0F0D /* compass.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D8E2CE9178B21FE00AA0F0D /* compass.png */; };
-		3D8E2CEC178B21FE00AA0F0D /* needle.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D8E2CEA178B21FE00AA0F0D /* needle.png */; };
 		3D8E2CEF178EF4AD00AA0F0D /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D8E2CEE178EF4AD00AA0F0D /* SearchViewController.m */; };
 		3D8E2CF2179049CC00AA0F0D /* Place.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D8E2CF1179049CC00AA0F0D /* Place.m */; };
 		3DA654AA179D7B4A00424430 /* Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA654A9179D7B4A00424430 /* Util.m */; };
@@ -51,6 +50,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3D4985FC17A16A5500CB2CF2 /* border.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = border.png; sourceTree = "<group>"; };
+		3D4985FD17A16A5500CB2CF2 /* numbers.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = numbers.png; sourceTree = "<group>"; };
+		3D4985FE17A16A5500CB2CF2 /* pointer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pointer.png; sourceTree = "<group>"; };
 		3D6275FA1781C65B00A4B675 /* TripCompass.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TripCompass.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D6275FD1781C65B00A4B675 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		3D6275FF1781C65B00A4B675 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -78,12 +80,8 @@
 		3D6276361781C65B00A4B675 /* TripCompassTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TripCompassTests.h; sourceTree = "<group>"; };
 		3D6276371781C65B00A4B675 /* TripCompassTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TripCompassTests.m; sourceTree = "<group>"; };
 		3D6276411781C7A000A4B675 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		3D6276431781D33A00A4B675 /* arrow-up.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "arrow-up.jpg"; sourceTree = "<group>"; };
 		3D8E2CE41787B44900AA0F0D /* CompassHelperTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompassHelperTests.h; sourceTree = "<group>"; };
 		3D8E2CE51787B44900AA0F0D /* CompassHelperTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompassHelperTests.m; sourceTree = "<group>"; };
-		3D8E2CE717887CA400AA0F0D /* compass.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = compass.jpg; sourceTree = "<group>"; };
-		3D8E2CE9178B21FE00AA0F0D /* compass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = compass.png; sourceTree = "<group>"; };
-		3D8E2CEA178B21FE00AA0F0D /* needle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = needle.png; sourceTree = "<group>"; };
 		3D8E2CED178EF4AD00AA0F0D /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
 		3D8E2CEE178EF4AD00AA0F0D /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
 		3D8E2CF0179049CC00AA0F0D /* Place.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Place.h; sourceTree = "<group>"; };
@@ -185,10 +183,9 @@
 		3D6276061781C65B00A4B675 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				3D8E2CE717887CA400AA0F0D /* compass.jpg */,
-				3D8E2CE9178B21FE00AA0F0D /* compass.png */,
-				3D8E2CEA178B21FE00AA0F0D /* needle.png */,
-				3D6276431781D33A00A4B675 /* arrow-up.jpg */,
+				3D4985FC17A16A5500CB2CF2 /* border.png */,
+				3D4985FD17A16A5500CB2CF2 /* numbers.png */,
+				3D4985FE17A16A5500CB2CF2 /* pointer.png */,
 				3D6276071781C65B00A4B675 /* TripCompass-Info.plist */,
 				3D6276081781C65B00A4B675 /* InfoPlist.strings */,
 				3D62760B1781C65B00A4B675 /* main.m */,
@@ -299,10 +296,9 @@
 				3D6276141781C65B00A4B675 /* Default@2x.png in Resources */,
 				3D6276161781C65B00A4B675 /* Default-568h@2x.png in Resources */,
 				3D6276191781C65B00A4B675 /* MainStoryboard.storyboard in Resources */,
-				3D6276441781D33A00A4B675 /* arrow-up.jpg in Resources */,
-				3D8E2CE817887CA400AA0F0D /* compass.jpg in Resources */,
-				3D8E2CEB178B21FE00AA0F0D /* compass.png in Resources */,
-				3D8E2CEC178B21FE00AA0F0D /* needle.png in Resources */,
+				3D4985FF17A16A5500CB2CF2 /* border.png in Resources */,
+				3D49860017A16A5500CB2CF2 /* numbers.png in Resources */,
+				3D49860117A16A5500CB2CF2 /* pointer.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

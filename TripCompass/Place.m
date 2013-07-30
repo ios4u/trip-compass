@@ -11,11 +11,11 @@
 @implementation Place
 
 -(double)distanceTo:(CLLocationCoordinate2D)currentLocation toFormat:(NSString *)format {
-  
   CLLocation *current = [[CLLocation alloc] initWithLatitude:currentLocation.latitude longitude:currentLocation.longitude];
   CLLocation *destination = [[CLLocation alloc] initWithLatitude:[self.lat doubleValue] longitude:[self.lng doubleValue]];
-  
   return [current distanceFromLocation:destination];
 }
-
+-(CLLocationCoordinate2D)getCoordinate {
+  return CLLocationCoordinate2DMake([self.lat doubleValue], [self.lng doubleValue]);
+}
 @end

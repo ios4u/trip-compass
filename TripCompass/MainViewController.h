@@ -13,17 +13,11 @@
 #import "Util.h"
 
 @interface MainViewController : UIViewController <FlipsideViewControllerDelegate>
-@property (weak, nonatomic) IBOutlet UILabel *magneticHeadingLabel;
 
-//@property (nonatomic, retain) CLLocationManager *locationManager;
 @property (nonatomic, retain) CLLocation *currentLocation;
-
-@property (weak, nonatomic) IBOutlet UILabel *trueHeadingLabel;
-
-@property (weak, nonatomic) IBOutlet UIView *subView;
 @property (weak, nonatomic) IBOutlet UIImageView *compassImage;
+@property (weak, nonatomic) IBOutlet UIImageView *needleImage;
 @property (strong, nonatomic) Place *place;
-
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 
 @end

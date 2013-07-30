@@ -23,6 +23,10 @@
 //  http://stackoverflow.com/questions/4130821/iphone-compass-gps-direction
 //  http://www.sundh.com/blog/2011/09/stabalize-compass-of-iphone-with-gyroscope/
 //  https://github.com/tadelv/CLLocation-Bearing/blob/master/CLLocation%2BBearing.m
+  
+//  http://www.shawngrimes.me/2011/07/calculating-heading-with-corelocation/
+  
+//  http://stackoverflow.com/questions/10719115/ios-get-angle-to-geolocation-from-current-location-without-map
 }
 
 @end
