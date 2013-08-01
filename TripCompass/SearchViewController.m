@@ -9,6 +9,7 @@
 #import "SearchViewController.h"
 #import "MainViewController.h"
 #import "Place.h"
+#import "PlaceModel.h"
 #import "Util.h"
 #import "AFNetworking.h"
 
@@ -30,6 +31,9 @@
 - (void)viewDidLoad
 {
   [super viewDidLoad];
+
+  id delegate = [[UIApplication sharedApplication] delegate];
+  self.managedObjectContext = [delegate managedObjectContext];
   
   NSString *lat = [NSString stringWithFormat:@"%.5f", self.currentLocation.latitude];
   NSString *lon = [NSString stringWithFormat:@"%.5f", self.currentLocation.longitude];
@@ -101,7 +105,7 @@
   place.address = [result valueForKeyPath:@"address.address"];
   place.lat = [NSNumber numberWithDouble:[[result valueForKeyPath:@"address.lat"] doubleValue]];
   place.lng = [NSNumber numberWithDouble:[[result valueForKeyPath:@"address.lng"] doubleValue]];
-  
+    
   [self.places addObject:place];
   
   cell.textLabel.text = place.name;
@@ -130,14 +134,9 @@
 
 }
 
--(void)btnAddClick:(id)sender
-{
-  
+-(void)btnAddClick:(id)sender {
   UIButton* btnAdd = (UIButton *) sender;
-  
-  // here btn is the selected button...
-  NSLog(@"Button %d is selected",btnAdd.tag);
-//  Place *place = [self.places objectAtIndex:btnAdd.tag];
+//  NSLog(@"Button %d is selected",btnAdd.tag);
   
   UITableViewCell *cell = (UITableViewCell *)[btnAdd superview];
   cell.userInteractionEnabled = NO;
@@ -145,7 +144,19 @@
   cell.detailTextLabel.enabled = NO;
   cell.accessoryView = nil;
   
-  // Show appropriate alert by tag values
+  Place *place = [self.places objectAtIndex:btnAdd.tag];
+  
+  NSManagedObjectContext *context = [self managedObjectContext];
+  
+  PlaceModel *placeModel = [NSEntityDescription insertNewObjectForEntityForName:@"PlaceModel" inManagedObjectContext:context];
+  placeModel.name = place.name;
+  placeModel.lat = place.lat;
+  placeModel.lng = place.lng;
+  
+  NSError *error;
+  if (![context save:&error]) {
+    NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+  }
 }
 
 #pragma mark - Table view delegate
