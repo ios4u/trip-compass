@@ -13,7 +13,7 @@
 #import "Util.h"
 #import "AFNetworking.h"
 
-@interface SearchViewController ()
+@interface SearchViewController () <UISearchDisplayDelegate, UISearchBarDelegate>
 
 @end
 
@@ -37,7 +37,7 @@
   
   NSString *lat = [NSString stringWithFormat:@"%.5f", self.currentLocation.latitude];
   NSString *lon = [NSString stringWithFormat:@"%.5f", self.currentLocation.longitude];
-  NSLog(@"lat %@ -- lon %@", lat,lon);
+//  NSLog(@"lat %@ -- lon %@", lat,lon);
 
   // Uncomment the following line to preserve selection between presentations.
   // self.clearsSelectionOnViewWillAppear = NO;
@@ -89,14 +89,10 @@
   return self.results.count;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
   static NSString *CellIdentifier = @"SearchCell";
-  UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-  
-//  [[cell textLabel] setText:@"Los Prados Park"];
-//  [[cell detailTextLabel] setText:@"0.2 miles"];
-  
+  UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    
   UIButton *button = [UIButton buttonWithType:UIButtonTypeContactAdd];
   button.tag = indexPath.row;
   [button addTarget:self action:@selector(btnAddClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -117,25 +113,36 @@
   double distance = [place distanceTo:self.currentLocation toFormat:@"mi"];
   cell.detailTextLabel.text = [Util stringWithDistance:distance];
   
-//  NSString *imgUrl = [result valueForKeyPath:@"media.thumb"];
-//  [cell.imageView setImageWithURL:[NSURL URLWithString:imgUrl]];
-  
   return cell;
-  
-//  static NSString *CellIdentifier = @"BirdSightingCell";
-//  
-//  static NSDateFormatter *formatter = nil;
-//  if (formatter == nil) {
-//    formatter = [[NSDateFormatter alloc] init];
-//    [formatter setDateStyle:NSDateFormatterMediumStyle];
-//  }
-//  UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-//  
-//  BirdSighting *sightingAtIndex = [self.dataController objectInListAtIndex:indexPath.row];
-//  [[cell textLabel] setText:sightingAtIndex.name];
-//  [[cell detailTextLabel] setText:[formatter stringFromDate:(NSDate *)sightingAtIndex.date]];
-//  return cell;
+}
 
+//- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchScope:(NSInteger)searchOption {
+//  NSString *searchString = controller.searchBar.text;
+//  return YES;
+//}
+
+- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
+{
+  
+  NSString *lat = [NSString stringWithFormat:@"%.5f", self.currentLocation.latitude];
+  NSString *lon = [NSString stringWithFormat:@"%.5f", self.currentLocation.longitude];
+  NSString *api = [NSString stringWithFormat:@"http://api.gogobot.com/api/v2/search/nearby.json?_v=2.3.8&page=1&lng=%@&lat=%@&term=%@&per_page=20&source=explore&bypass=1", lon, lat, searchString];
+  
+  NSURL *url = [NSURL URLWithString:api];
+  NSURLRequest *request = [NSURLRequest requestWithURL:url];
+  
+  AFJSONRequestOperation *operation = [AFJSONRequestOperation
+                                       JSONRequestOperationWithRequest:request
+                                       success:^(NSURLRequest *request, NSHTTPURLResponse *response, id json) {
+                                         self.results = [json objectForKey:@"results"];
+                                         [self.tableView reloadData];
+                                       } failure:^(NSURLRequest *request , NSURLResponse *response , NSError *error , id JSON){
+                                         NSLog(@"Failed: %@",[error localizedDescription]);
+                                       }];
+  
+  [operation start];
+
+  return YES;
 }
 
 -(void)btnAddClick:(id)sender {
