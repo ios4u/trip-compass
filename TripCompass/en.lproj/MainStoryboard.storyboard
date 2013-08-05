@@ -205,6 +205,9 @@
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
+                                <connections>
+                                    <segue destination="BNG-Bj-k6r" kind="modal" id="MK9-sk-SoW"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -212,7 +215,7 @@
                             <outlet property="delegate" destination="gaM-0B-UNw" id="d0h-l2-zBD"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" systemItem="history" id="Fkz-bI-A0e"/>
+                    <tabBarItem key="tabBarItem" systemItem="favorites" id="Fkz-bI-A0e"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Iq-SA-ga6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -252,4 +255,7 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="MjL-hS-Hqs"/>
+    </inferredMetricsTieBreakers>
 </document>

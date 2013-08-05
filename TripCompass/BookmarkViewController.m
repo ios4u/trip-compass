@@ -7,19 +7,22 @@
 //
 
 #import "BookmarkViewController.h"
+#import "MainViewController.h"
+#import "Place.h"
 #import "PlaceModel.h"
 
-@interface BookmarkViewController ()
+@interface BookmarkViewController () <CLLocationManagerDelegate>
 
 @end
 
-@implementation BookmarkViewController
+@implementation BookmarkViewController {
+  CLLocationManager *locationManager;
+}
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
+    if (self) {      
     }
     return self;
 }
@@ -30,10 +33,26 @@
   id delegate = [[UIApplication sharedApplication] delegate];
   self.managedObjectContext = [delegate managedObjectContext];
   
-  self.title = @"Saved Places";  
+  locationManager = [[CLLocationManager alloc] init];
+  locationManager.delegate = self;
+  locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+  
+  if( [CLLocationManager locationServicesEnabled] &&  [CLLocationManager headingAvailable]) {
+    [locationManager startUpdatingLocation];
+    [locationManager startUpdatingHeading];
+    NSLog(@"Started");
+  } else {
+    NSLog(@"Can't report heading");
+  }
+}
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
+  self.currentLocation = [locations lastObject];
 }
 
 -(void)viewWillAppear:(BOOL)animated {
+  self.tabBarController.navigationItem.title = @"Saved list";
+  
   NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
   NSEntityDescription *entity = [NSEntityDescription entityForName:@"PlaceModel" inManagedObjectContext:self.managedObjectContext];
   [fetchRequest setEntity:entity];
@@ -64,10 +83,17 @@
   UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
   
   PlaceModel *placeModel = [self.savedPlaces objectAtIndex:indexPath.row];
-  cell.textLabel.text = placeModel.name;
-//  cell.detailTextLabel.text = [NSString stringWithFormat:@"%@, %@",
-//                               info.city, info.state];
   
+  Place *place = [[Place alloc] init];
+  place.name = placeModel.name;
+  place.address = placeModel.address;
+  place.lat = placeModel.lat;
+  place.lng = placeModel.lng;
+
+  cell.textLabel.text = placeModel.name;
+  double distance = [place distanceTo:self.currentLocation.coordinate toFormat:@"mi"];
+  cell.detailTextLabel.text = [Util stringWithDistance:distance];
+
   return cell;
 }
 
@@ -94,33 +120,22 @@
 }
 */
 
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
 
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+  NSIndexPath *path = [self.tableView indexPathForSelectedRow];
+  
+  UINavigationController *navigationController = (UINavigationController *)segue.destinationViewController;
+  MainViewController *mainViewController = [[navigationController viewControllers] lastObject];
+  
+  PlaceModel *placeModel = [self.savedPlaces objectAtIndex:path.row];
 
-#pragma mark - Table view delegate
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
+  Place *place = [[Place alloc] init];
+  place.name = placeModel.name;
+  place.address = placeModel.address;
+  place.lat = placeModel.lat;
+  place.lng = placeModel.lng;
+  
+  mainViewController.place = place;
 }
 
 @end

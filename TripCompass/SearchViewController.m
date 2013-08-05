@@ -66,6 +66,10 @@
 //  http://nsscreencast.com/episodes/6-afnetworking
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+  self.tabBarController.navigationItem.title = @"Nearby Search";
+}
+
 - (void)didReceiveMemoryWarning
 {
   [super didReceiveMemoryWarning];
