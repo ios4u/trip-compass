@@ -106,10 +106,14 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-  UITabBarController *tabBarController = (UITabBarController *)segue.destinationViewController;
-  SearchViewController *searchViewController = [tabBarController.viewControllers objectAtIndex:0];
-
-  searchViewController.currentLocation = self.currentLocation.coordinate;
+  if ([[segue identifier] isEqualToString:@"showAlternate"]) {
+    [[segue destinationViewController] setDelegate:self];
+  } else {
+    UITabBarController *tabBarController = (UITabBarController *)segue.destinationViewController;
+    SearchViewController *searchViewController = [tabBarController.viewControllers objectAtIndex:0];
+    
+    searchViewController.currentLocation = self.currentLocation.coordinate;
+  }
 }
 
 @end

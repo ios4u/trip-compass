@@ -41,9 +41,8 @@
 
 #pragma mark - Actions
 
-- (IBAction)done:(id)sender
-{
-    [self.delegate flipsideViewControllerDidFinish:self];
+- (IBAction)done:(id)sender {
+  [self.delegate flipsideViewControllerDidFinish:self];
 }
 
 @end

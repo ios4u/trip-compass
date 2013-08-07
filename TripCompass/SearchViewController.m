@@ -131,9 +131,12 @@
   NSURL *url = [NSURL URLWithString:api];
   NSURLRequest *request = [NSURLRequest requestWithURL:url];
   
+  [self.places removeAllObjects];
+  
   AFJSONRequestOperation *operation = [AFJSONRequestOperation
                                        JSONRequestOperationWithRequest:request
                                        success:^(NSURLRequest *request, NSHTTPURLResponse *response, id json) {
+//                                           self.places = [[NSMutableArray alloc] init];
                                          self.results = [json objectForKey:@"results"];
                                          [self.tableView reloadData];
                                        } failure:^(NSURLRequest *request , NSURLResponse *response , NSError *error , id JSON){
@@ -174,7 +177,12 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-  NSIndexPath *path = [self.tableView indexPathForSelectedRow];
+  NSIndexPath *path = nil;
+  if ([self.searchDisplayController isActive]) {
+    path = [self.searchDisplayController.searchResultsTableView indexPathForSelectedRow];
+  } else {
+    path = [self.tableView indexPathForSelectedRow];
+  }
   
   UINavigationController *navigationController = (UINavigationController *)segue.destinationViewController;
   MainViewController *mainViewController = [[navigationController viewControllers] lastObject];
