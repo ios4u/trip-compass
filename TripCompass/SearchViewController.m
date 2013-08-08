@@ -126,7 +126,10 @@
   
   NSString *lat = [NSString stringWithFormat:@"%.5f", self.currentLocation.latitude];
   NSString *lon = [NSString stringWithFormat:@"%.5f", self.currentLocation.longitude];
-  NSString *api = [NSString stringWithFormat:@"http://api.gogobot.com/api/v2/search/nearby.json?_v=2.3.8&page=1&lng=%@&lat=%@&term=%@&per_page=20&source=explore&bypass=1", lon, lat, searchString];
+  
+  NSString* encodedSearchString = [searchString stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
+  
+  NSString *api = [NSString stringWithFormat:@"http://api.gogobot.com/api/v2/search/nearby.json?_v=2.3.8&page=1&lng=%@&lat=%@&term=%@&per_page=20&source=explore&bypass=1", lon, lat, encodedSearchString];
   
   NSURL *url = [NSURL URLWithString:api];
   NSURLRequest *request = [NSURLRequest requestWithURL:url];
