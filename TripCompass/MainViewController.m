@@ -98,10 +98,7 @@
 
 - (void)flipsideViewControllerDidFinish:(FlipsideViewController *)controller
 {
-  self.navigationItem.title = controller.nameField.text;
   [self dismissViewControllerAnimated:YES completion:nil];
-//6  _navigationItem.title =
-  NSLog(@"Data passed %@",controller.nameField.text);
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

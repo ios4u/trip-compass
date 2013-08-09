@@ -20,7 +20,7 @@
 #define DegreesToRadians(degrees)(degrees * M_PI / 180.0)
 
 + (NSString *)stringWithDistance:(double)distance {
-  BOOL isMetric = [[[NSLocale currentLocale] objectForKey:NSLocaleUsesMetricSystem] boolValue];
+  BOOL isMetric = [[NSUserDefaults standardUserDefaults] boolForKey:@"isMetric"];
   
   NSString *format;
   

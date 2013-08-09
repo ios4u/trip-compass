@@ -17,8 +17,10 @@
 @interface FlipsideViewController : UIViewController <UITextFieldDelegate>
 
 @property (weak, nonatomic) id <FlipsideViewControllerDelegate> delegate;
-@property (weak, nonatomic) IBOutlet UITextField *nameField;
 
+@property (weak, nonatomic) IBOutlet UISegmentedControl *segmentControl;
+
+- (IBAction)segmentControlChanged:(id)sender;
 
 - (IBAction)done:(id)sender;
 

@@ -68,7 +68,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <items>
                                     <navigationItem title="Settings" id="13">
-                                        <barButtonItem key="leftBarButtonItem" systemItem="done" id="14">
+                                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="14">
                                             <connections>
                                                 <action selector="done:" destination="6" id="16"/>
                                             </connections>
@@ -76,10 +76,31 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="1SI-eU-OYR">
+                                <rect key="frame" x="46" y="96" width="229" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="Meter"/>
+                                    <segment title="Feet"/>
+                                </segments>
+                                <connections>
+                                    <action selector="segmentControlChanged:" destination="6" eventType="valueChanged" id="MLB-Q0-ST6"/>
+                                </connections>
+                            </segmentedControl>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Distance" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="8Yf-2G-BJK">
+                                <rect key="frame" x="29" y="56" width="95" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
-                        <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="8EN-qF-aUd"/>
+                    <connections>
+                        <outlet property="segmentControl" destination="1SI-eU-OYR" id="hFa-iY-VGu"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8" sceneMemberID="firstResponder"/>
             </objects>
@@ -261,7 +282,8 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FlipsideViewController.h"/>
             <relationships>
                 <relationship kind="action" name="done:"/>
-                <relationship kind="outlet" name="nameField" candidateClass="UITextField"/>
+                <relationship kind="action" name="segmentControlChanged:"/>
+                <relationship kind="outlet" name="segmentControl" candidateClass="UISegmentedControl"/>
             </relationships>
         </class>
         <class className="MainViewController" superclassName="UIViewController">

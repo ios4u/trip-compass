@@ -19,19 +19,16 @@
     [super awakeFromNib];
 }
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+- (void)viewDidLoad {
+  [super viewDidLoad];
+  
+  if ([[NSUserDefaults standardUserDefaults] boolForKey:@"isMetric"]) {
+    self.segmentControl.selectedSegmentIndex = 0;
+  } else {
+    self.segmentControl.selectedSegmentIndex = 1;
+  }
+  
 }
-
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
-{
-  NSLog(@"You entered %@",self.nameField.text);
-  [self.nameField resignFirstResponder];
-  return YES;
-}
-
 
 - (void)didReceiveMemoryWarning
 {
@@ -40,6 +37,13 @@
 }
 
 #pragma mark - Actions
+
+- (IBAction)segmentControlChanged:(id)sender {
+  NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+
+  BOOL isMetric = ((UISegmentedControl *)sender).selectedSegmentIndex == 0;
+  [defaults setBool:isMetric forKey:@"isMetric"];
+}
 
 - (IBAction)done:(id)sender {
   [self.delegate flipsideViewControllerDidFinish:self];

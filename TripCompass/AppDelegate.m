@@ -21,6 +21,14 @@
   UINavigationController *navigationController = (UINavigationController *)self.window.rootViewController;
   MainViewController *controller = (MainViewController *)navigationController.topViewController;
   controller.managedObjectContext = self.managedObjectContext;
+  
+  BOOL isMetric = [[[NSLocale currentLocale] objectForKey:NSLocaleUsesMetricSystem] boolValue];
+  
+  NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+  if ([defaults objectForKey:@"isMetric"] == nil) {
+    [defaults setBool:isMetric forKey:@"isMetric"];
+  }
+
   return YES;
 }
 
