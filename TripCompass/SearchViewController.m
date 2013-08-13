@@ -163,12 +163,12 @@
   
   Place *place = [self.places objectAtIndex:btnAdd.tag];
   
-  NSManagedObjectContext *context = [self managedObjectContext];
-  
-  PlaceModel *placeModel = [NSEntityDescription insertNewObjectForEntityForName:@"PlaceModel" inManagedObjectContext:context];
-  placeModel.name = place.name;
-  placeModel.lat = place.lat;
-  placeModel.lng = place.lng;
+    NSManagedObjectContext *context = [self managedObjectContext];
+    
+    PlaceModel *placeModel = [NSEntityDescription insertNewObjectForEntityForName:@"PlaceModel" inManagedObjectContext:context];
+    placeModel.name = place.name;
+    placeModel.lat = place.lat;
+    placeModel.lng = place.lng;
   
   NSError *error;
   if (![context save:&error]) {

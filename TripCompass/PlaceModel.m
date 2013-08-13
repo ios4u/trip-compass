@@ -17,10 +17,11 @@
 @dynamic created;
 @dynamic desc;
 @dynamic address;
+@dynamic checkpoint;
 
 - (void)awakeFromInsert {
   [super awakeFromInsert];
-  self.created = [NSDate date];
+  self.created = [NSDate date];  
 }
 
 @end

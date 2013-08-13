@@ -20,4 +20,6 @@
 @property (strong, nonatomic) Place *place;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 
+- (IBAction)checkpointAction:(id)sender;
+
 @end

@@ -18,5 +18,6 @@
 @property (nonatomic, retain) NSDate * created;
 @property (nonatomic, retain) NSString * desc;
 @property (nonatomic, retain) NSString * address;
+@property (nonatomic, assign) BOOL checkpoint;
 
 @end

@@ -8,28 +8,23 @@
 
 #import "MainViewController.h"
 #import "SearchViewController.h"
+#import "PlaceModel.h"
 
-@interface MainViewController () <CLLocationManagerDelegate>
+@interface MainViewController () <CLLocationManagerDelegate, UIAlertViewDelegate>
   
 @end
 
 @implementation MainViewController {
   CLLocationManager *locationManager;
   NSString *selectedLocation;
-  UIImageView *image;
   float GeoAngle;
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
   [super viewDidLoad];
   
-//  image = [[UIImageView alloc] initWithFrame:CGRectMake(20, 20, 100, 100)];
-//  image.image = [UIImage imageNamed:@"compass.jpg"];
-//  image.translatesAutoresizingMaskIntoConstraints = YES;
-//  [self.view addSubview:image];
-//  NSLog(self.mainSubTitle);
-//  NSLog(self.mainTitle);
+  id delegate = [[UIApplication sharedApplication] delegate];
+  self.managedObjectContext = [delegate managedObjectContext];
   
   locationManager = [[CLLocationManager alloc] init];
   locationManager.delegate = self;
@@ -42,7 +37,6 @@
   } else {
     NSLog(@"Can't report heading");
   }
-
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
@@ -110,6 +104,37 @@
     SearchViewController *searchViewController = [tabBarController.viewControllers objectAtIndex:0];
     
     searchViewController.currentLocation = self.currentLocation.coordinate;
+  }
+}
+
+- (IBAction)checkpointAction:(id)sender {
+  UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Add Checkpoint" message:@"Save your current location to make sure you never get lost." delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
+  alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+  UITextField * alertTextField = [alert textFieldAtIndex:0];
+  alertTextField.placeholder = @"e.g: Ace Hotel New York";
+  
+  [alert show];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+  NSString *title = [alertView buttonTitleAtIndex:buttonIndex];
+  if([title isEqualToString:@"OK"]) {
+    NSString *name = [alertView textFieldAtIndex:0].text;
+    
+    NSManagedObjectContext *context = [self managedObjectContext];
+    PlaceModel *placeModel = [NSEntityDescription insertNewObjectForEntityForName:@"PlaceModel" inManagedObjectContext:context];
+    
+    placeModel.name = name;
+    placeModel.checkpoint = YES;
+    
+    placeModel.lat = [NSNumber numberWithFloat:self.currentLocation.coordinate.latitude];
+    placeModel.lng = [NSNumber numberWithFloat:self.currentLocation.coordinate.longitude];
+    
+    NSError *error;
+    if (![context save:&error]) {
+      NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+    }
+
   }
 }
 
