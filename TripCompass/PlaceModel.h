@@ -19,5 +19,6 @@
 @property (nonatomic, retain) NSString * desc;
 @property (nonatomic, retain) NSString * address;
 @property (nonatomic, assign) BOOL checkpoint;
+@property (nonatomic, retain) NSString * area;
 
 @end

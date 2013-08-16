@@ -53,11 +53,33 @@
 -(void)viewWillAppear:(BOOL)animated {
   self.tabBarController.navigationItem.title = @"Saved list";
   
-  NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-  NSEntityDescription *entity = [NSEntityDescription entityForName:@"PlaceModel" inManagedObjectContext:self.managedObjectContext];
-  [fetchRequest setEntity:entity];
   NSError *error;
-  self.savedPlaces = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+  NSEntityDescription *entity = [NSEntityDescription entityForName:@"PlaceModel" inManagedObjectContext:self.managedObjectContext];
+  
+//  NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+//  [fetchRequest setEntity:entity];
+//
+//  self.savedPlaces = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+//  
+  
+  NSPropertyDescription *propDesc = [[entity propertiesByName] objectForKey:@"area"];
+  NSExpression *emailExpr = [NSExpression expressionForKeyPath:@"area"];
+  NSExpression *countExpr = [NSExpression expressionForFunction:@"count:" arguments:[NSArray arrayWithObject:emailExpr]];
+  NSExpressionDescription *exprDesc = [[NSExpressionDescription alloc] init];
+  [exprDesc setExpression:countExpr];
+  [exprDesc setExpressionResultType:NSInteger64AttributeType];
+  [exprDesc setName:@"count"];
+  
+  NSFetchRequest *fr = [[NSFetchRequest alloc] init];
+  [fr setEntity:entity];
+  
+  [fr setPropertiesToGroupBy:[NSArray arrayWithObject:propDesc]];
+  fr.sortDescriptors= @[[NSSortDescriptor sortDescriptorWithKey:@"created" ascending:NO]];
+  
+  [fr setPropertiesToFetch:[NSArray arrayWithObjects:propDesc, exprDesc, nil]];
+  [fr setResultType:NSDictionaryResultType];
+  
+  self.savedPlaces = [self.managedObjectContext executeFetchRequest:fr error:&error];
   
   [self.tableView reloadData];
 }
@@ -82,17 +104,21 @@
   static NSString *CellIdentifier = @"BookmarkCell";
   UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
   
-  PlaceModel *placeModel = [self.savedPlaces objectAtIndex:indexPath.row];
-  
-  Place *place = [[Place alloc] init];
-  place.name = placeModel.name;
-  place.address = placeModel.address;
-  place.lat = placeModel.lat;
-  place.lng = placeModel.lng;
+//  PlaceModel *placeModel = [self.savedPlaces objectAtIndex:indexPath.row];
 
-  cell.textLabel.text = placeModel.name;
-  double distance = [place distanceTo:self.currentLocation.coordinate toFormat:@"mi"];
-  cell.detailTextLabel.text = [Util stringWithDistance:distance];
+  NSDictionary *place = [self.savedPlaces objectAtIndex:indexPath.row];
+  NSNumber *count = [place objectForKey: @"count"];
+  
+//  Place *place = [[Place alloc] init];
+//  place.name = placeModel.name;
+//  place.address = placeModel.address;
+//  place.lat = placeModel.lat;
+//  place.lng = placeModel.lng;
+
+  cell.textLabel.text = [place valueForKey:@"area"];
+//  double distance = [place distanceTo:self.currentLocation.coordinate toFormat:@"mi"];
+//  cell.detailTextLabel.text = [Util stringWithDistance:distance];
+  cell.detailTextLabel.text = [[place objectForKey:@"count"]stringValue];
 
   return cell;
 }

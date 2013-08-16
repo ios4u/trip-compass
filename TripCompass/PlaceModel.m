@@ -18,6 +18,7 @@
 @dynamic desc;
 @dynamic address;
 @dynamic checkpoint;
+@dynamic area;
 
 - (void)awakeFromInsert {
   [super awakeFromInsert];

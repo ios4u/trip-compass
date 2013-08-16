@@ -16,6 +16,7 @@
 @property (nonatomic, copy) NSNumber *lng;
 @property (nonatomic, strong) NSString *description;
 @property (nonatomic, strong) NSString *address;
+@property (nonatomic, strong) NSString *area;
 
 -(double)distanceTo:(CLLocationCoordinate2D)currentLocation toFormat:(NSString *)format;
 -(CLLocationCoordinate2D)getCoordinate;

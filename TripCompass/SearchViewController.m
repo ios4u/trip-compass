@@ -105,6 +105,7 @@
   place.address = [result valueForKeyPath:@"address.address"];
   place.lat = [NSNumber numberWithDouble:[[result valueForKeyPath:@"address.lat"] doubleValue]];
   place.lng = [NSNumber numberWithDouble:[[result valueForKeyPath:@"address.lng"] doubleValue]];
+  place.area = [result objectForKey:@"travel_unit"];
     
   [self.places addObject:place];
   
@@ -169,6 +170,7 @@
     placeModel.name = place.name;
     placeModel.lat = place.lat;
     placeModel.lng = place.lng;
+    placeModel.area = place.area;
   
   NSError *error;
   if (![context save:&error]) {
