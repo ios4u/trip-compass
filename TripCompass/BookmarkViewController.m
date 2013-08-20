@@ -8,6 +8,7 @@
 
 #import "BookmarkViewController.h"
 #import "MainViewController.h"
+#import "BookmarkItemViewController.h"
 #import "Place.h"
 #import "PlaceModel.h"
 
@@ -107,7 +108,6 @@
 //  PlaceModel *placeModel = [self.savedPlaces objectAtIndex:indexPath.row];
 
   NSDictionary *place = [self.savedPlaces objectAtIndex:indexPath.row];
-  NSNumber *count = [place objectForKey: @"count"];
   
 //  Place *place = [[Place alloc] init];
 //  place.name = placeModel.name;
@@ -149,19 +149,21 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
   NSIndexPath *path = [self.tableView indexPathForSelectedRow];
-  
-  UINavigationController *navigationController = (UINavigationController *)segue.destinationViewController;
-  MainViewController *mainViewController = [[navigationController viewControllers] lastObject];
-  
-  PlaceModel *placeModel = [self.savedPlaces objectAtIndex:path.row];
-
-  Place *place = [[Place alloc] init];
-  place.name = placeModel.name;
-  place.address = placeModel.address;
-  place.lat = placeModel.lat;
-  place.lng = placeModel.lng;
-  
-  mainViewController.place = place;
+//
+//  UINavigationController *navigationController = (UINavigationController *)segue.destinationViewController;
+//  MainViewController *mainViewController = [[navigationController viewControllers] lastObject];
+//  
+  NSDictionary *place = [self.savedPlaces objectAtIndex:path.row];
+  BookmarkItemViewController *controller = (BookmarkItemViewController *)segue.destinationViewController;
+  controller.selectedAreaGroup = [place valueForKey:@"area"];  
+//
+//  Place *place = [[Place alloc] init];
+//  place.name = placeModel.name;
+//  place.address = placeModel.address;
+//  place.lat = placeModel.lat;
+//  place.lng = placeModel.lng;
+//  
+//  mainViewController.place = place;
 }
 
 @end

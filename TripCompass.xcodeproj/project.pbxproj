@@ -14,6 +14,7 @@
 		3D49860017A16A5500CB2CF2 /* numbers.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D4985FD17A16A5500CB2CF2 /* numbers.png */; };
 		3D49860117A16A5500CB2CF2 /* pointer.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D4985FE17A16A5500CB2CF2 /* pointer.png */; };
 		3D49863D17A8245C00CB2CF2 /* README in Resources */ = {isa = PBXBuildFile; fileRef = 3D49863C17A8245C00CB2CF2 /* README */; };
+		3D4F871417C262500032B61C /* BookmarkItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D4F871317C262500032B61C /* BookmarkItemViewController.m */; };
 		3D6275FE1781C65B00A4B675 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D6275FD1781C65B00A4B675 /* UIKit.framework */; };
 		3D6276001781C65B00A4B675 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D6275FF1781C65B00A4B675 /* Foundation.framework */; };
 		3D6276021781C65B00A4B675 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D6276011781C65B00A4B675 /* CoreGraphics.framework */; };
@@ -63,6 +64,8 @@
 		3D4985FD17A16A5500CB2CF2 /* numbers.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = numbers.png; sourceTree = "<group>"; };
 		3D4985FE17A16A5500CB2CF2 /* pointer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pointer.png; sourceTree = "<group>"; };
 		3D49863C17A8245C00CB2CF2 /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
+		3D4F871217C262500032B61C /* BookmarkItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookmarkItemViewController.h; sourceTree = "<group>"; };
+		3D4F871317C262500032B61C /* BookmarkItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookmarkItemViewController.m; sourceTree = "<group>"; };
 		3D6275FA1781C65B00A4B675 /* TripCompass.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TripCompass.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D6275FD1781C65B00A4B675 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		3D6275FF1781C65B00A4B675 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -184,6 +187,8 @@
 				3D8E2CED178EF4AD00AA0F0D /* SearchViewController.h */,
 				3D8E2CEE178EF4AD00AA0F0D /* SearchViewController.m */,
 				3D32397917AAA3EF005ACF01 /* BookmarkViewController.h */,
+				3D4F871217C262500032B61C /* BookmarkItemViewController.h */,
+				3D4F871317C262500032B61C /* BookmarkItemViewController.m */,
 				3D32397A17AAA3EF005ACF01 /* BookmarkViewController.m */,
 				3D62761A1781C65B00A4B675 /* TripCompass.xcdatamodeld */,
 				3D32397617A9549A005ACF01 /* PlaceModel.h */,
@@ -392,6 +397,7 @@
 				3D32397517A953B2005ACF01 /* Place.m in Sources */,
 				3D32397817A9549A005ACF01 /* PlaceModel.m in Sources */,
 				3D32397B17AAA3EF005ACF01 /* BookmarkViewController.m in Sources */,
+				3D4F871417C262500032B61C /* BookmarkItemViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
