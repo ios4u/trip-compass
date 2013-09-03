@@ -336,7 +336,14 @@ self.searchDisplayController.searchResultsTableView.hidden = YES;
   }
 }
 
-#pragma mark - Table view delegate
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+  UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+  if ([cell.reuseIdentifier isEqual: @"FilterCell"]) {
+    NSLog(cell.textLabel.text);
+//    NSString *str = cell.textLabel.text;
+  }
+
+}
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
