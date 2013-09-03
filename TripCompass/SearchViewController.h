@@ -11,7 +11,7 @@
 #import <CoreData/CoreData.h>
 #import "Place.h"
 
-@interface SearchViewController : UITableViewController <NSFetchedResultsControllerDelegate>
+@interface SearchViewController : UITableViewController <NSFetchedResultsControllerDelegate, UISearchBarDelegate>
 
 @property (retain, nonatomic) NSArray *results;
 @property (retain, nonatomic) NSMutableArray *places;
@@ -19,5 +19,9 @@
 
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
+@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
+@property (nonatomic, assign) BOOL searching;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *locationButton;
 
 @end
+

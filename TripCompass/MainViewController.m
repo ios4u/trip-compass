@@ -72,7 +72,7 @@
 //      float destinationHeading =  heading - bearing;
       self.needleImage.transform = CGAffineTransformScale(self.needleImage.transform, 0.5, 0.5);
 //    self.needleImage.transform = CGAffineTransformMakeRotation(destinationHeading);
-      float direction = -newHeading.trueHeading;
+      float direction = -newHeading.trueHeading;  
       self.needleImage.transform = CGAffineTransformMakeRotation((direction* M_PI / 180)+ GeoAngle);
     }
   }
