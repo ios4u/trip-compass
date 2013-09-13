@@ -13,6 +13,7 @@
 #import "Util.h"
 #import "AFNetworking.h"
 #import "BookmarkItemViewController.h"
+#import "LocationSearchViewController.h"
 
 @interface SearchViewController ()
 @end
@@ -58,7 +59,7 @@
   // self.navigationItem.rightBarButtonItem = self.editButtonItem;
   self.places = [[NSMutableArray alloc] init];
   
-  NSString *api = [NSString stringWithFormat:@"http://api.gogobot.com/api/v2/search/nearby.json?_v=2.3.8&page=1&lng=%@&lat=%@&per_page=20&source=explore&bypass=1", lon, lat];
+  NSString *api = [NSString stringWithFormat:@"http://api.gogobot.com/api/v2/search/nearby.json?_v=2.3.8&page=1&lng=%@&lat=%@&per_page=20&source=create&bypass=1", lon, lat];
 
   NSURL *url = [NSURL URLWithString:api];
   NSURLRequest *request = [NSURLRequest requestWithURL:url];
@@ -102,7 +103,8 @@
   if (self.searching == NO) {
     return self.results.count;
   } else {
-    return [searchFilters count];
+//    return ([searchFilters count] + 1);
+    return 5;
   }
 }
 
@@ -143,11 +145,15 @@
     double distance = [place distanceTo:self.currentLocation toFormat:@"mi"];
     cell.detailTextLabel.text = [Util stringWithDistance:distance];
   } else {
-    CellIdentifier = @"FilterCell";
-    cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    NSString *filterName = [searchFilters objectAtIndex:indexPath.row];
-//    TODO add tag
-    cell.textLabel.text = filterName;
+    if (indexPath.row == 0) {
+      CellIdentifier = @"LocationCell";
+      cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    } else {
+      CellIdentifier = @"FilterCell";
+      cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+      NSString *filterName = [searchFilters objectAtIndex:(indexPath.row -1)];
+      cell.textLabel.text = filterName;
+    }
   }
   return cell;
 }
@@ -170,19 +176,19 @@
 	return YES;
 }
 
-- (void)keywordSearch:(NSString *)searchString {
-  NSString *lat = [NSString stringWithFormat:@"%.5f", self.currentLocation.latitude];
-  NSString *lon = [NSString stringWithFormat:@"%.5f", self.currentLocation.longitude];
+- (void)keywordSearch:(NSString *)apiUrl {
+//  NSString *lat = [NSString stringWithFormat:@"%.5f", self.currentLocation.latitude];
+//  NSString *lon = [NSString stringWithFormat:@"%.5f", self.currentLocation.longitude];
   
-  NSString* encodedSearchString = [searchString stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
-  NSString *api;
-  if (searchString) {
-    api = [NSString stringWithFormat:@"http://api.gogobot.com/api/v2/search/nearby.json?_v=2.3.8&page=1&lng=%@&lat=%@&term=%@&per_page=20&source=explore&bypass=1", lon, lat, encodedSearchString];
-  } else {
-    api = [NSString stringWithFormat:@"http://api.gogobot.com/api/v2/search/nearby.json?_v=2.3.8&page=1&lng=%@&lat=%@&per_page=20&source=explore&bypass=1", lon, lat];
-  }
+//  NSString* encodedSearchString = [searchString stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
+//  NSString *api;
+//  if (searchString) {
+//    api = [NSString stringWithFormat:@"http://api.gogobot.com/api/v2/search/nearby.json?_v=2.3.8&page=1&lng=%@&lat=%@&term=%@&per_page=20&source=create&bypass=1", lon, lat, encodedSearchString];
+//  } else {
+//    api = [NSString stringWithFormat:@"http://api.gogobot.com/api/v2/search/nearby.json?_v=2.3.8&page=1&lng=%@&lat=%@&per_page=20&source=create&bypass=1", lon, lat];
+//  }
   
-  NSURL *url = [NSURL URLWithString:api];
+  NSURL *url = [NSURL URLWithString:apiUrl];
   NSURLRequest *request = [NSURLRequest requestWithURL:url];
   
   [self.places removeAllObjects];
@@ -202,12 +208,15 @@
 
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
-
-//  if (searchText.length >=3) {
-    [self keywordSearch:searchText];
-    self.searching = NO;
-    [self.tableView reloadData];
-//  };
+  NSString *lat = [NSString stringWithFormat:@"%.5f", self.currentLocation.latitude];
+  NSString *lon = [NSString stringWithFormat:@"%.5f", self.currentLocation.longitude];
+  
+  NSString *encodedSearchString = [searchText stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
+  NSString *apiUrl = [NSString stringWithFormat:@"http://api.gogobot.com/api/v2/search/nearby.json?_v=2.3.8&page=1&lng=%@&lat=%@&term=%@&per_page=20&source=create&bypass=1", lon, lat, encodedSearchString];
+  
+  [self keywordSearch:apiUrl];
+  self.searching = NO;
+  [self.tableView reloadData];
 
 }
 
@@ -219,7 +228,13 @@
   [searchBar resignFirstResponder];
   self.searching = NO;
   searchBar.text = nil;
-  [self keywordSearch:nil];
+  
+  NSString *lat = [NSString stringWithFormat:@"%.5f", self.currentLocation.latitude];
+  NSString *lon = [NSString stringWithFormat:@"%.5f", self.currentLocation.longitude];
+  
+  NSString *apiUrl = [NSString stringWithFormat:@"http://api.gogobot.com/api/v2/search/nearby.json?_v=2.3.8&page=1&lng=%@&lat=%@&per_page=20&source=create&bypass=1", lon, lat];
+  
+  [self keywordSearch:apiUrl];
   [self.tableView reloadData];
 }
 
@@ -339,34 +354,50 @@ self.searchDisplayController.searchResultsTableView.hidden = YES;
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
   UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
   if ([cell.reuseIdentifier isEqual: @"FilterCell"]) {
-    NSLog(cell.textLabel.text);
-//    NSString *str = cell.textLabel.text;
+    [self.searchBar resignFirstResponder];
+    self.searching = NO;
+    self.searchBar.text = nil;
+
+    NSString *lat = [NSString stringWithFormat:@"%.5f", self.currentLocation.latitude];
+    NSString *lon = [NSString stringWithFormat:@"%.5f", self.currentLocation.longitude];
+    
+    NSString *source = @"create";
+    NSString *type = cell.textLabel.text;
+    if ([type isEqual: @"Popular"]) {
+      type = @"all";
+      source = @"explore";
+    }
+    
+    NSString *apiUrl = [NSString stringWithFormat:@"http://api.gogobot.com/api/v2/search/nearby.json?_v=2.3.8&type=%@&page=1&lng=%@&lat=%@&per_page=20&source=%@&bypass=1", type, lon, lat, source];
+
+    [self keywordSearch:apiUrl];
+    [self.tableView reloadData];
   }
 
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-  NSIndexPath *path = nil;
-  if ([self.searchDisplayController isActive]) {
-    path = [self.searchDisplayController.searchResultsTableView indexPathForSelectedRow];
+  if([[segue identifier] isEqualToString:@"SearchSelection"]) {
+    NSIndexPath *path = [self.tableView indexPathForSelectedRow];
+    
+    UINavigationController *navigationController = (UINavigationController *)segue.destinationViewController;
+    MainViewController *mainViewController = [[navigationController viewControllers] lastObject];
+    
+    //  Place *place = [[Place alloc] init];
+    //  place.name = [self.tableView cellForRowAtIndexPath:path].textLabel.text;
+    //  mainViewController.place = place;
+    
+    
+    Place *place = [self.places objectAtIndex:path.row];
+    mainViewController.place = place;
+    
+    //  mainViewController.mainSubTitle = [self.tableView cellForRowAtIndexPath:path].detailTextLabel.text;
+    //  mainViewController.mainTitle = [self.tableView cellForRowAtIndexPath:path].textLabel.text;
   } else {
-    path = [self.tableView indexPathForSelectedRow];
+//      LocationSearchViewController *locationSearchViewController = segue.destinationViewController;
+//      locationSearchViewController.currentLocation = self.currentLocation;
   }
-  
-  UINavigationController *navigationController = (UINavigationController *)segue.destinationViewController;
-  MainViewController *mainViewController = [[navigationController viewControllers] lastObject];
-  
-//  Place *place = [[Place alloc] init];
-//  place.name = [self.tableView cellForRowAtIndexPath:path].textLabel.text;
-//  mainViewController.place = place;
-  
-
-  Place *place = [self.places objectAtIndex:path.row];
-  mainViewController.place = place;
-
-//  mainViewController.mainSubTitle = [self.tableView cellForRowAtIndexPath:path].detailTextLabel.text;
-//  mainViewController.mainTitle = [self.tableView cellForRowAtIndexPath:path].textLabel.text;  
 }
 
 @end

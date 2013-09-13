@@ -7,10 +7,12 @@
 //
 
 #import "AppDelegate.h"
-
 #import "MainViewController.h"
+#import <CoreLocation/CoreLocation.h>
 
-@implementation AppDelegate
+@implementation AppDelegate {
+    CLLocationManager *locationManager;
+}
 
 @synthesize managedObjectContext = _managedObjectContext;
 @synthesize managedObjectModel = _managedObjectModel;
@@ -28,8 +30,19 @@
   if ([defaults objectForKey:@"isMetric"] == nil) {
     [defaults setBool:isMetric forKey:@"isMetric"];
   }
-
+    
+    locationManager = [[CLLocationManager alloc] init];
+    locationManager.delegate = self;
+    locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    if( [CLLocationManager locationServicesEnabled] &&  [CLLocationManager headingAvailable]) {
+        [locationManager startUpdatingLocation];
+    }
+    
   return YES;
+}
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
+  self.currentLocation = [[locations lastObject] coordinate];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application

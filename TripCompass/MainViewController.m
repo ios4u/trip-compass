@@ -15,16 +15,17 @@
 @end
 
 @implementation MainViewController {
-  CLLocationManager *locationManager;
-  NSString *selectedLocation;
-  float GeoAngle;
+    CLLocationManager *locationManager;
+    NSString *selectedLocation;
+    float GeoAngle;
+    id appDelegate;
 }
 
 - (void)viewDidLoad {
   [super viewDidLoad];
   
-  id delegate = [[UIApplication sharedApplication] delegate];
-  self.managedObjectContext = [delegate managedObjectContext];
+    appDelegate = [[UIApplication sharedApplication] delegate];
+    self.managedObjectContext = [appDelegate managedObjectContext];
   
   locationManager = [[CLLocationManager alloc] init];
   locationManager.delegate = self;
