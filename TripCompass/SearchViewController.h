@@ -21,7 +21,6 @@
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (nonatomic, assign) BOOL searching;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *locationButton;
 
 @end
 

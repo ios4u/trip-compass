@@ -13,19 +13,10 @@
 #import "PlaceModel.h"
 
 @interface BookmarkViewController () <CLLocationManagerDelegate>
-
 @end
 
 @implementation BookmarkViewController {
   CLLocationManager *locationManager;
-}
-
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {      
-    }
-    return self;
 }
 
 - (void)viewDidLoad {
@@ -33,22 +24,7 @@
 
   id delegate = [[UIApplication sharedApplication] delegate];
   self.managedObjectContext = [delegate managedObjectContext];
-  
-  locationManager = [[CLLocationManager alloc] init];
-  locationManager.delegate = self;
-  locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-  
-  if( [CLLocationManager locationServicesEnabled] &&  [CLLocationManager headingAvailable]) {
-    [locationManager startUpdatingLocation];
-    [locationManager startUpdatingHeading];
-    NSLog(@"Started");
-  } else {
-    NSLog(@"Can't report heading");
-  }
-}
-
-- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
-  self.currentLocation = [locations lastObject];
+  self.tabBarController.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 -(void)viewWillAppear:(BOOL)animated {
@@ -56,13 +32,7 @@
   
   NSError *error;
   NSEntityDescription *entity = [NSEntityDescription entityForName:@"PlaceModel" inManagedObjectContext:self.managedObjectContext];
-  
-//  NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-//  [fetchRequest setEntity:entity];
-//
-//  self.savedPlaces = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
-//  
-  
+    
   NSPropertyDescription *propDesc = [[entity propertiesByName] objectForKey:@"area"];
   NSExpression *emailExpr = [NSExpression expressionForKeyPath:@"area"];
   NSExpression *countExpr = [NSExpression expressionForFunction:@"count:" arguments:[NSArray arrayWithObject:emailExpr]];
@@ -85,14 +55,6 @@
   [self.tableView reloadData];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-#pragma mark - Table view data source
-
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
   return 1;
 }
@@ -105,16 +67,8 @@
   static NSString *CellIdentifier = @"BookmarkCell";
   UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
   
-//  PlaceModel *placeModel = [self.savedPlaces objectAtIndex:indexPath.row];
-
   NSDictionary *place = [self.savedPlaces objectAtIndex:indexPath.row];
   
-//  Place *place = [[Place alloc] init];
-//  place.name = placeModel.name;
-//  place.address = placeModel.address;
-//  place.lat = placeModel.lat;
-//  place.lng = placeModel.lng;
-
   cell.textLabel.text = [place valueForKey:@"area"];
 //  double distance = [place distanceTo:self.currentLocation.coordinate toFormat:@"mi"];
 //  cell.detailTextLabel.text = [Util stringWithDistance:distance];
@@ -132,27 +86,19 @@
 }
 */
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
 
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+  NSDictionary *place = [self.savedPlaces objectAtIndex:indexPath.row];
+  [place valueForKey:@"area"];
+  [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+}
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
   NSIndexPath *path = [self.tableView indexPathForSelectedRow];
 //
 //  UINavigationController *navigationController = (UINavigationController *)segue.destinationViewController;
 //  MainViewController *mainViewController = [[navigationController viewControllers] lastObject];
-//  
+//
   NSDictionary *place = [self.savedPlaces objectAtIndex:path.row];
   BookmarkItemViewController *controller = (BookmarkItemViewController *)segue.destinationViewController;
   controller.selectedAreaGroup = [place valueForKey:@"area"];  

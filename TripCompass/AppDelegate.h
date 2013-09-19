@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreLocation/CoreLocation.h>
+#import "Place.h"
 
 @interface AppDelegate : UIResponder <CLLocationManagerDelegate, UIApplicationDelegate>
 
@@ -18,6 +19,7 @@
 @property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 
 @property (nonatomic, assign) CLLocationCoordinate2D currentLocation;
+@property (strong, nonatomic) Place *selectedLocation;
 
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;

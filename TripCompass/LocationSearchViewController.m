@@ -47,7 +47,6 @@
   [self.tableView reloadData];
 }
 
-
 - (void)keywordSearch:(NSString *)apiUrl {
   NSURL *url = [NSURL URLWithString:apiUrl];
   NSURLRequest *request = [NSURLRequest requestWithURL:url];
@@ -92,8 +91,8 @@
     
     [self.places addObject:place];
     cell.textLabel.text = place.name;
-
-     if ([result objectForKey:@"travel_unit"] != [NSNull null]) {
+    
+    if ([result objectForKey:@"travel_unit"] != [NSNull null]) {
       cell.detailTextLabel.text = [result objectForKey:@"travel_unit"];
     }
     
@@ -101,5 +100,27 @@
   
   return cell;
 }
+
+//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+//  UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+//  if ([cell.reuseIdentifier isEqual: @"DefaultCell"]) {
+//    Place *place = [self.places objectAtIndex:(indexPath.row -1)];
+//    appDelegate.selectedLocation = place;
+//  }
+//  
+//}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+  NSIndexPath *indexPath = [self.searchDisplayController.searchResultsTableView indexPathForSelectedRow];
+
+  if([[segue identifier] isEqualToString:@"NewLocation"]) {
+    Place *place = [self.places objectAtIndex:(indexPath.row-1)];
+    appDelegate.selectedLocation = place;
+  } else {
+    appDelegate.selectedLocation = NULL;
+  }
+  
+}
+
 
 @end

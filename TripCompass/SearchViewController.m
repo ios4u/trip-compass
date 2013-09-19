@@ -1,11 +1,3 @@
-//
-//  SearchControllerViewController.m
-//  TripCompass
-//
-//  Created by Eduardo Sasso on 7/11/13.
-//  Copyright (c) 2013 Context Software. All rights reserved.
-//
-
 #import "SearchViewController.h"
 #import "MainViewController.h"
 #import "Place.h"
@@ -14,60 +6,43 @@
 #import "AFNetworking.h"
 #import "BookmarkItemViewController.h"
 #import "LocationSearchViewController.h"
+#import "AppDelegate.h"
 
 @interface SearchViewController ()
 @end
 
 @implementation SearchViewController {
   NSArray *searchFilters;
+  AppDelegate *appDelegate;
+  NSString *lat;
+  NSString *lng;
 }
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
-  self = [super initWithStyle:style];
-  if (self) {
-    // Custom initialization
-  }
-  return self;
-}
-
-
-- (void)runSearch: (NSString *)xx {
-
-}
-
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
   [super viewDidLoad];
-  
   
   searchFilters = [NSArray arrayWithObjects:@"Attractions",@"Restaurants",@"Hotels",@"Popular", nil];
   
-//  self.tableView.tableHeaderView = headerView;
-  
-  id delegate = [[UIApplication sharedApplication] delegate];
-  self.managedObjectContext = [delegate managedObjectContext];
-  
-  NSString *lat = [NSString stringWithFormat:@"%.5f", self.currentLocation.latitude];
-  NSString *lon = [NSString stringWithFormat:@"%.5f", self.currentLocation.longitude];
-//  NSLog(@"lat %@ -- lon %@", lat,lon);
+  appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+  self.managedObjectContext = [appDelegate managedObjectContext];
 
-  // Uncomment the following line to preserve selection between presentations.
-  // self.clearsSelectionOnViewWillAppear = NO;
-
-  // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-  // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+  lat = [NSString stringWithFormat:@"%.5f", self.currentLocation.latitude];
+  lng = [NSString stringWithFormat:@"%.5f", self.currentLocation.longitude];
+  if (appDelegate.selectedLocation) {
+    lat = [appDelegate.selectedLocation.lat stringValue];
+    lng = [appDelegate.selectedLocation.lng stringValue];
+  }
+  
   self.places = [[NSMutableArray alloc] init];
   
-  NSString *api = [NSString stringWithFormat:@"http://api.gogobot.com/api/v2/search/nearby.json?_v=2.3.8&page=1&lng=%@&lat=%@&per_page=20&source=create&bypass=1", lon, lat];
-
+  NSString *api = [NSString stringWithFormat:@"http://api.gogobot.com/api/v2/search/nearby.json?_v=2.3.8&page=1&lng=%@&lat=%@&per_page=20&source=create&bypass=1", lng, lat];
+  
   NSURL *url = [NSURL URLWithString:api];
   NSURLRequest *request = [NSURLRequest requestWithURL:url];
   
   AFJSONRequestOperation *operation = [AFJSONRequestOperation
                                        JSONRequestOperationWithRequest:request
                                        success:^(NSURLRequest *request, NSHTTPURLResponse *response, id json) {
-//                                         NSLog(@"Tweets: %@", [json valueForKeyPath:@"results"]);
                                          self.results = [json objectForKey:@"results"];
                                          [self.tableView reloadData];
                                        } failure:^(NSURLRequest *request , NSURLResponse *response , NSError *error , id JSON){
@@ -75,36 +50,23 @@
                                        }];
   
   [operation start];
-//  http://nscookbook.com/2013/03/ios-programming-recipe-16-populating-a-uitableview-with-data-from-the-web/
-//  http://nsscreencast.com/episodes/6-afnetworking
 }
 
 - (void)viewWillAppear:(BOOL)animated {
   self.tabBarController.navigationItem.title = @"Nearby Search";
-  self.tabBarController.navigationItem.rightBarButtonItem = self.locationButton;
 }
 
-- (void)didReceiveMemoryWarning
-{
-  [super didReceiveMemoryWarning];
-  // Dispose of any resources that can be recreated.
-}
-
-#pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
   return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
   // Return the number of rows in the section.
   if (self.searching == NO) {
     return self.results.count;
   } else {
-//    return ([searchFilters count] + 1);
-    return 5;
+    return ([searchFilters count] + 1);
+//    return 5;
   }
 }
 
@@ -148,6 +110,11 @@
     if (indexPath.row == 0) {
       CellIdentifier = @"LocationCell";
       cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+
+      cell.detailTextLabel.text = @"Current Location";
+      if (appDelegate.selectedLocation) {
+        cell.detailTextLabel.text = appDelegate.selectedLocation.name;
+      }      
     } else {
       CellIdentifier = @"FilterCell";
       cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -208,31 +175,20 @@
 
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
-  NSString *lat = [NSString stringWithFormat:@"%.5f", self.currentLocation.latitude];
-  NSString *lon = [NSString stringWithFormat:@"%.5f", self.currentLocation.longitude];
-  
   NSString *encodedSearchString = [searchText stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
-  NSString *apiUrl = [NSString stringWithFormat:@"http://api.gogobot.com/api/v2/search/nearby.json?_v=2.3.8&page=1&lng=%@&lat=%@&term=%@&per_page=20&source=create&bypass=1", lon, lat, encodedSearchString];
+  NSString *apiUrl = [NSString stringWithFormat:@"http://api.gogobot.com/api/v2/search/nearby.json?_v=2.3.8&page=1&lng=%@&lat=%@&term=%@&per_page=20&source=create&bypass=1", lng, lat, encodedSearchString];
   
   [self keywordSearch:apiUrl];
   self.searching = NO;
   [self.tableView reloadData];
-
 }
-
-//- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
-//  NSLog(@"searchBarTextDidBeginEditing");
-//}
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
   [searchBar resignFirstResponder];
   self.searching = NO;
   searchBar.text = nil;
   
-  NSString *lat = [NSString stringWithFormat:@"%.5f", self.currentLocation.latitude];
-  NSString *lon = [NSString stringWithFormat:@"%.5f", self.currentLocation.longitude];
-  
-  NSString *apiUrl = [NSString stringWithFormat:@"http://api.gogobot.com/api/v2/search/nearby.json?_v=2.3.8&page=1&lng=%@&lat=%@&per_page=20&source=create&bypass=1", lon, lat];
+  NSString *apiUrl = [NSString stringWithFormat:@"http://api.gogobot.com/api/v2/search/nearby.json?_v=2.3.8&page=1&lng=%@&lat=%@&per_page=20&source=create&bypass=1", lng, lat];
   
   [self keywordSearch:apiUrl];
   [self.tableView reloadData];
@@ -242,92 +198,20 @@
   [searchBar resignFirstResponder];
 }
 
-//- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchScope:(NSInteger)searchOption {
-//  NSString *searchString = controller.searchBar.text;
-//  return YES;
-//}
 
-//- (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar {
-//  //do stuff
-////  BookmarkItemViewController *viewController = [[BookmarkItemViewController alloc] init];
-////  [self presentViewController:viewController animated:YES completion:nil];
-////  searchBar.backgroundColor = [UIColor clearColor];
-////  [[searchBar.subviews objectAtIndex:0] removeFromSuperview];
-////    [[searchBar.subviews objectAtIndex:2] removeFromSuperview];
-////  [searchBar becomeFirstResponder];
-//
-////  UIView *view1 = [[UIView alloc] init];
-////  view1.frame = CGRectMake(0, 20, 320, 460);
-////  view1.backgroundColor = [UIColor blueColor];
-////  [searchBar addSubview:view1];
-////  
-////  self.searchDisplayController.searchResultsTableView.hidden = YES;
-////  return YES;
-//  
-//}
-
-//- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
-//  [searchBar setShowsCancelButton:YES animated:YES];
-//  self.tableView.allowsSelection = YES;
-//  self.tableView.scrollEnabled = YES;
-//}
-//
-
-- (void)searchDisplayController:(UISearchDisplayController *)controller didHideSearchResultsTableView:(UITableView *)tableView
-{
-  // add the tableview back in
-//[self.view addSubview:self.searchDisplayController.searchResultsTableView];
-//  self.searchDisplayController.searchResultsTableView.hidden = YES;
+- (void)searchDisplayController:(UISearchDisplayController *)controller didHideSearchResultsTableView:(UITableView *)tableView {
   self.searchDisplayController.searchResultsTableView.hidden = YES;
 }
 
-- (void)searchDisplayControllerWillBeginSearch:(UISearchDisplayController *)controller
-{
-  // after the data has been preloaded
-//  self.searchResults = self.allItems;
-//    [controller.searchBar becomeFirstResponder];
-//[self.searchDisplayController.searchResultsTableView reloadData];
-
+- (void)searchDisplayControllerDidBeginSearch:(UISearchDisplayController *)controller {
+  //  [self.searchDisplayController.searchBar becomeFirstResponder];
+  //  [self.searchDisplayController.searchBar setText:@"whole"];
   //  [self.view addSubview:self.searchDisplayController.searchResultsTableView];
-//  self.searchDisplayController.searchResultsTableView.hidden = YES;
-//  [[self.view.subviews lastObject] removeFromSuperview];
-//  
-//  UIView *hideSearchView = [[UIView alloc] initWithFrame:CGRectMake(self.searchDisplayController.searchResultsTableView.frame.origin.x, self.searchDisplayController.searchResultsTableView.frame.origin.y, self.searchDisplayController.searchResultsTableView.frame.size.width, self.searchDisplayController.searchResultsTableView.frame.size.height)];
-//  hideSearchView.alpha = 0.8;
-//  hideSearchView.tag = 1200;
-//  hideSearchView.backgroundColor = [UIColor blackColor];
-//  [self.searchDisplayController.searchContentsController.view addSubview:hideSearchView];
-//
-//  [self.view addSubview:hideSearchView];
+  self.searchDisplayController.searchResultsTableView.hidden = YES;
 }
-
-- (void)searchDisplayControllerDidBeginSearch:(UISearchDisplayController *)controller
-{
-//  [self.searchDisplayController.searchBar becomeFirstResponder];
-//  [self.searchDisplayController.searchBar setText:@"whole"];
-//  [self.view addSubview:self.searchDisplayController.searchResultsTableView];
-self.searchDisplayController.searchResultsTableView.hidden = YES;
-}
-
-// TODO: Your text here÷÷÷
-- (void)searchDisplayController:(UISearchDisplayController *)controller willShowSearchResultsTableView:(UITableView *)tableView {
-//  self.searchDisplayController.searchResultsTableView.hidden = YES;
-//  self.searchDisplayController.searchResultsTableView.hidden = YES;
-//  UIView *hideSearchView = [[UIView alloc] initWithFrame:CGRectMake(self.searchDisplayController.searchResultsTableView.frame.origin.x, self.searchDisplayController.searchResultsTableView.frame.origin.y, self.searchDisplayController.searchResultsTableView.frame.size.width, self.searchDisplayController.searchResultsTableView.frame.size.height)];
-//  hideSearchView.alpha = 0.8;
-//  hideSearchView.tag = 1200;
-//  hideSearchView.backgroundColor = [UIColor blackColor];
-//  [self.searchDisplayController.searchContentsController.view addSubview:hideSearchView];
-  
-}
-
-
-//- (void)search:(NSString *)searchString
-
 
 -(void)btnAddClick:(id)sender {
   UIButton* btnAdd = (UIButton *) sender;
-//  NSLog(@"Button %d is selected",btnAdd.tag);
   
   UITableViewCell *cell = (UITableViewCell *)[btnAdd superview];
   cell.userInteractionEnabled = NO;
@@ -357,9 +241,6 @@ self.searchDisplayController.searchResultsTableView.hidden = YES;
     [self.searchBar resignFirstResponder];
     self.searching = NO;
     self.searchBar.text = nil;
-
-    NSString *lat = [NSString stringWithFormat:@"%.5f", self.currentLocation.latitude];
-    NSString *lon = [NSString stringWithFormat:@"%.5f", self.currentLocation.longitude];
     
     NSString *source = @"create";
     NSString *type = cell.textLabel.text;
@@ -368,42 +249,23 @@ self.searchDisplayController.searchResultsTableView.hidden = YES;
       source = @"explore";
     }
     
-    NSString *apiUrl = [NSString stringWithFormat:@"http://api.gogobot.com/api/v2/search/nearby.json?_v=2.3.8&type=%@&page=1&lng=%@&lat=%@&per_page=20&source=%@&bypass=1", type, lon, lat, source];
-
+    NSString *apiUrl = [NSString stringWithFormat:@"http://api.gogobot.com/api/v2/search/nearby.json?_v=2.3.8&type=%@&page=1&lng=%@&lat=%@&per_page=20&source=%@&bypass=1", type, lng, lat, source];
+    
     [self keywordSearch:apiUrl];
     [self.tableView reloadData];
   }
-
 }
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
   if([[segue identifier] isEqualToString:@"SearchSelection"]) {
     NSIndexPath *path = [self.tableView indexPathForSelectedRow];
     
     UINavigationController *navigationController = (UINavigationController *)segue.destinationViewController;
     MainViewController *mainViewController = [[navigationController viewControllers] lastObject];
     
-    //  Place *place = [[Place alloc] init];
-    //  place.name = [self.tableView cellForRowAtIndexPath:path].textLabel.text;
-    //  mainViewController.place = place;
-    
-    
     Place *place = [self.places objectAtIndex:path.row];
     mainViewController.place = place;
-    
-    //  mainViewController.mainSubTitle = [self.tableView cellForRowAtIndexPath:path].detailTextLabel.text;
-    //  mainViewController.mainTitle = [self.tableView cellForRowAtIndexPath:path].textLabel.text;
-  } else {
-//      LocationSearchViewController *locationSearchViewController = segue.destinationViewController;
-//      locationSearchViewController.currentLocation = self.currentLocation;
   }
 }
 
 @end
-
-
-//http://stackoverflow.com/questions/4434855/uisearchdisplaycontroller-without-instant-search-how-do-i-control-the-dimming-o
-//http://pinkstone.co.uk/tag/uisearchdisplaycontroller/
-//http://stackoverflow.com/questions/2388906/iphone-sdk-setting-the-size-of-uisearchdisplaycontrollers-table-view
-//http://stackoverflow.com/questions/1912446/remove-transparent-overlay-uisearchbar
