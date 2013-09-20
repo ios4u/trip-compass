@@ -215,9 +215,9 @@
   
   UITableViewCell *cell = (UITableViewCell *)[btnAdd superview];
   cell.userInteractionEnabled = NO;
-  cell.textLabel.enabled = NO;
-  cell.detailTextLabel.enabled = NO;
-  cell.accessoryView = nil;
+//  cell.textLabel.enabled = NO;
+//  cell.detailTextLabel.enabled = NO;
+//  cell.accessoryView = nil;
   
   Place *place = [self.places objectAtIndex:btnAdd.tag];
   

@@ -17,6 +17,7 @@
 
 @implementation BookmarkViewController {
   CLLocationManager *locationManager;
+  int savedPlacesCount;
 }
 
 - (void)viewDidLoad {
@@ -51,6 +52,7 @@
   [fr setResultType:NSDictionaryResultType];
   
   self.savedPlaces = [self.managedObjectContext executeFetchRequest:fr error:&error];
+  savedPlacesCount = [self.savedPlaces count];
   
   [self.tableView reloadData];
 }
@@ -60,7 +62,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
- return [self.savedPlaces count];
+ return savedPlacesCount;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -89,8 +91,25 @@
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
   NSDictionary *place = [self.savedPlaces objectAtIndex:indexPath.row];
-  [place valueForKey:@"area"];
+  
+  NSEntityDescription *entity = [NSEntityDescription entityForName:@"PlaceModel" inManagedObjectContext:self.managedObjectContext];
+  NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+  
+  [fetchRequest setEntity:entity];
+  
+  NSPredicate *predicate = [NSPredicate predicateWithFormat:@"area == %@", [place valueForKey:@"area"]];
+  [fetchRequest setPredicate:predicate];
+  NSArray *results = [self.managedObjectContext executeFetchRequest:fetchRequest error:nil];
+  
+  for (NSManagedObject *managedObject in results) {
+    [self.managedObjectContext deleteObject:managedObject];
+  }
+  --savedPlacesCount;
   [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+  
+  [self.managedObjectContext save:nil];
+  
+  [self.tableView reloadData];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
