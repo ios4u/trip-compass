@@ -93,13 +93,18 @@
     
     NSDictionary *result = [self.results objectAtIndex:indexPath.row];
     
+    id place_lat = [result valueForKeyPath:@"address.lat"];
+    id place_lng = [result valueForKeyPath:@"address.lng"];
+    
+    if (place_lat == [NSNull null] || place_lng == [NSNull null]) return cell;
+
     Place *place = [[Place alloc] init];
     place.name = [result objectForKey:@"name"];
     place.address = [result valueForKeyPath:@"address.address"];
-    place.lat = [NSNumber numberWithDouble:[[result valueForKeyPath:@"address.lat"] doubleValue]];
-    place.lng = [NSNumber numberWithDouble:[[result valueForKeyPath:@"address.lng"] doubleValue]];
+    place.lat = [NSNumber numberWithDouble:[place_lat doubleValue]];
+    place.lng = [NSNumber numberWithDouble:[place_lng doubleValue]];
     place.area = [result objectForKey:@"travel_unit"];
-      
+    
     [self.places addObject:place];
     
     cell.textLabel.text = place.name;
@@ -213,11 +218,8 @@
 -(void)btnAddClick:(id)sender {
   UIButton* btnAdd = (UIButton *) sender;
   
-  UITableViewCell *cell = (UITableViewCell *)[btnAdd superview];
-  cell.userInteractionEnabled = NO;
-//  cell.textLabel.enabled = NO;
-//  cell.detailTextLabel.enabled = NO;
-//  cell.accessoryView = nil;
+  UITableViewCell *cell = (UITableViewCell *)[[btnAdd superview] superview];
+  ((UIButton *)cell.accessoryView).enabled = FALSE;
   
   Place *place = [self.places objectAtIndex:btnAdd.tag];
   
