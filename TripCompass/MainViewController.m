@@ -79,6 +79,10 @@
   }
 }
 
+- (BOOL)locationManagerShouldDisplayHeadingCalibration:(CLLocationManager *)manager {
+  return YES;
+}
+
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
   NSLog(@"Can't report heading"); 
 }

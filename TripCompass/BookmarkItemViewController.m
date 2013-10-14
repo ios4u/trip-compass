@@ -1,11 +1,3 @@
-//
-//  BookmarkItemViewController.m
-//  TripCompass
-//
-//  Created by Eduardo Sasso on 8/19/13.
-//  Copyright (c) 2013 Context Software. All rights reserved.
-//
-
 #import "BookmarkItemViewController.h"
 #import "PlaceModel.h"
 #import "Place.h"
@@ -25,6 +17,7 @@
   self.managedObjectContext = [delegate managedObjectContext];
 
   self.navigationItem.rightBarButtonItem = self.editButtonItem;
+  
 }
 
 -(void)viewWillAppear:(BOOL)animated {
@@ -86,12 +79,12 @@
   for (NSManagedObject *managedObject in results) {
     [self.managedObjectContext deleteObject:managedObject];
   }
+  
   --savedPlacesCount;
+  
   [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
   
   [self.managedObjectContext save:nil];
-  
-//  [self.tableView reloadData];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {

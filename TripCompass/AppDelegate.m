@@ -31,13 +31,28 @@
     [defaults setBool:isMetric forKey:@"isMetric"];
   }
     
-    locationManager = [[CLLocationManager alloc] init];
-    locationManager.delegate = self;
-    locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-    if( [CLLocationManager locationServicesEnabled] &&  [CLLocationManager headingAvailable]) {
-        [locationManager startUpdatingLocation];
-    }
-    
+  locationManager = [[CLLocationManager alloc] init];
+  locationManager.delegate = self;
+  locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+  if( [CLLocationManager locationServicesEnabled] &&  [CLLocationManager headingAvailable]) {
+    [locationManager startUpdatingLocation];
+  }
+  
+//  navigationController.navigationItem.title = @"xxx";
+//  controller.navigationItem.title = @"";
+  
+//  UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@""
+//                                                                 style:UIBarButtonItemStyleBordered
+//                                                                target:nil
+//                                                                action:nil];
+//  [controller.navigationItem setBackBarButtonItem: backButton];
+//
+//  [[UIBarButtonItem appearanceWhenContainedIn:[self.window.rootViewController class], nil]
+//   setb
+//   setTintColor:[UIColor redColor]];
+  
+//  [[UIBarButtonItem appearanceWhenContainedIn:[UIToolbar class],[UIViewController class], nil] setTintColor:[UIColor redColor]];
+
   return YES;
 }
 

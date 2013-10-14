@@ -20,6 +20,8 @@
 
 - (void)viewDidLoad {
   [super viewDidLoad];
+
+  self.tabBarController.navigationItem.rightBarButtonItem = self.editButtonItem;
   
   searchFilters = [NSArray arrayWithObjects:@"Attractions",@"Restaurants",@"Hotels",@"Popular", nil];
   
@@ -52,8 +54,31 @@
   [operation start];
 }
 
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
+  return  UITableViewCellEditingStyleInsert;
+}
+
 - (void)viewWillAppear:(BOOL)animated {
+//  UIViewController *uiViewController = [self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count-2];
+//  
+//  if ([uiViewController isKindOfClass:[LocationSearchViewController class]]) {
+//    NSMutableArray *navigationArray = [[NSMutableArray alloc] initWithArray: self.navigationController.viewControllers];
+//    
+//    // [navigationArray removeAllObjects];    // This is just for remove all view controller from navigation stack.
+////    [navigationArray removeObjectAtIndex: 1];  // You can pass your index here
+//    self.navigationController.viewControllers = navigationArray;
+//  }
+  
+  //  NSLog(@"aaa %@",[self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count-2]);
+//    NSLog(@"bbb %@",[self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count-1]);
+//  NSLog([[[self.navigationController topViewController] class] description]);
+//  ([[self.navigationController topViewController] isKindOfClass:[RootViewController class]])
+//    [[self.navigationController viewControllers] count] - 2;
   self.tabBarController.navigationItem.title = @"Nearby Search";
+  
+  [self.tableView reloadData];
+//  [self.tableView setNeedsLayout];
+//  [self.tableView setNeedsDisplay];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -240,9 +265,9 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
   UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
   if ([cell.reuseIdentifier isEqual: @"FilterCell"]) {
-    [self.searchBar resignFirstResponder];
+//    [self.searchBar resignFirstResponder];
     self.searching = NO;
-    self.searchBar.text = nil;
+//    self.searchBar.text = nil;
     
     NSString *source = @"create";
     NSString *type = cell.textLabel.text;

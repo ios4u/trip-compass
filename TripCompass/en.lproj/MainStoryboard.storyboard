@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="12F37" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="BNG-Bj-k6r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="BNG-Bj-k6r">
     <dependencies>
-        <deployment defaultVersion="1552" identifier="iOS"/>
+        <deployment defaultVersion="1792" identifier="iOS"/>
+        <development version="5000" identifier="xcode"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
     </dependencies>
     <scenes>
@@ -13,20 +14,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="10">
-                                <rect key="frame" x="280" y="522" width="22" height="22"/>
-                                <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="15"/>
-                                <state key="normal">
-                                    <color key="titleColor" red="0.19607843137254902" green="0.30980392156862746" blue="0.52156862745098043" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <segue destination="6" kind="modal" identifier="showAlternate" modalTransitionStyle="flipHorizontal" id="11"/>
-                                </connections>
-                            </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" image="numbers.png" id="UmP-sO-QP6">
                                 <rect key="frame" x="13" y="127" width="294" height="311"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
@@ -46,7 +33,6 @@
                         <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                     </view>
                     <navigationItem key="navigationItem" title="Trip Compass" id="ers-HE-Tto">
-                        <barButtonItem key="backBarButtonItem" title="Back" id="Vse-fu-Nbc"/>
                         <barButtonItem key="rightBarButtonItem" style="plain" systemItem="search" id="hac-ew-Mok">
                             <connections>
                                 <segue destination="htI-P6-ELJ" kind="push" id="0wb-gz-HNK"/>
@@ -114,7 +100,7 @@
             </objects>
             <point key="canvasLocation" x="-1044" y="-1064"/>
         </scene>
-        <!--Location Search View Controller-->
+        <!--Location Search View Controller - Select Location-->
         <scene sceneID="Xwh-Ld-JRZ">
             <objects>
                 <tableViewController id="XuH-Xh-SDA" customClass="LocationSearchViewController" sceneMemberID="viewController">
@@ -123,7 +109,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <searchBar key="tableHeaderView" contentMode="redraw" id="4Bj-n8-ygx">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                            <rect key="frame" x="0.0" y="64" width="320" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <textInputTraits key="textInputTraits"/>
                             <connections>
@@ -132,7 +118,7 @@
                         </searchBar>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="LocationCell" textLabel="tVd-se-Urt" detailTextLabel="2Ql-Ry-98k" style="IBUITableViewCellStyleValue1" id="I1B-Xb-jxl">
-                                <rect key="frame" x="0.0" y="66" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="130" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="I1B-Xb-jxl" id="THW-Tr-Jwp">
                                     <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
@@ -155,11 +141,11 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="htI-P6-ELJ" kind="push" id="ya6-c3-SS3"/>
+                                    <segue destination="htI-P6-ELJ" kind="push" identifier="" id="ya6-c3-SS3"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="DefaultCell" textLabel="AP4-bY-wCp" detailTextLabel="c7R-gY-UWK" style="IBUITableViewCellStyleSubtitle" id="5UJ-G0-oBS">
-                                <rect key="frame" x="0.0" y="110" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="174" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5UJ-G0-oBS" id="RXQ-Cu-iMv">
                                     <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
@@ -181,9 +167,6 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
-                                <connections>
-                                    <segue destination="htI-P6-ELJ" kind="push" identifier="NewLocation" id="laD-g0-ZXW"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -191,8 +174,15 @@
                             <outlet property="delegate" destination="XuH-Xh-SDA" id="hCb-E2-AGD"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="zFa-2F-jgF"/>
+                    <navigationItem key="navigationItem" title="Select Location" id="zFa-2F-jgF">
+                        <barButtonItem key="rightBarButtonItem" systemItem="stop" id="sRt-Cz-kQj">
+                            <connections>
+                                <action selector="closeButtonClick:" destination="XuH-Xh-SDA" id="TAI-lT-8Tf"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
+                        <outlet property="closeButton" destination="sRt-Cz-kQj" id="wKQ-5a-iHc"/>
                         <outlet property="searchBar" destination="4Bj-n8-ygx" id="zdb-e2-6mL"/>
                         <outlet property="searchDisplayController" destination="wkT-ds-5ec" id="sCa-V1-kvd"/>
                     </connections>
@@ -216,7 +206,22 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="78" y="-1214"/>
+            <point key="canvasLocation" x="552" y="-1025"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="rZ4-OS-FUR">
+            <objects>
+                <navigationController definesPresentationContext="YES" id="iUx-6f-sWl" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Ojq-aW-Cwc">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="XuH-Xh-SDA" kind="relationship" relationship="rootViewController" id="F5N-Lh-6ZE"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="51c-bb-3Ls" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="140" y="-287"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="ObP-n0-Cgj">
@@ -247,7 +252,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <searchBar key="tableHeaderView" contentMode="redraw" barStyle="black" id="Kf2-cn-de9">
+                        <searchBar key="tableHeaderView" contentMode="redraw" id="Kf2-cn-de9">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <textInputTraits key="textInputTraits"/>
@@ -280,7 +285,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="XuH-Xh-SDA" kind="push" identifier="LocationSearch" id="vDB-CP-1yi"/>
+                                    <segue destination="iUx-6f-sWl" kind="modal" identifier="LocationSearch" id="B71-Jn-LrY"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="gray" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="FilterCell" textLabel="Hxd-bb-PrY" style="IBUITableViewCellStyleDefault" id="HCx-0S-4q8">
@@ -334,7 +339,6 @@
                     <tabBarItem key="tabBarItem" systemItem="search" id="sZy-Tf-GF9"/>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="hAO-Pp-CBT"/>
-                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="searchBar" destination="Kf2-cn-de9" id="6pW-Rz-YPY"/>
                         <outlet property="searchDisplayController" destination="h7x-4g-z6v" id="thv-S5-4KV"/>
@@ -366,7 +370,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="-449" y="-893"/>
+            <point key="canvasLocation" x="-457" y="-1045"/>
         </scene>
         <!--Bookmark View Controller-->
         <scene sceneID="gvs-hK-yLW">
@@ -377,11 +381,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="BookmarkCell" textLabel="TSC-Fy-Ahj" detailTextLabel="jG2-sA-bCz" style="IBUITableViewCellStyleSubtitle" id="hAH-Eq-bXj">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="BookmarkCell" textLabel="TSC-Fy-Ahj" detailTextLabel="jG2-sA-bCz" style="IBUITableViewCellStyleSubtitle" id="hAH-Eq-bXj">
                                 <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hAH-Eq-bXj" id="sGi-ob-0s2">
-                                    <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="TSC-Fy-Ahj">
@@ -401,7 +405,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="U9B-2u-bCJ" kind="push" id="ic4-Ro-C4t"/>
+                                    <segue destination="U9B-2u-bCJ" kind="push" identifier="bookmarkItem" id="ic4-Ro-C4t"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -412,7 +416,6 @@
                     </tableView>
                     <tabBarItem key="tabBarItem" systemItem="favorites" id="Fkz-bI-A0e"/>
                     <toolbarItems/>
-                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Iq-SA-ga6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -472,15 +475,16 @@
             <objects>
                 <navigationController wantsFullScreenLayout="YES" id="BNG-Bj-k6r" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" id="UTc-IJ-UfP"/>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="ZXa-ln-5fx">
+                    <navigationItem key="navigationItem" id="UTc-IJ-UfP">
+                        <barButtonItem key="backBarButtonItem" title=" " id="DFn-Mc-FHe"/>
+                    </navigationItem>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ZXa-ln-5fx">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="KNf-3P-KPJ">
-                        <rect key="frame" x="0.0" y="436" width="320" height="44"/>
+                        <rect key="frame" x="0.0" y="524" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </toolbar>
                     <connections>
@@ -502,7 +506,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="0wb-gz-HNK"/>
+        <segue reference="ya6-c3-SS3"/>
         <segue reference="MjL-hS-Hqs"/>
     </inferredMetricsTieBreakers>
 </document>

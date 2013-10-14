@@ -36,6 +36,7 @@
 		3D6276351781C65B00A4B675 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3D6276331781C65B00A4B675 /* InfoPlist.strings */; };
 		3D6276381781C65B00A4B675 /* TripCompassTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D6276371781C65B00A4B675 /* TripCompassTests.m */; };
 		3D6276421781C7A000A4B675 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D6276411781C7A000A4B675 /* CoreLocation.framework */; };
+		3D75608417FF1E3A00F0ED65 /* UINavigationItem+BackButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D75608317FF1E3A00F0ED65 /* UINavigationItem+BackButton.m */; };
 		3D8E2CE61787B44900AA0F0D /* CompassHelperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D8E2CE51787B44900AA0F0D /* CompassHelperTests.m */; };
 		3D8E2CEF178EF4AD00AA0F0D /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D8E2CEE178EF4AD00AA0F0D /* SearchViewController.m */; };
 		3DA654AA179D7B4A00424430 /* Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA654A9179D7B4A00424430 /* Util.m */; };
@@ -94,6 +95,8 @@
 		3D6276361781C65B00A4B675 /* TripCompassTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TripCompassTests.h; sourceTree = "<group>"; };
 		3D6276371781C65B00A4B675 /* TripCompassTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TripCompassTests.m; sourceTree = "<group>"; };
 		3D6276411781C7A000A4B675 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		3D75608217FF1E3A00F0ED65 /* UINavigationItem+BackButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationItem+BackButton.h"; sourceTree = "<group>"; };
+		3D75608317FF1E3A00F0ED65 /* UINavigationItem+BackButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationItem+BackButton.m"; sourceTree = "<group>"; };
 		3D8E2CE41787B44900AA0F0D /* CompassHelperTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompassHelperTests.h; sourceTree = "<group>"; };
 		3D8E2CE51787B44900AA0F0D /* CompassHelperTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompassHelperTests.m; sourceTree = "<group>"; };
 		3D8E2CED178EF4AD00AA0F0D /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
@@ -175,6 +178,8 @@
 		3D6276051781C65B00A4B675 /* TripCompass */ = {
 			isa = PBXGroup;
 			children = (
+				3D75608217FF1E3A00F0ED65 /* UINavigationItem+BackButton.h */,
+				3D75608317FF1E3A00F0ED65 /* UINavigationItem+BackButton.m */,
 				3DDDDE5817D8CD22006FD52D /* LocationSearchViewController.h */,
 				3DDDDE5917D8CD22006FD52D /* LocationSearchViewController.m */,
 				3D62760E1781C65B00A4B675 /* AppDelegate.h */,
@@ -402,6 +407,7 @@
 				3D32397517A953B2005ACF01 /* Place.m in Sources */,
 				3D32397817A9549A005ACF01 /* PlaceModel.m in Sources */,
 				3D32397B17AAA3EF005ACF01 /* BookmarkViewController.m in Sources */,
+				3D75608417FF1E3A00F0ED65 /* UINavigationItem+BackButton.m in Sources */,
 				3D4F871417C262500032B61C /* BookmarkItemViewController.m in Sources */,
 				3DDDDE5A17D8CD22006FD52D /* LocationSearchViewController.m in Sources */,
 			);
@@ -518,9 +524,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TripCompass/TripCompass-Prefix.pch";
 				INFOPLIST_FILE = "TripCompass/TripCompass-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -533,9 +540,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TripCompass/TripCompass-Prefix.pch";
 				INFOPLIST_FILE = "TripCompass/TripCompass-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

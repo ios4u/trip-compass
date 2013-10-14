@@ -14,6 +14,8 @@
 		162CCC79D87A42F98D5F5911 /* AFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 309FCD772F94496F920C7970 /* AFURLConnectionOperation.m */; settings = {COMPILER_FLAGS = "-fobjc-arc -DOS_OBJECT_USE_OBJC=0"; }; };
 		269FB4FE0D0B4388B355135C /* AFImageRequestOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 0BB610E735A24C9F9427E5A8 /* AFImageRequestOperation.h */; };
 		2AA74090CE4A48E68BC42329 /* AFXMLRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = F34ED87706374FB2BE49E79C /* AFXMLRequestOperation.m */; settings = {COMPILER_FLAGS = "-fobjc-arc -DOS_OBJECT_USE_OBJC=0"; }; };
+		3D75608017FF1E2F00F0ED65 /* UINavigationItem+BackButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D75607E17FF1E2F00F0ED65 /* UINavigationItem+BackButton.h */; };
+		3D75608117FF1E2F00F0ED65 /* UINavigationItem+BackButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D75607F17FF1E2F00F0ED65 /* UINavigationItem+BackButton.m */; };
 		65DE47780EAF465E8DB92CD2 /* AFNetworkActivityIndicatorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0430B60FD16E470E922812FF /* AFNetworkActivityIndicatorManager.m */; settings = {COMPILER_FLAGS = "-fobjc-arc -DOS_OBJECT_USE_OBJC=0"; }; };
 		7A297C4D2C7549A0B749A947 /* AFURLConnectionOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AD00E6A27E94037A97A0ED1 /* AFURLConnectionOperation.h */; };
 		7B25995EDB8742C98DA77B14 /* AFXMLRequestOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 6D7C524E74A94752A074FD02 /* AFXMLRequestOperation.h */; };
@@ -52,6 +54,8 @@
 		2D121ECF132A45BBBAD9D64B /* AFImageRequestOperation.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AFImageRequestOperation.m; path = AFNetworking/AFNetworking/AFImageRequestOperation.m; sourceTree = SOURCE_ROOT; };
 		309FCD772F94496F920C7970 /* AFURLConnectionOperation.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AFURLConnectionOperation.m; path = AFNetworking/AFNetworking/AFURLConnectionOperation.m; sourceTree = SOURCE_ROOT; };
 		35F8C88E8D654280B63EF92E /* libPods-AFNetworking.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AFNetworking.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3D75607E17FF1E2F00F0ED65 /* UINavigationItem+BackButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UINavigationItem+BackButton.h"; path = "../TripCompass/UINavigationItem+BackButton.h"; sourceTree = "<group>"; };
+		3D75607F17FF1E2F00F0ED65 /* UINavigationItem+BackButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UINavigationItem+BackButton.m"; path = "../TripCompass/UINavigationItem+BackButton.m"; sourceTree = "<group>"; };
 		47EADF12245040F880B55972 /* Pods-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-acknowledgements.plist"; sourceTree = SOURCE_ROOT; };
 		542E06CD42764714966602CC /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		5B9942D8736844448CDF272F /* Pods-environment.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-environment.h"; sourceTree = SOURCE_ROOT; };
@@ -107,6 +111,8 @@
 		4E767580C7694661A7D9B3CA = {
 			isa = PBXGroup;
 			children = (
+				3D75607E17FF1E2F00F0ED65 /* UINavigationItem+BackButton.h */,
+				3D75607F17FF1E2F00F0ED65 /* UINavigationItem+BackButton.m */,
 				C99187ECBDBC41F594F35D03 /* Frameworks */,
 				79264CA099CE40F885A9FA8F /* Pods */,
 				D02C718AB0E44EF8B7726AC0 /* Products */,
@@ -219,6 +225,7 @@
 				0CCC15F3B0924AB18822E595 /* AFPropertyListRequestOperation.h in Headers */,
 				7A297C4D2C7549A0B749A947 /* AFURLConnectionOperation.h in Headers */,
 				7B25995EDB8742C98DA77B14 /* AFXMLRequestOperation.h in Headers */,
+				3D75608017FF1E2F00F0ED65 /* UINavigationItem+BackButton.h in Headers */,
 				002E2A98CD7F4AB9A442EF1A /* UIImageView+AFNetworking.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -299,6 +306,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3D75608117FF1E2F00F0ED65 /* UINavigationItem+BackButton.m in Sources */,
 				E7645D95444B4F7CBC1753D6 /* AFHTTPClient.m in Sources */,
 				D236651943DC4335A9D33260 /* AFHTTPRequestOperation.m in Sources */,
 				EFA2AAA67B85466FB50D9E3C /* AFImageRequestOperation.m in Sources */,

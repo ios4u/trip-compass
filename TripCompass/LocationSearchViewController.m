@@ -1,6 +1,7 @@
 #import "LocationSearchViewController.h"
 #import "AFNetworking.h"
 #import "AppDelegate.h"
+#import "SearchViewController.h"
 
 @interface LocationSearchViewController ()
 
@@ -21,6 +22,9 @@
   [super viewDidLoad];
   self.places = [[NSMutableArray alloc] init];
   appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+  
+  self.navigationItem.rightBarButtonItem = nil;
+  self.navigationItem.leftBarButtonItem = self.closeButton;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -100,27 +104,41 @@
   
   return cell;
 }
+- (IBAction)closeButtonClick:(id)sender {
+  [self dismissViewControllerAnimated:YES completion:nil];
+}
 
-//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-//  UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-//  if ([cell.reuseIdentifier isEqual: @"DefaultCell"]) {
-//    Place *place = [self.places objectAtIndex:(indexPath.row -1)];
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+  [self dismissViewControllerAnimated:YES completion:nil];
+////  UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+//  NSIndexPath *indexPathx = [self.searchDisplayController.searchResultsTableView indexPathForSelectedRow];
+//  
+////  if ([cell.reuseIdentifier isEqual: @"DefaultCell"]) {
+//  Place *place = [self.places objectAtIndex:(indexPathx.row-1)];
+//  appDelegate.selectedLocation = place;
+////  [[self navigationController] popToViewController:SearchViewController animated:YES];
+//  
+//  UITabBarController *tabBarController = [self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count-2];
+//  SearchViewController *searchViewController = [tabBarController.viewControllers objectAtIndex:0];
+//
+//  searchViewController.currentLocationChanged = YES;
+////  [viewController methodToCall];
+//  [[self navigationController] popViewControllerAnimated:YES];
+////  }
+//  
+}
+
+//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+//  NSIndexPath *indexPath = [self.searchDisplayController.searchResultsTableView indexPathForSelectedRow];
+//  
+//  if([[segue identifier] isEqualToString:@"NewLocation"]) {
+//    Place *place = [self.places objectAtIndex:(indexPath.row-1)];
 //    appDelegate.selectedLocation = place;
+//  } else {
+//    appDelegate.selectedLocation = NULL;
 //  }
 //  
 //}
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-  NSIndexPath *indexPath = [self.searchDisplayController.searchResultsTableView indexPathForSelectedRow];
-
-  if([[segue identifier] isEqualToString:@"NewLocation"]) {
-    Place *place = [self.places objectAtIndex:(indexPath.row-1)];
-    appDelegate.selectedLocation = place;
-  } else {
-    appDelegate.selectedLocation = NULL;
-  }
-  
-}
 
 
 @end
