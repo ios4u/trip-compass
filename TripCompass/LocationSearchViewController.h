@@ -6,5 +6,6 @@
 
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *closeButton;
+@property (nonatomic, assign) BOOL closeButtonClicked;
 
 @end

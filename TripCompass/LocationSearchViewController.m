@@ -105,27 +105,20 @@
   return cell;
 }
 - (IBAction)closeButtonClick:(id)sender {
-  [self dismissViewControllerAnimated:YES completion:nil];
+  self.closeButtonClicked = YES;
+  [self performSegueWithIdentifier:@"unwindToSearchController" sender:self];
+
+//  [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-  [self dismissViewControllerAnimated:YES completion:nil];
-////  UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-//  NSIndexPath *indexPathx = [self.searchDisplayController.searchResultsTableView indexPathForSelectedRow];
-//  
-////  if ([cell.reuseIdentifier isEqual: @"DefaultCell"]) {
-//  Place *place = [self.places objectAtIndex:(indexPathx.row-1)];
-//  appDelegate.selectedLocation = place;
-////  [[self navigationController] popToViewController:SearchViewController animated:YES];
-//  
-//  UITabBarController *tabBarController = [self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count-2];
-//  SearchViewController *searchViewController = [tabBarController.viewControllers objectAtIndex:0];
-//
-//  searchViewController.currentLocationChanged = YES;
-////  [viewController methodToCall];
-//  [[self navigationController] popViewControllerAnimated:YES];
-////  }
-//  
+  UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+  //  NSIndexPath *indexPathx = [self.searchDisplayController.searchResultsTableView indexPathForSelectedRow];
+  
+  if ([cell.reuseIdentifier isEqual: @"DefaultCell"]) {
+    Place *place = [self.places objectAtIndex:(indexPath.row-1)];
+    appDelegate.selectedLocation = place;
+  }
 }
 
 //- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {

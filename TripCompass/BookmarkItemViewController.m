@@ -15,12 +15,12 @@
 
   id delegate = [[UIApplication sharedApplication] delegate];
   self.managedObjectContext = [delegate managedObjectContext];
-
-  self.navigationItem.rightBarButtonItem = self.editButtonItem;
   
 }
 
 -(void)viewWillAppear:(BOOL)animated {
+  self.navigationItem.rightBarButtonItem = self.editButtonItem;
+  
   NSError *error;
   NSEntityDescription *entity = [NSEntityDescription entityForName:@"PlaceModel" inManagedObjectContext:self.managedObjectContext];
   NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];

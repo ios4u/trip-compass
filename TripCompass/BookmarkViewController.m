@@ -20,7 +20,6 @@
 
   id delegate = [[UIApplication sharedApplication] delegate];
   self.managedObjectContext = [delegate managedObjectContext];
-  self.tabBarController.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 -(void)viewWillAppear:(BOOL)animated {
@@ -29,7 +28,7 @@
 
 //  self.tabBarController.navigationItem.title = @"Saved list";
 //    self.tabBarController.navigationItem.title = @"";
-  
+    self.tabBarController.navigationItem.rightBarButtonItem = self.editButtonItem;
   
   NSError *error;
   NSEntityDescription *entity = [NSEntityDescription entityForName:@"PlaceModel" inManagedObjectContext:self.managedObjectContext];

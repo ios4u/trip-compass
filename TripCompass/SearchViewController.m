@@ -20,42 +20,6 @@
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-
-  self.tabBarController.navigationItem.rightBarButtonItem = self.editButtonItem;
-  
-  searchFilters = [NSArray arrayWithObjects:@"Attractions",@"Restaurants",@"Hotels",@"Popular", nil];
-  
-  appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-  self.managedObjectContext = [appDelegate managedObjectContext];
-
-  lat = [NSString stringWithFormat:@"%.5f", self.currentLocation.latitude];
-  lng = [NSString stringWithFormat:@"%.5f", self.currentLocation.longitude];
-  if (appDelegate.selectedLocation) {
-    lat = [appDelegate.selectedLocation.lat stringValue];
-    lng = [appDelegate.selectedLocation.lng stringValue];
-  }
-  
-  self.places = [[NSMutableArray alloc] init];
-  
-  NSString *api = [NSString stringWithFormat:@"http://api.gogobot.com/api/v2/search/nearby.json?_v=2.3.8&page=1&lng=%@&lat=%@&per_page=20&source=create&bypass=1", lng, lat];
-  
-  NSURL *url = [NSURL URLWithString:api];
-  NSURLRequest *request = [NSURLRequest requestWithURL:url];
-  
-  AFJSONRequestOperation *operation = [AFJSONRequestOperation
-                                       JSONRequestOperationWithRequest:request
-                                       success:^(NSURLRequest *request, NSHTTPURLResponse *response, id json) {
-                                         self.results = [json objectForKey:@"results"];
-                                         [self.tableView reloadData];
-                                       } failure:^(NSURLRequest *request , NSURLResponse *response , NSError *error , id JSON){
-                                         NSLog(@"Failed: %@",[error localizedDescription]);
-                                       }];
-  
-  [operation start];
-}
-
-- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
-  return  UITableViewCellEditingStyleInsert;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -76,9 +40,48 @@
 //    [[self.navigationController viewControllers] count] - 2;
   self.tabBarController.navigationItem.title = @"Nearby Search";
   
-  [self.tableView reloadData];
+//  [self.tableView reloadData];
 //  [self.tableView setNeedsLayout];
 //  [self.tableView setNeedsDisplay];
+//  [self.searchBar becomeFirstResponder];
+  self.tabBarController.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+  if (self.searching == YES) {
+    [self.searchBar becomeFirstResponder];
+  } else {
+    searchFilters = [NSArray arrayWithObjects:@"Attractions",@"Restaurants",@"Hotels",@"Popular", nil];
+    
+    appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    self.managedObjectContext = [appDelegate managedObjectContext];
+    
+    lat = [NSString stringWithFormat:@"%.5f", self.currentLocation.latitude];
+    lng = [NSString stringWithFormat:@"%.5f", self.currentLocation.longitude];
+    if (appDelegate.selectedLocation) {
+      lat = [appDelegate.selectedLocation.lat stringValue];
+      lng = [appDelegate.selectedLocation.lng stringValue];
+    }
+    
+    self.places = [[NSMutableArray alloc] init];
+    
+    NSString *api = [NSString stringWithFormat:@"http://api.gogobot.com/api/v2/search/nearby.json?_v=2.3.8&page=1&lng=%@&lat=%@&per_page=20&source=create&bypass=1", lng, lat];
+    
+    NSURL *url = [NSURL URLWithString:api];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    
+    AFJSONRequestOperation *operation = [AFJSONRequestOperation
+                                         JSONRequestOperationWithRequest:request
+                                         success:^(NSURLRequest *request, NSHTTPURLResponse *response, id json) {
+                                           self.results = [json objectForKey:@"results"];
+                                           [self.tableView reloadData];
+                                         } failure:^(NSURLRequest *request , NSURLResponse *response , NSError *error , id JSON){
+                                           NSLog(@"Failed: %@",[error localizedDescription]);
+                                         }];
+    
+    [operation start];
+
+  }
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -110,11 +113,6 @@
   if (self.searching == NO) {
     CellIdentifier = @"SearchCell";
     cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-      
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeContactAdd];
-    button.tag = indexPath.row;
-    [button addTarget:self action:@selector(btnAddClick:) forControlEvents:UIControlEventTouchUpInside];
-    cell.accessoryView = button;
     
     NSDictionary *result = [self.results objectAtIndex:indexPath.row];
     
@@ -240,28 +238,6 @@
   self.searchDisplayController.searchResultsTableView.hidden = YES;
 }
 
--(void)btnAddClick:(id)sender {
-  UIButton* btnAdd = (UIButton *) sender;
-  
-  UITableViewCell *cell = (UITableViewCell *)[[btnAdd superview] superview];
-  ((UIButton *)cell.accessoryView).enabled = FALSE;
-  
-  Place *place = [self.places objectAtIndex:btnAdd.tag];
-  
-  NSManagedObjectContext *context = [self managedObjectContext];
-  
-  PlaceModel *placeModel = [NSEntityDescription insertNewObjectForEntityForName:@"PlaceModel" inManagedObjectContext:context];
-  placeModel.name = place.name;
-  placeModel.lat = place.lat;
-  placeModel.lng = place.lng;
-  placeModel.area = place.area;
-  
-  NSError *error;
-  if (![context save:&error]) {
-    NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
-  }
-}
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
   UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
   if ([cell.reuseIdentifier isEqual: @"FilterCell"]) {
@@ -283,7 +259,72 @@
   }
 }
 
+- (void) reloadTableViewData {
+  [self.places removeAllObjects];
+  [self.tableView reloadData];
+}
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
+  return  UITableViewCellEditingStyleInsert;
+}
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+  if ([self.tableView isEditing]) {
+    NSLog(@"places count = %d",[self.places count]);
+    
+    Place *place = [self.places objectAtIndex:indexPath.row];
+    
+    NSError *error;
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"PlaceModel" inManagedObjectContext:self.managedObjectContext];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    
+    [fetchRequest setEntity:entity];
+    
+    //  TODO should compare with id
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name == %@", place.name];
+    [fetchRequest setPredicate:predicate];
+    
+    NSArray *results = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    
+    return [results count] == 0;
+  } else {
+    return YES;
+  }
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+  //  UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+  
+  if (editingStyle == UITableViewCellEditingStyleDelete) {
+    //delete code here
+  }
+  else if (editingStyle == UITableViewCellEditingStyleInsert) {
+    Place *place = [self.places objectAtIndex:indexPath.row];
+    
+    NSManagedObjectContext *context = [self managedObjectContext];
+    
+    PlaceModel *placeModel = [NSEntityDescription insertNewObjectForEntityForName:@"PlaceModel" inManagedObjectContext:context];
+    placeModel.name = place.name;
+    placeModel.lat = place.lat;
+    placeModel.lng = place.lng;
+    placeModel.area = place.area;
+    
+    NSError *error;
+    if (![context save:&error]) {
+      NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+    }
+    
+    [self.tableView reloadData];
+  }
+  
+}
+
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+//  if([[segue identifier] isEqualToString:@"LocationSearch"]) {
+//    [self.searchBar becomeFirstResponder];
+//  }
+  
   if([[segue identifier] isEqualToString:@"SearchSelection"]) {
     NSIndexPath *path = [self.tableView indexPathForSelectedRow];
     
@@ -293,6 +334,13 @@
     Place *place = [self.places objectAtIndex:path.row];
     mainViewController.place = place;
   }
+}
+
+- (IBAction)unwindToSearchController:(UIStoryboardSegue *)segue {
+  LocationSearchViewController *locationSearchViewController = [segue sourceViewController];
+//  locationSearchViewController
+  self.searching = locationSearchViewController.closeButtonClicked;
+  [self.tableView reloadData];
 }
 
 @end
