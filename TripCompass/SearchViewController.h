@@ -14,7 +14,6 @@
 @interface SearchViewController : UITableViewController <NSFetchedResultsControllerDelegate, UISearchBarDelegate>
 
 @property (retain, nonatomic) NSArray *results;
-@property (retain, nonatomic) NSMutableArray *places;
 @property (nonatomic, assign) CLLocationCoordinate2D currentLocation;
 
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;

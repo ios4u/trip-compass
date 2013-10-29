@@ -70,10 +70,13 @@
   
   NSDictionary *place = [self.savedPlaces objectAtIndex:indexPath.row];
   
-  cell.textLabel.text = [place valueForKey:@"area"];
-//  double distance = [place distanceTo:self.currentLocation.coordinate toFormat:@"mi"];
-//  cell.detailTextLabel.text = [Util stringWithDistance:distance];
-  cell.detailTextLabel.text = [[place objectForKey:@"count"]stringValue];
+  UILabel *label;
+  
+  label = (UILabel *)[cell viewWithTag:1];
+  label.text = [place valueForKey:@"area"];
+  
+  label = (UILabel *)[cell viewWithTag:2];
+  label.text = [[place objectForKey:@"count"]stringValue];
 
   return cell;
 }

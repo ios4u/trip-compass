@@ -10,4 +10,5 @@
 @property (nonatomic, strong) NSArray *savedPlaces;
 @property (nonatomic, retain) CLLocation *currentLocation;
 
+
 @end

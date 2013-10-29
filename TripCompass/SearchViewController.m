@@ -63,8 +63,6 @@
       lng = [appDelegate.selectedLocation.lng stringValue];
     }
     
-    self.places = [[NSMutableArray alloc] init];
-    
     NSString *api = [NSString stringWithFormat:@"http://api.gogobot.com/api/v2/search/nearby.json?_v=2.3.8&page=1&lng=%@&lat=%@&per_page=20&source=create&bypass=1", lng, lat];
     
     NSURL *url = [NSURL URLWithString:api];
@@ -74,7 +72,7 @@
                                          JSONRequestOperationWithRequest:request
                                          success:^(NSURLRequest *request, NSHTTPURLResponse *response, id json) {
                                            self.results = [json objectForKey:@"results"];
-                                           [self.tableView reloadData];
+                                           [self reloadTableViewData];
                                          } failure:^(NSURLRequest *request , NSURLResponse *response , NSError *error , id JSON){
                                            NSLog(@"Failed: %@",[error localizedDescription]);
                                          }];
@@ -106,6 +104,22 @@
 //  return [self.tableView dequeueReusableCellWithIdentifier:@"headerCell"];
 //}
 
+- (Place *)getPlace:(NSInteger)row {
+  NSDictionary *result = [self.results objectAtIndex:row];
+  
+  id place_lat = [result valueForKeyPath:@"address.lat"];
+  id place_lng = [result valueForKeyPath:@"address.lng"];
+  
+  Place *place = [[Place alloc] init];
+  place.name = [result objectForKey:@"name"];
+  place.address = [result valueForKeyPath:@"address.address"];
+  place.lat = [NSNumber numberWithDouble:[place_lat doubleValue]];
+  place.lng = [NSNumber numberWithDouble:[place_lng doubleValue]];
+  place.area = [result objectForKey:@"travel_unit"];
+
+  return place;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
   NSString *CellIdentifier;
   UITableViewCell *cell;
@@ -114,21 +128,7 @@
     CellIdentifier = @"SearchCell";
     cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
-    NSDictionary *result = [self.results objectAtIndex:indexPath.row];
-    
-    id place_lat = [result valueForKeyPath:@"address.lat"];
-    id place_lng = [result valueForKeyPath:@"address.lng"];
-    
-    if (place_lat == [NSNull null] || place_lng == [NSNull null]) return cell;
-
-    Place *place = [[Place alloc] init];
-    place.name = [result objectForKey:@"name"];
-    place.address = [result valueForKeyPath:@"address.address"];
-    place.lat = [NSNumber numberWithDouble:[place_lat doubleValue]];
-    place.lng = [NSNumber numberWithDouble:[place_lng doubleValue]];
-    place.area = [result objectForKey:@"travel_unit"];
-    
-    [self.places addObject:place];
+    Place *place = [self getPlace:indexPath.row];
     
     cell.textLabel.text = place.name;
     
@@ -154,9 +154,10 @@
 }
 
 - (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar {
+  [self setEditing:NO animated:YES];
   self.searching = YES;
   [searchBar setShowsCancelButton:YES animated:YES];
-  [self.tableView reloadData];
+  [self reloadTableViewData];
   return YES;
 }
 
@@ -186,14 +187,11 @@
   NSURL *url = [NSURL URLWithString:apiUrl];
   NSURLRequest *request = [NSURLRequest requestWithURL:url];
   
-  [self.places removeAllObjects];
-  
   AFJSONRequestOperation *operation = [AFJSONRequestOperation
                                        JSONRequestOperationWithRequest:request
                                        success:^(NSURLRequest *request, NSHTTPURLResponse *response, id json) {
-                                         //                                           self.places = [[NSMutableArray alloc] init];
                                          self.results = [json objectForKey:@"results"];
-                                         [self.tableView reloadData];
+                                         [self reloadTableViewData];
                                        } failure:^(NSURLRequest *request , NSURLResponse *response , NSError *error , id JSON){
                                          NSLog(@"Failed: %@",[error localizedDescription]);
                                        }];
@@ -208,7 +206,7 @@
   
   [self keywordSearch:apiUrl];
   self.searching = NO;
-  [self.tableView reloadData];
+  [self reloadTableViewData];
 }
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
@@ -219,7 +217,7 @@
   NSString *apiUrl = [NSString stringWithFormat:@"http://api.gogobot.com/api/v2/search/nearby.json?_v=2.3.8&page=1&lng=%@&lat=%@&per_page=20&source=create&bypass=1", lng, lat];
   
   [self keywordSearch:apiUrl];
-  [self.tableView reloadData];
+  [self reloadTableViewData];
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
@@ -241,9 +239,9 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
   UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
   if ([cell.reuseIdentifier isEqual: @"FilterCell"]) {
-//    [self.searchBar resignFirstResponder];
+    [self.searchBar resignFirstResponder];
     self.searching = NO;
-//    self.searchBar.text = nil;
+    self.searchBar.text = nil;
     
     NSString *source = @"create";
     NSString *type = cell.textLabel.text;
@@ -255,12 +253,11 @@
     NSString *apiUrl = [NSString stringWithFormat:@"http://api.gogobot.com/api/v2/search/nearby.json?_v=2.3.8&type=%@&page=1&lng=%@&lat=%@&per_page=20&source=%@&bypass=1", type, lng, lat, source];
     
     [self keywordSearch:apiUrl];
-    [self.tableView reloadData];
+    [self reloadTableViewData];
   }
 }
 
 - (void) reloadTableViewData {
-  [self.places removeAllObjects];
   [self.tableView reloadData];
 }
 
@@ -270,9 +267,7 @@
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
   if ([self.tableView isEditing]) {
-    NSLog(@"places count = %d",[self.places count]);
-    
-    Place *place = [self.places objectAtIndex:indexPath.row];
+    Place *place = [self getPlace:indexPath.row];
     
     NSError *error;
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"PlaceModel" inManagedObjectContext:self.managedObjectContext];
@@ -299,7 +294,7 @@
     //delete code here
   }
   else if (editingStyle == UITableViewCellEditingStyleInsert) {
-    Place *place = [self.places objectAtIndex:indexPath.row];
+    Place *place = [self getPlace:indexPath.row];
     
     NSManagedObjectContext *context = [self managedObjectContext];
     
@@ -314,7 +309,7 @@
       NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
     }
     
-    [self.tableView reloadData];
+    [self reloadTableViewData];
   }
   
 }
@@ -331,7 +326,7 @@
     UINavigationController *navigationController = (UINavigationController *)segue.destinationViewController;
     MainViewController *mainViewController = [[navigationController viewControllers] lastObject];
     
-    Place *place = [self.places objectAtIndex:path.row];
+    Place *place = [self getPlace:path.row];
     mainViewController.place = place;
   }
 }
@@ -340,7 +335,7 @@
   LocationSearchViewController *locationSearchViewController = [segue sourceViewController];
 //  locationSearchViewController
   self.searching = locationSearchViewController.closeButtonClicked;
-  [self.tableView reloadData];
+  [self reloadTableViewData];
 }
 
 @end
