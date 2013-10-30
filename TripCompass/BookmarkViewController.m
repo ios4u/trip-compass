@@ -23,12 +23,8 @@
 }
 
 -(void)viewWillAppear:(BOOL)animated {
-//  self.edgesForExtendedLayout = UIRectEdgeNone;
-//  self.automaticallyAdjustsScrollViewInsets = YES;
-
-//  self.tabBarController.navigationItem.title = @"Saved list";
-//    self.tabBarController.navigationItem.title = @"";
-    self.tabBarController.navigationItem.rightBarButtonItem = self.editButtonItem;
+  self.tabBarController.navigationItem.rightBarButtonItem = self.editButtonItem;
+  self.tabBarController.navigationItem.title = @"Favorites";
   
   NSError *error;
   NSEntityDescription *entity = [NSEntityDescription entityForName:@"PlaceModel" inManagedObjectContext:self.managedObjectContext];
@@ -50,7 +46,7 @@
   [fr setPropertiesToFetch:[NSArray arrayWithObjects:propDesc, exprDesc, nil]];
   [fr setResultType:NSDictionaryResultType];
   
-  self.savedPlaces = [self.managedObjectContext executeFetchRequest:fr error:&error];
+  self.savedPlaces = [[NSMutableArray alloc] initWithArray: [self.managedObjectContext executeFetchRequest:fr error:&error]];
   savedPlacesCount = [self.savedPlaces count];
   
   [self.tableView reloadData];
@@ -97,6 +93,7 @@
     [self.managedObjectContext deleteObject:managedObject];
   }
   --savedPlacesCount;
+  [self.savedPlaces removeObjectAtIndex:indexPath.row];
   [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
   
   [self.managedObjectContext save:nil];

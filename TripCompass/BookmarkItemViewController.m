@@ -15,11 +15,11 @@
 
   id delegate = [[UIApplication sharedApplication] delegate];
   self.managedObjectContext = [delegate managedObjectContext];
-  
 }
 
 -(void)viewWillAppear:(BOOL)animated {
   self.navigationItem.rightBarButtonItem = self.editButtonItem;
+  self.navigationItem.title = self.selectedAreaGroup;
   
   NSError *error;
   NSEntityDescription *entity = [NSEntityDescription entityForName:@"PlaceModel" inManagedObjectContext:self.managedObjectContext];
@@ -30,7 +30,7 @@
   NSPredicate *predicate = [NSPredicate predicateWithFormat:@"area == %@", self.selectedAreaGroup];
   [fetchRequest setPredicate:predicate];
   
-  self.savedPlaces = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+  self.savedPlaces = [[NSMutableArray alloc] initWithArray: [self.managedObjectContext executeFetchRequest:fetchRequest error:&error]];
   savedPlacesCount = [self.savedPlaces count];
   
   [self.tableView reloadData];
@@ -81,10 +81,15 @@
   }
   
   --savedPlacesCount;
-  
+  [self.savedPlaces removeObjectAtIndex:indexPath.row];
   [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
   
   [self.managedObjectContext save:nil];
+  
+  if (savedPlacesCount == 0) {
+    [self.navigationController popViewControllerAnimated:YES];
+  }
+  [self.tableView reloadData];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {

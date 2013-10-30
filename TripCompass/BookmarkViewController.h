@@ -7,7 +7,7 @@
 
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
-@property (nonatomic, strong) NSArray *savedPlaces;
+@property (nonatomic, strong) NSMutableArray *savedPlaces;
 @property (nonatomic, retain) CLLocation *currentLocation;
 
 
