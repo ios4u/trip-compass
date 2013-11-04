@@ -2,19 +2,23 @@
 #import "PlaceModel.h"
 #import "Place.h"
 #import "MainViewController.h"
+#import "AppDelegate.h"
 
 @interface BookmarkItemViewController ()
 @end
 
 @implementation BookmarkItemViewController {
   int savedPlacesCount;
+  id delegate;
 }
 
 - (void)viewDidLoad {
   [super viewDidLoad];
 
-  id delegate = [[UIApplication sharedApplication] delegate];
+  delegate = [[UIApplication sharedApplication] delegate];
   self.managedObjectContext = [delegate managedObjectContext];
+  
+  [self.tableView registerNib:[UINib nibWithNibName:@"CustomCell" bundle:nil] forCellReuseIdentifier:@"customCell"];
 }
 
 -(void)viewWillAppear:(BOOL)animated {
@@ -45,8 +49,8 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-  static NSString *CellIdentifier = @"Cell";
-  UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+  static NSString *CellIdentifier = @"customCell";
+  CustomCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
   
   PlaceModel *placeModel = [self.savedPlaces objectAtIndex:indexPath.row];
   
@@ -56,11 +60,14 @@
   place.lat = placeModel.lat;
   place.lng = placeModel.lng;
   
-  cell.textLabel.text = place.name;
-  //  double distance = [place distanceTo:self.currentLocation.coordinate toFormat:@"mi"];
-  //  cell.detailTextLabel.text = [Util stringWithDistance:distance];
-  cell.detailTextLabel.text = @"details";
+  cell.placeLabel.text = place.name;
   
+//  cell.textLabel.text = place.name;
+  
+  double distance = [place distanceTo:[(AppDelegate*)delegate currentLocation] toFormat:@"mi"];
+//  cell.detailTextLabel.text = [Util stringWithDistance:distance];
+  cell.distanceLabel.text = [Util stringWithDistance:distance];
+
   return cell;
 }
 

@@ -40,9 +40,12 @@
 		3D8E2CE61787B44900AA0F0D /* CompassHelperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D8E2CE51787B44900AA0F0D /* CompassHelperTests.m */; };
 		3D8E2CEF178EF4AD00AA0F0D /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D8E2CEE178EF4AD00AA0F0D /* SearchViewController.m */; };
 		3DA654AA179D7B4A00424430 /* Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA654A9179D7B4A00424430 /* Util.m */; };
+		3DB281C81827F7AE008C7B82 /* CustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DB281C71827F7AE008C7B82 /* CustomCell.xib */; };
 		3DD35A5F17B925EB0066D58E /* 07-map-marker.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DD35A5E17B925EB0066D58E /* 07-map-marker.png */; };
 		3DD93F2E1787A6F1003908A7 /* CompassHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DD93F2D1787A6F1003908A7 /* CompassHelper.m */; };
 		3DDDDE5A17D8CD22006FD52D /* LocationSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DDDDE5917D8CD22006FD52D /* LocationSearchViewController.m */; };
+		3DE62CD31827FE7300FD7522 /* CustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE62CD21827FE7300FD7522 /* CustomCell.m */; };
+		3DE62CD51827FE8800FD7522 /* CustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DE62CD41827FE8800FD7522 /* CustomCell.xib */; };
 		A01548ADA0B341BEB2D8F853 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E8ADDE2DB8744F0B935F7809 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -104,11 +107,15 @@
 		3D8E2CF0179049CC00AA0F0D /* Place.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Place.h; sourceTree = "<group>"; };
 		3DA654A8179D7B4A00424430 /* Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Util.h; sourceTree = "<group>"; };
 		3DA654A9179D7B4A00424430 /* Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Util.m; sourceTree = "<group>"; };
+		3DB281C71827F7AE008C7B82 /* CustomCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomCell.xib; sourceTree = "<group>"; };
 		3DD35A5E17B925EB0066D58E /* 07-map-marker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "07-map-marker.png"; sourceTree = "<group>"; };
 		3DD93F2C1787A6F1003908A7 /* CompassHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompassHelper.h; sourceTree = "<group>"; };
 		3DD93F2D1787A6F1003908A7 /* CompassHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompassHelper.m; sourceTree = "<group>"; };
 		3DDDDE5817D8CD22006FD52D /* LocationSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationSearchViewController.h; sourceTree = "<group>"; };
 		3DDDDE5917D8CD22006FD52D /* LocationSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationSearchViewController.m; sourceTree = "<group>"; };
+		3DE62CD11827FE7300FD7522 /* CustomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCell.h; sourceTree = "<group>"; };
+		3DE62CD21827FE7300FD7522 /* CustomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCell.m; sourceTree = "<group>"; };
+		3DE62CD41827FE8800FD7522 /* CustomCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomCell.xib; sourceTree = "<group>"; };
 		71BB837CDB524BE6BD1B4999 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		E8ADDE2DB8744F0B935F7809 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -178,34 +185,38 @@
 		3D6276051781C65B00A4B675 /* TripCompass */ = {
 			isa = PBXGroup;
 			children = (
-				3D75608217FF1E3A00F0ED65 /* UINavigationItem+BackButton.h */,
-				3D75608317FF1E3A00F0ED65 /* UINavigationItem+BackButton.m */,
-				3DDDDE5817D8CD22006FD52D /* LocationSearchViewController.h */,
-				3DDDDE5917D8CD22006FD52D /* LocationSearchViewController.m */,
-				3D62760E1781C65B00A4B675 /* AppDelegate.h */,
-				3D62760F1781C65B00A4B675 /* AppDelegate.m */,
-				3DD93F2C1787A6F1003908A7 /* CompassHelper.h */,
-				3DD93F2D1787A6F1003908A7 /* CompassHelper.m */,
-				3D6276201781C65B00A4B675 /* FlipsideViewController.h */,
-				3D6276211781C65B00A4B675 /* FlipsideViewController.m */,
-				3D6276171781C65B00A4B675 /* MainStoryboard.storyboard */,
-				3D62761D1781C65B00A4B675 /* MainViewController.h */,
-				3D62761E1781C65B00A4B675 /* MainViewController.m */,
-				3D8E2CF0179049CC00AA0F0D /* Place.h */,
-				3D32397417A953B2005ACF01 /* Place.m */,
 				3D49863C17A8245C00CB2CF2 /* README */,
-				3D8E2CED178EF4AD00AA0F0D /* SearchViewController.h */,
-				3D8E2CEE178EF4AD00AA0F0D /* SearchViewController.m */,
-				3D32397917AAA3EF005ACF01 /* BookmarkViewController.h */,
+				3D62760E1781C65B00A4B675 /* AppDelegate.h */,
 				3D4F871217C262500032B61C /* BookmarkItemViewController.h */,
+				3D32397917AAA3EF005ACF01 /* BookmarkViewController.h */,
+				3DD93F2C1787A6F1003908A7 /* CompassHelper.h */,
+				3D6276201781C65B00A4B675 /* FlipsideViewController.h */,
+				3DDDDE5817D8CD22006FD52D /* LocationSearchViewController.h */,
+				3D62761D1781C65B00A4B675 /* MainViewController.h */,
+				3D8E2CF0179049CC00AA0F0D /* Place.h */,
+				3D32397617A9549A005ACF01 /* PlaceModel.h */,
+				3D8E2CED178EF4AD00AA0F0D /* SearchViewController.h */,
+				3D75608217FF1E3A00F0ED65 /* UINavigationItem+BackButton.h */,
+				3DA654A8179D7B4A00424430 /* Util.h */,
+				3D62760F1781C65B00A4B675 /* AppDelegate.m */,
 				3D4F871317C262500032B61C /* BookmarkItemViewController.m */,
 				3D32397A17AAA3EF005ACF01 /* BookmarkViewController.m */,
-				3D62761A1781C65B00A4B675 /* TripCompass.xcdatamodeld */,
-				3D32397617A9549A005ACF01 /* PlaceModel.h */,
+				3DD93F2D1787A6F1003908A7 /* CompassHelper.m */,
+				3D6276211781C65B00A4B675 /* FlipsideViewController.m */,
+				3DDDDE5917D8CD22006FD52D /* LocationSearchViewController.m */,
+				3D62761E1781C65B00A4B675 /* MainViewController.m */,
+				3D32397417A953B2005ACF01 /* Place.m */,
 				3D32397717A9549A005ACF01 /* PlaceModel.m */,
-				3DA654A8179D7B4A00424430 /* Util.h */,
+				3D8E2CEE178EF4AD00AA0F0D /* SearchViewController.m */,
+				3D75608317FF1E3A00F0ED65 /* UINavigationItem+BackButton.m */,
 				3DA654A9179D7B4A00424430 /* Util.m */,
+				3DB281C71827F7AE008C7B82 /* CustomCell.xib */,
+				3D6276171781C65B00A4B675 /* MainStoryboard.storyboard */,
 				3D6276061781C65B00A4B675 /* Supporting Files */,
+				3D62761A1781C65B00A4B675 /* TripCompass.xcdatamodeld */,
+				3DE62CD11827FE7300FD7522 /* CustomCell.h */,
+				3DE62CD21827FE7300FD7522 /* CustomCell.m */,
+				3DE62CD41827FE8800FD7522 /* CustomCell.xib */,
 			);
 			path = TripCompass;
 			sourceTree = "<group>";
@@ -323,10 +334,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				3D62760A1781C65B00A4B675 /* InfoPlist.strings in Resources */,
+				3DB281C81827F7AE008C7B82 /* CustomCell.xib in Resources */,
 				3D6276121781C65B00A4B675 /* Default.png in Resources */,
 				3D6276141781C65B00A4B675 /* Default@2x.png in Resources */,
 				3D6276161781C65B00A4B675 /* Default-568h@2x.png in Resources */,
 				3D6276191781C65B00A4B675 /* MainStoryboard.storyboard in Resources */,
+				3DE62CD51827FE8800FD7522 /* CustomCell.xib in Resources */,
 				3D4985FF17A16A5500CB2CF2 /* border.png in Resources */,
 				3D49860017A16A5500CB2CF2 /* numbers.png in Resources */,
 				3D49860117A16A5500CB2CF2 /* pointer.png in Resources */,
@@ -410,6 +423,7 @@
 				3D75608417FF1E3A00F0ED65 /* UINavigationItem+BackButton.m in Sources */,
 				3D4F871417C262500032B61C /* BookmarkItemViewController.m in Sources */,
 				3DDDDE5A17D8CD22006FD52D /* LocationSearchViewController.m in Sources */,
+				3DE62CD31827FE7300FD7522 /* CustomCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

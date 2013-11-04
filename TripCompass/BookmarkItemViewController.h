@@ -1,4 +1,5 @@
 #import <UIKit/UIKit.h>
+#import "CustomCell.h"
 
 @interface BookmarkItemViewController : UITableViewController <NSFetchedResultsControllerDelegate>
 

@@ -24,8 +24,8 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
   
-    appDelegate = [[UIApplication sharedApplication] delegate];
-    self.managedObjectContext = [appDelegate managedObjectContext];
+  appDelegate = [[UIApplication sharedApplication] delegate];
+  self.managedObjectContext = [appDelegate managedObjectContext];
   
   locationManager = [[CLLocationManager alloc] init];
   locationManager.delegate = self;
