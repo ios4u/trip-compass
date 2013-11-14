@@ -80,7 +80,9 @@
 }
 
 - (BOOL)locationManagerShouldDisplayHeadingCalibration:(CLLocationManager *)manager {
-  return YES;
+//  TODO ENABLE this
+//  return YES;
+  return NO;
 }
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {

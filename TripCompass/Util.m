@@ -26,7 +26,7 @@
   
   if (isMetric) {
     if (distance < METERS_CUTOFF) {
-      format = @"%@ metres";
+      format = @"%@ m";
     } else {
       format = @"%@ km";
       distance = distance / 1000;
@@ -34,9 +34,9 @@
   } else { // assume Imperial / U.S.
     distance = distance * METERS_TO_FEET;
     if (distance < FEET_CUTOFF) {
-      format = @"%@ feet";
+      format = @"%@ ft";
     } else {
-      format = @"%@ miles";
+      format = @"%@ mi";
       distance = distance / FEET_IN_MILES;
     }
   }
