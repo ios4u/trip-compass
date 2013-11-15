@@ -451,6 +451,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="RNm-zP-7nb"/>
+                    <connections>
+                        <segue destination="BNG-Bj-k6r" kind="modal" identifier="toMainViewController" modalTransitionStyle="crossDissolve" id="z1L-cf-o0m"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1wq-Qv-vju" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -493,5 +496,6 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="0wb-gz-HNK"/>
+        <segue reference="z1L-cf-o0m"/>
     </inferredMetricsTieBreakers>
 </document>
