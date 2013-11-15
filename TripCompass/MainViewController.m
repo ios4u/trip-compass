@@ -9,6 +9,7 @@
 #import "MainViewController.h"
 #import "SearchViewController.h"
 #import "PlaceModel.h"
+#import "Util.h"
 
 @interface MainViewController () <CLLocationManagerDelegate, UIAlertViewDelegate>
   
@@ -45,8 +46,7 @@
   
   if (self.place) {
     self.navigationItem.title = self.place.name;
-    double distance = [self.place distanceTo:self.currentLocation.coordinate toFormat:@"mi"];
-    self.navigationItem.prompt = [Util stringWithDistance:distance];
+    self.navigationItem.prompt = [self.place formattedDistanceTo:self.currentLocation.coordinate];
     GeoAngle = [Util setLatLonForDistanceAndAngle:self.currentLocation.coordinate toCoordinate:[self.place getCoordinate]];
   }
   

@@ -2,7 +2,6 @@
 #import "MainViewController.h"
 #import "Place.h"
 #import "PlaceModel.h"
-#import "Util.h"
 #import "AFNetworking.h"
 #import "BookmarkItemViewController.h"
 #import "LocationSearchViewController.h"
@@ -132,8 +131,7 @@
     
     cell.textLabel.text = place.name;
     
-    double distance = [place distanceTo:self.currentLocation toFormat:@"mi"];
-    cell.detailTextLabel.text = [Util stringWithDistance:distance];
+    cell.detailTextLabel.text = [place formattedDistanceTo:self.currentLocation];;
   } else {
     if (indexPath.row == 0) {
       CellIdentifier = @"LocationCell";

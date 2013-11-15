@@ -18,6 +18,7 @@
 @property (nonatomic, strong) NSString *address;
 @property (nonatomic, strong) NSString *area;
 
--(double)distanceTo:(CLLocationCoordinate2D)currentLocation toFormat:(NSString *)format;
+-(double)distanceTo:(CLLocationCoordinate2D)location;
+-(NSString *)formattedDistanceTo:(CLLocationCoordinate2D)location;
 -(CLLocationCoordinate2D)getCoordinate;
 @end

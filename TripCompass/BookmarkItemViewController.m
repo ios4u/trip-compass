@@ -70,10 +70,8 @@
   place.lng = placeModel.lng;
   
   cell.placeLabel.text = place.name;
-//  cell.placeLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline];
 
-  double distance = [place distanceTo:[(AppDelegate*)delegate currentLocation] toFormat:@"mi"];
-  cell.distanceLabel.text = [Util stringWithDistance:distance];
+  cell.distanceLabel.text = [place formattedDistanceTo:[(AppDelegate*)delegate currentLocation]];
 
   return cell;
 }

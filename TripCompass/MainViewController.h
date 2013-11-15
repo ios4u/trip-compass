@@ -10,7 +10,6 @@
 #import <CoreData/CoreData.h>
 #import <CoreLocation/CoreLocation.h>
 #import "Place.h"
-#import "Util.h"
 
 @interface MainViewController : UIViewController <FlipsideViewControllerDelegate>
 
