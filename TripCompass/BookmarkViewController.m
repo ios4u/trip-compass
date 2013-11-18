@@ -20,6 +20,17 @@
 
   id delegate = [[UIApplication sharedApplication] delegate];
   self.managedObjectContext = [delegate managedObjectContext];
+  
+  [self.tableView registerNib:[UINib nibWithNibName:@"CustomCell" bundle:nil] forCellReuseIdentifier:@"customCell"];
+  
+  //TODO: get the initial size dynamically from the constraints
+  self.tableView.estimatedRowHeight = 43;
+  
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(preferredContentSizeChanged:) name:UIContentSizeCategoryDidChangeNotification object:nil];
+}
+
+- (void)preferredContentSizeChanged:(NSNotification *)aNotification {
+  [self.tableView reloadData];
 }
 
 -(void)viewWillAppear:(BOOL)animated {
@@ -61,20 +72,23 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-  static NSString *CellIdentifier = @"BookmarkCell";
-  UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+  CustomCell *cell = [tableView dequeueReusableCellWithIdentifier:@"customCell" forIndexPath:indexPath];
   
   NSDictionary *place = [self.savedPlaces objectAtIndex:indexPath.row];
   
-  UILabel *label;
+//  cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
   
-  label = (UILabel *)[cell viewWithTag:1];
-  label.text = [place valueForKey:@"area"];
-  
-  label = (UILabel *)[cell viewWithTag:2];
-  label.text = [[place objectForKey:@"count"]stringValue];
+  cell.placeLabel.text = [place valueForKey:@"area"];
+  cell.distanceLabel.text = [[place objectForKey:@"count"]stringValue];
 
   return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+  CustomCell *cell = [tableView dequeueReusableCellWithIdentifier:@"customCell"];
+  NSDictionary *place = [self.savedPlaces objectAtIndex:indexPath.row];
+  
+  return [cell calculateHeight:[place valueForKey:@"area"]];
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -101,24 +115,17 @@
   [self.tableView reloadData];
 }
 
+- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+  [self performSegueWithIdentifier:@"toBookmarkItemController" sender:self];
+}
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
   NSIndexPath *path = [self.tableView indexPathForSelectedRow];
-//
-//  UINavigationController *navigationController = (UINavigationController *)segue.destinationViewController;
-//  MainViewController *mainViewController = [[navigationController viewControllers] lastObject];
-//
+
   NSDictionary *place = [self.savedPlaces objectAtIndex:path.row];
   BookmarkItemViewController *controller = (BookmarkItemViewController *)segue.destinationViewController;
 
   controller.selectedAreaGroup = [place valueForKey:@"area"];  
-//
-//  Place *place = [[Place alloc] init];
-//  place.name = placeModel.name;
-//  place.address = placeModel.address;
-//  place.lat = placeModel.lat;
-//  place.lng = placeModel.lng;
-//  
-//  mainViewController.place = place;
 }
 
 @end

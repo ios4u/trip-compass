@@ -420,7 +420,7 @@
                                 </tableViewCellContentView>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <connections>
-                                    <segue destination="U9B-2u-bCJ" kind="push" id="nVV-Oo-Eoa"/>
+                                    <segue destination="U9B-2u-bCJ" kind="push" identifier="toBookmarkItemController" id="nVV-Oo-Eoa"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

@@ -2,6 +2,7 @@
 #import <CoreLocation/CoreLocation.h>
 #import <CoreData/CoreData.h>
 #import "Place.h"
+#import "CustomCell.h"
 
 @interface BookmarkViewController : UITableViewController <NSFetchedResultsControllerDelegate>
 

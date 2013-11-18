@@ -12,4 +12,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *placeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *distanceLabel;
 
+- (CGFloat) calculateHeight:(NSString *)text;
+
 @end

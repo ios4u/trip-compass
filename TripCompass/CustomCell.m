@@ -12,47 +12,28 @@
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    if (self) {
-        // Initialization code
-//      self.contentView.translatesAutoresizingMaskIntoConstraints = NO;
-    }
-    return self;
+  self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+  if (self) {
+  }
+  return self;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+  [super setSelected:selected animated:animated];
 }
 
-//- (void) layoutSubviews {
-//  [super layoutSubviews];
-//  
-//  int diff = 20;
-//  
-//  self.placeLabel.frame = CGRectMake(self.textLabel.frame.origin.x,
-//                                    self.textLabel.frame.origin.y,
-//                                    20,
-//                                    self.textLabel.frame.size.height);
-//  
-////  self.detailTextLabel.frame = CGRectMake(self.detailTextLabel.frame.origin.x - diff,
-////                                          self.detailTextLabel.frame.origin.y,
-////                                          self.detailTextLabel.frame.size.width + diff,
-////                                          self.detailTextLabel.frame.size.height);
-//  
-//
-//}
-
-- (void)viewDidLayoutSubviews
-{
-  // Now that you know what the constraints gave you for the label's width, use that for the preferredMaxLayoutWidth—so you get the correct height for the layout
-//  self.placeLabel.preferredMaxLayoutWidth = CGRectGetWidth(self.placeLabel.bounds);
+- (CGFloat) calculateHeight:(NSString *)text {
+  self.placeLabel.text =  text;
+  self.placeLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline];
   
-  // And then layout again with the label's correct height.
-  [self layoutSubviews];
+  [self.contentView setNeedsLayout];
+  [self.contentView layoutIfNeeded];
+  
+  CGFloat height = [self.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
+  
+  //+1 is the only way to get the height right, seems to be a bug from Apple
+  return height + 1;
 }
-
 
 @end

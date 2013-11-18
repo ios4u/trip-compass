@@ -79,17 +79,8 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
   CustomCell *cell = [tableView dequeueReusableCellWithIdentifier:@"customCell"];
   PlaceModel *placeModel = [self.savedPlaces objectAtIndex:indexPath.row];
-
-  cell.placeLabel.text =  placeModel.name;
-  cell.placeLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline];
-
-  [cell.contentView setNeedsLayout];
-  [cell.contentView layoutIfNeeded];
   
-  CGFloat height = [cell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
-  
-  //+1 is a hack, seems to be a bug from Apple
-  return height + 1;
+  return [cell calculateHeight:placeModel.name];
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
