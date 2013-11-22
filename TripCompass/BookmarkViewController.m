@@ -21,7 +21,7 @@
   id delegate = [[UIApplication sharedApplication] delegate];
   self.managedObjectContext = [delegate managedObjectContext];
   
-  [self.tableView registerNib:[UINib nibWithNibName:@"CustomCell" bundle:nil] forCellReuseIdentifier:@"customCell"];
+  [self.tableView registerNib:[UINib nibWithNibName:@"BookmarkCell" bundle:nil] forCellReuseIdentifier:@"BookmarkCell"];
   
   //TODO: get the initial size dynamically from the constraints
   self.tableView.estimatedRowHeight = 43;
@@ -72,20 +72,18 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-  CustomCell *cell = [tableView dequeueReusableCellWithIdentifier:@"customCell" forIndexPath:indexPath];
+  CustomCell *cell = [tableView dequeueReusableCellWithIdentifier:@"BookmarkCell" forIndexPath:indexPath];
   
   NSDictionary *place = [self.savedPlaces objectAtIndex:indexPath.row];
   
-//  cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-  
   cell.placeLabel.text = [place valueForKey:@"area"];
-  cell.distanceLabel.text = [[place objectForKey:@"count"]stringValue];
+  cell.detailLabel.text = [[place objectForKey:@"count"]stringValue];
 
   return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-  CustomCell *cell = [tableView dequeueReusableCellWithIdentifier:@"customCell"];
+  CustomCell *cell = [tableView dequeueReusableCellWithIdentifier:@"BookmarkCell"];
   NSDictionary *place = [self.savedPlaces objectAtIndex:indexPath.row];
   
   return [cell calculateHeight:[place valueForKey:@"area"]];

@@ -10,7 +10,7 @@
 
 @interface CustomCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *placeLabel;
-@property (weak, nonatomic) IBOutlet UILabel *distanceLabel;
+@property (weak, nonatomic) IBOutlet UILabel *detailLabel;
 
 - (CGFloat) calculateHeight:(NSString *)text;
 

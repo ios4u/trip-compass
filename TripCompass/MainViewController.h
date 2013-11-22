@@ -11,7 +11,7 @@
 #import <CoreLocation/CoreLocation.h>
 #import "Place.h"
 
-@interface MainViewController : UIViewController <FlipsideViewControllerDelegate>
+@interface MainViewController : UIViewController
 
 @property (nonatomic, retain) CLLocation *currentLocation;
 @property (weak, nonatomic) IBOutlet UIImageView *compassImage;

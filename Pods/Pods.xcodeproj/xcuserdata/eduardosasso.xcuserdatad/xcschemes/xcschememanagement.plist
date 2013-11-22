@@ -9,6 +9,11 @@
 			<key>orderHint</key>
 			<integer>1</integer>
 		</dict>
+		<key>Pods-Reachability.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>3</integer>
+		</dict>
 		<key>Pods.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -23,6 +28,21 @@
 			<true/>
 		</dict>
 		<key>368B1B20F3FD4E37A4F559DC</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>6ACA245866074C34868AC8AF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>8BE4E12B479E4700876CDF40</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>946C39DA3FC744F8B8C8A3D6</key>
 		<dict>
 			<key>primary</key>
 			<true/>

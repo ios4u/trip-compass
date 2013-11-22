@@ -40,6 +40,7 @@
 		3D8E2CE61787B44900AA0F0D /* CompassHelperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D8E2CE51787B44900AA0F0D /* CompassHelperTests.m */; };
 		3D8E2CEF178EF4AD00AA0F0D /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D8E2CEE178EF4AD00AA0F0D /* SearchViewController.m */; };
 		3DA654AA179D7B4A00424430 /* Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA654A9179D7B4A00424430 /* Util.m */; };
+		3DA6B10F183A75F1007A041B /* BookmarkCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DA6B10E183A75F1007A041B /* BookmarkCell.xib */; };
 		3DB281C81827F7AE008C7B82 /* CustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DB281C71827F7AE008C7B82 /* CustomCell.xib */; };
 		3DD35A5F17B925EB0066D58E /* 07-map-marker.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DD35A5E17B925EB0066D58E /* 07-map-marker.png */; };
 		3DD93F2E1787A6F1003908A7 /* CompassHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DD93F2D1787A6F1003908A7 /* CompassHelper.m */; };
@@ -107,6 +108,7 @@
 		3D8E2CF0179049CC00AA0F0D /* Place.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Place.h; sourceTree = "<group>"; };
 		3DA654A8179D7B4A00424430 /* Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Util.h; sourceTree = "<group>"; };
 		3DA654A9179D7B4A00424430 /* Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Util.m; sourceTree = "<group>"; };
+		3DA6B10E183A75F1007A041B /* BookmarkCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BookmarkCell.xib; path = TripCompass/BookmarkCell.xib; sourceTree = "<group>"; };
 		3DB281C71827F7AE008C7B82 /* CustomCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomCell.xib; sourceTree = "<group>"; };
 		3DD35A5E17B925EB0066D58E /* 07-map-marker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "07-map-marker.png"; sourceTree = "<group>"; };
 		3DD93F2C1787A6F1003908A7 /* CompassHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompassHelper.h; sourceTree = "<group>"; };
@@ -151,6 +153,7 @@
 		3D6275F11781C65B00A4B675 = {
 			isa = PBXGroup;
 			children = (
+				3DA6B10E183A75F1007A041B /* BookmarkCell.xib */,
 				3D6276051781C65B00A4B675 /* TripCompass */,
 				3D6276301781C65B00A4B675 /* TripCompassTests */,
 				3D6275FC1781C65B00A4B675 /* Frameworks */,
@@ -338,6 +341,7 @@
 				3D6276121781C65B00A4B675 /* Default.png in Resources */,
 				3D6276141781C65B00A4B675 /* Default@2x.png in Resources */,
 				3D6276161781C65B00A4B675 /* Default-568h@2x.png in Resources */,
+				3DA6B10F183A75F1007A041B /* BookmarkCell.xib in Resources */,
 				3D6276191781C65B00A4B675 /* MainStoryboard.storyboard in Resources */,
 				3DE62CD51827FE8800FD7522 /* CustomCell.xib in Resources */,
 				3D4985FF17A16A5500CB2CF2 /* border.png in Resources */,

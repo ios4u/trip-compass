@@ -71,7 +71,7 @@
   
   cell.placeLabel.text = place.name;
 
-  cell.distanceLabel.text = [place formattedDistanceTo:[(AppDelegate*)delegate currentLocation]];
+  cell.detailLabel.text = [place formattedDistanceTo:[(AppDelegate*)delegate currentLocation]];
 
   return cell;
 }

@@ -13,18 +13,18 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="216" translatesAutoresizingMaskIntoConstraints="NO" id="1tt-4d-l3U">
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Place" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="216" translatesAutoresizingMaskIntoConstraints="NO" id="1tt-4d-l3U">
                         <rect key="frame" x="15" y="12" width="216" height="20"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="216" id="btU-rW-TXj"/>
+                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="216" id="btU-rW-TXj"/>
                         </constraints>
                         <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="far away" textAlignment="right" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Gg-yk-b3z">
-                        <rect key="frame" x="235" y="12" width="70" height="17"/>
+                    <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="distance" textAlignment="right" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Gg-yk-b3z">
+                        <rect key="frame" x="235" y="12" width="70" height="20"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="70" id="9v8-68-4Ic"/>
@@ -37,14 +37,15 @@
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="8Gg-yk-b3z" secondAttribute="trailing" constant="15" id="5hA-ii-EVP"/>
                     <constraint firstItem="8Gg-yk-b3z" firstAttribute="leading" secondItem="1tt-4d-l3U" secondAttribute="trailing" constant="4" id="FoY-dG-oaJ"/>
+                    <constraint firstItem="8Gg-yk-b3z" firstAttribute="top" secondItem="1tt-4d-l3U" secondAttribute="top" id="P9h-nf-xLh"/>
                     <constraint firstAttribute="bottom" secondItem="1tt-4d-l3U" secondAttribute="bottom" constant="11" id="PLK-bN-hn4"/>
                     <constraint firstItem="1tt-4d-l3U" firstAttribute="leading" secondItem="WHQ-fP-eT1" secondAttribute="leading" constant="15" id="PRx-A1-0iU"/>
-                    <constraint firstItem="8Gg-yk-b3z" firstAttribute="top" secondItem="WHQ-fP-eT1" secondAttribute="top" constant="12" id="PYt-qz-kXh"/>
                     <constraint firstItem="1tt-4d-l3U" firstAttribute="top" secondItem="WHQ-fP-eT1" secondAttribute="top" constant="12" id="j93-yE-tg3"/>
+                    <constraint firstItem="8Gg-yk-b3z" firstAttribute="height" secondItem="1tt-4d-l3U" secondAttribute="height" id="k6h-vO-xWC"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="distanceLabel" destination="8Gg-yk-b3z" id="fAB-Dx-YNY"/>
+                <outlet property="detailLabel" destination="8Gg-yk-b3z" id="AIH-QD-E8t"/>
                 <outlet property="placeLabel" destination="1tt-4d-l3U" id="Rkc-BY-0zh"/>
             </connections>
         </tableViewCell>

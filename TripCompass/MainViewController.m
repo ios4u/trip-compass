@@ -10,20 +10,24 @@
 #import "SearchViewController.h"
 #import "PlaceModel.h"
 #import "Util.h"
+#import "Reachability.h"
 
 @interface MainViewController () <CLLocationManagerDelegate, UIAlertViewDelegate>
   
 @end
 
 @implementation MainViewController {
-    CLLocationManager *locationManager;
-    NSString *selectedLocation;
-    float GeoAngle;
-    id appDelegate;
+  CLLocationManager *locationManager;
+  NSString *selectedLocation;
+  float GeoAngle;
+  id appDelegate;
+  BOOL isOnline;
 }
 
 - (void)viewDidLoad {
   [super viewDidLoad];
+  
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reachabilityDidChange:) name:kReachabilityChangedNotification object:nil];
   
   appDelegate = [[UIApplication sharedApplication] delegate];
   self.managedObjectContext = [appDelegate managedObjectContext];
@@ -41,6 +45,17 @@
   }
 }
 
+- (void)reachabilityDidChange:(NSNotification *)notification {
+  Reachability *reachability = (Reachability *)[notification object];
+  isOnline = [reachability isReachable];
+  
+  if ([reachability isReachable]) {
+    NSLog(@"Reachable");
+  } else {
+    NSLog(@"Unreachable");
+  }
+}
+
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
   self.currentLocation = [locations lastObject];
   
@@ -49,10 +64,6 @@
     self.navigationItem.prompt = [self.place formattedDistanceTo:self.currentLocation.coordinate];
     GeoAngle = [Util setLatLonForDistanceAndAngle:self.currentLocation.coordinate toCoordinate:[self.place getCoordinate]];
   }
-  
-//  NSString *lat = [NSString stringWithFormat:@"%.5f", self.currentLocation.coordinate.latitude];
-//  NSString *lon = [NSString stringWithFormat:@"%.5f", self.currentLocation.coordinate.longitude];
-//  NSLog(@"lat %@ -- lon %@", lat,lon);
 }
 
 - (void)locationManager:(CLLocationManager*)manager
@@ -86,7 +97,8 @@
 }
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
-  NSLog(@"Can't report heading"); 
+//  TODO show message to detect gps is off
+  NSLog(@"Can't report heading");
 }
 
 - (void)didReceiveMemoryWarning
@@ -97,20 +109,21 @@
 
 #pragma mark - Flipside View
 
-- (void)flipsideViewControllerDidFinish:(FlipsideViewController *)controller
-{
-  [self dismissViewControllerAnimated:YES completion:nil];
-}
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+  int searchTab = 0;
+  int favoritesTab = 1;
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-  if ([[segue identifier] isEqualToString:@"showAlternate"]) {
-    [[segue destinationViewController] setDelegate:self];
+  UITabBarController *tabBarController = (UITabBarController *)segue.destinationViewController;
+  
+  if (isOnline) {
+    //default to search view if connected
+    tabBarController.selectedIndex = searchTab;
   } else {
-    UITabBarController *tabBarController = (UITabBarController *)segue.destinationViewController;
-    SearchViewController *searchViewController = [tabBarController.viewControllers objectAtIndex:0];
+    //default to favorites view if offline
+    tabBarController.selectedIndex = favoritesTab;
     
-    searchViewController.currentLocation = self.currentLocation.coordinate;
+    //disable search tab if not online
+    [[[[tabBarController tabBar] items] objectAtIndex:searchTab]setEnabled:FALSE];
   }
 }
 

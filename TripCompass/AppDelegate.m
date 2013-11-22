@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "MainViewController.h"
 #import <CoreLocation/CoreLocation.h>
+#import "Reachability.h"
 
 @implementation AppDelegate {
     CLLocationManager *locationManager;
@@ -20,6 +21,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+  Reachability *reachability = [Reachability reachabilityWithHostname:@"www.google.com"];
+  [reachability startNotifier];
+
   UINavigationController *navigationController = (UINavigationController *)self.window.rootViewController;
   MainViewController *controller = (MainViewController *)navigationController.topViewController;
   controller.managedObjectContext = self.managedObjectContext;
@@ -30,7 +34,7 @@
   if ([defaults objectForKey:@"isMetric"] == nil) {
     [defaults setBool:isMetric forKey:@"isMetric"];
   }
-    
+  
   locationManager = [[CLLocationManager alloc] init];
   locationManager.delegate = self;
   locationManager.desiredAccuracy = kCLLocationAccuracyBest;
@@ -38,21 +42,6 @@
     [locationManager startUpdatingLocation];
   }
   
-//  navigationController.navigationItem.title = @"xxx";
-//  controller.navigationItem.title = @"";
-  
-//  UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@""
-//                                                                 style:UIBarButtonItemStyleBordered
-//                                                                target:nil
-//                                                                action:nil];
-//  [controller.navigationItem setBackBarButtonItem: backButton];
-//
-//  [[UIBarButtonItem appearanceWhenContainedIn:[self.window.rootViewController class], nil]
-//   setb
-//   setTintColor:[UIColor redColor]];
-  
-//  [[UIBarButtonItem appearanceWhenContainedIn:[UIToolbar class],[UIViewController class], nil] setTintColor:[UIColor redColor]];
-
   return YES;
 }
 
