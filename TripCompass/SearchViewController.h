@@ -11,7 +11,7 @@
 #import <CoreData/CoreData.h>
 #import "Place.h"
 
-@interface SearchViewController : UITableViewController <NSFetchedResultsControllerDelegate, UISearchBarDelegate>
+@interface SearchViewController : UITableViewController <NSFetchedResultsControllerDelegate, UISearchBarDelegate, UITabBarControllerDelegate>
 
 @property (retain, nonatomic) NSArray *results;
 @property (nonatomic, assign) CLLocationCoordinate2D currentLocation;

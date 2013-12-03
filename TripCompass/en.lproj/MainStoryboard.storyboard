@@ -3,7 +3,7 @@
     <dependencies>
         <deployment defaultVersion="1792" identifier="iOS"/>
         <development version="5000" identifier="xcode"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3746"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
     <scenes>
         <!--Main View Controller - Trip Compass-->
@@ -235,10 +235,10 @@
             </objects>
             <point key="canvasLocation" x="108" y="-1053"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--MainUI Tab Bar Controller-->
         <scene sceneID="ObP-n0-Cgj">
             <objects>
-                <tabBarController definesPresentationContext="YES" id="htI-P6-ELJ" sceneMemberID="viewController">
+                <tabBarController definesPresentationContext="YES" id="htI-P6-ELJ" customClass="MainUITabBarController" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="Wzf-7d-i13"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
@@ -343,6 +343,27 @@
                                 <connections>
                                     <segue destination="BNG-Bj-k6r" kind="modal" identifier="SearchSelection" animates="NO" id="MjL-hS-Hqs"/>
                                 </connections>
+                            </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="NoInternet" textLabel="yQ2-lg-amz" imageView="RJj-V6-c19" style="IBUITableViewCellStyleDefault" id="ISA-ea-qHT">
+                                <rect key="frame" x="0.0" y="198" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ISA-ea-qHT" id="hlR-VR-O3d">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="No Internet Connection" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="yQ2-lg-amz">
+                                            <rect key="frame" x="73" y="0.0" width="232" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="alert-circled.png" id="RJj-V6-c19">
+                                            <rect key="frame" x="15" y="0.0" width="43" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </imageView>
+                                    </subviews>
+                                </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -486,6 +507,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="alert-circled.png" width="512" height="512"/>
         <image name="numbers.png" width="640" height="640"/>
         <image name="pointer.png" width="640" height="640"/>
     </resources>
@@ -495,7 +517,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="0wb-gz-HNK"/>
+        <segue reference="ya6-c3-SS3"/>
         <segue reference="MjL-hS-Hqs"/>
     </inferredMetricsTieBreakers>
 </document>

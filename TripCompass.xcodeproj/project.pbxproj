@@ -44,6 +44,8 @@
 		3DB281C81827F7AE008C7B82 /* CustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DB281C71827F7AE008C7B82 /* CustomCell.xib */; };
 		3DD35A5F17B925EB0066D58E /* 07-map-marker.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DD35A5E17B925EB0066D58E /* 07-map-marker.png */; };
 		3DD93F2E1787A6F1003908A7 /* CompassHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DD93F2D1787A6F1003908A7 /* CompassHelper.m */; };
+		3DDBDFD91846DE2400C48C08 /* alert-circled.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DDBDFD81846DE2400C48C08 /* alert-circled.png */; };
+		3DDBDFE2184CEA5F00C48C08 /* MainUITabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DDBDFE1184CEA5F00C48C08 /* MainUITabBarController.m */; };
 		3DDDDE5A17D8CD22006FD52D /* LocationSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DDDDE5917D8CD22006FD52D /* LocationSearchViewController.m */; };
 		3DE62CD31827FE7300FD7522 /* CustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE62CD21827FE7300FD7522 /* CustomCell.m */; };
 		3DE62CD51827FE8800FD7522 /* CustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DE62CD41827FE8800FD7522 /* CustomCell.xib */; };
@@ -113,6 +115,9 @@
 		3DD35A5E17B925EB0066D58E /* 07-map-marker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "07-map-marker.png"; sourceTree = "<group>"; };
 		3DD93F2C1787A6F1003908A7 /* CompassHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompassHelper.h; sourceTree = "<group>"; };
 		3DD93F2D1787A6F1003908A7 /* CompassHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompassHelper.m; sourceTree = "<group>"; };
+		3DDBDFD81846DE2400C48C08 /* alert-circled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "alert-circled.png"; sourceTree = "<group>"; };
+		3DDBDFE0184CEA5F00C48C08 /* MainUITabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainUITabBarController.h; sourceTree = "<group>"; };
+		3DDBDFE1184CEA5F00C48C08 /* MainUITabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainUITabBarController.m; sourceTree = "<group>"; };
 		3DDDDE5817D8CD22006FD52D /* LocationSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationSearchViewController.h; sourceTree = "<group>"; };
 		3DDDDE5917D8CD22006FD52D /* LocationSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationSearchViewController.m; sourceTree = "<group>"; };
 		3DE62CD11827FE7300FD7522 /* CustomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCell.h; sourceTree = "<group>"; };
@@ -220,6 +225,8 @@
 				3DE62CD11827FE7300FD7522 /* CustomCell.h */,
 				3DE62CD21827FE7300FD7522 /* CustomCell.m */,
 				3DE62CD41827FE8800FD7522 /* CustomCell.xib */,
+				3DDBDFE0184CEA5F00C48C08 /* MainUITabBarController.h */,
+				3DDBDFE1184CEA5F00C48C08 /* MainUITabBarController.m */,
 			);
 			path = TripCompass;
 			sourceTree = "<group>";
@@ -227,6 +234,7 @@
 		3D6276061781C65B00A4B675 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				3DDBDFD81846DE2400C48C08 /* alert-circled.png */,
 				3DD35A5E17B925EB0066D58E /* 07-map-marker.png */,
 				3D4985FC17A16A5500CB2CF2 /* border.png */,
 				3D4985FD17A16A5500CB2CF2 /* numbers.png */,
@@ -349,6 +357,7 @@
 				3D49860117A16A5500CB2CF2 /* pointer.png in Resources */,
 				3D49863D17A8245C00CB2CF2 /* README in Resources */,
 				3DD35A5F17B925EB0066D58E /* 07-map-marker.png in Resources */,
+				3DDBDFD91846DE2400C48C08 /* alert-circled.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -419,6 +428,7 @@
 				3D62761F1781C65B00A4B675 /* MainViewController.m in Sources */,
 				3D6276221781C65B00A4B675 /* FlipsideViewController.m in Sources */,
 				3DD93F2E1787A6F1003908A7 /* CompassHelper.m in Sources */,
+				3DDBDFE2184CEA5F00C48C08 /* MainUITabBarController.m in Sources */,
 				3D8E2CEF178EF4AD00AA0F0D /* SearchViewController.m in Sources */,
 				3DA654AA179D7B4A00424430 /* Util.m in Sources */,
 				3D32397517A953B2005ACF01 /* Place.m in Sources */,
@@ -538,6 +548,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 71BB837CDB524BE6BD1B4999 /* Pods.xcconfig */;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CODE_SIGN_IDENTITY = "iPhone Developer: Eduardo Sasso (P9L3K9LEWJ)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TripCompass/TripCompass-Prefix.pch";
@@ -554,6 +565,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 71BB837CDB524BE6BD1B4999 /* Pods.xcconfig */;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CODE_SIGN_IDENTITY = "iPhone Developer: Eduardo Sasso (P9L3K9LEWJ)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TripCompass/TripCompass-Prefix.pch";

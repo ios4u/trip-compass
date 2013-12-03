@@ -12,7 +12,8 @@
 #import "Reachability.h"
 
 @implementation AppDelegate {
-    CLLocationManager *locationManager;
+  CLLocationManager *locationManager;
+  Reachability *reachability;
 }
 
 @synthesize managedObjectContext = _managedObjectContext;
@@ -21,9 +22,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-  Reachability *reachability = [Reachability reachabilityWithHostname:@"www.google.com"];
-  [reachability startNotifier];
-
+  [self checkInternetConnectivity];
+  
   UINavigationController *navigationController = (UINavigationController *)self.window.rootViewController;
   MainViewController *controller = (MainViewController *)navigationController.topViewController;
   controller.managedObjectContext = self.managedObjectContext;
@@ -43,6 +43,20 @@
   }
   
   return YES;
+}
+
+- (void)checkInternetConnectivity {
+  reachability = [Reachability reachabilityForInternetConnection];
+  self.online = [reachability isReachable];
+  
+  [reachability startNotifier];
+  
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reachabilityDidChange:) name:kReachabilityChangedNotification object:nil];
+}
+
+- (void)reachabilityDidChange:(NSNotification *)notification {
+  reachability = (Reachability *)[notification object];
+  self.online = [reachability isReachable];
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {

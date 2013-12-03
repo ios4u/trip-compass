@@ -6,6 +6,7 @@
 #import "BookmarkItemViewController.h"
 #import "LocationSearchViewController.h"
 #import "AppDelegate.h"
+#import "Reachability.h"
 
 @interface SearchViewController ()
 @end
@@ -15,35 +16,36 @@
   AppDelegate *appDelegate;
   NSString *lat;
   NSString *lng;
+  UIView *defaultTableHeaderView;
 }
 
 - (void)viewDidLoad {
   [super viewDidLoad];
+  
+  appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+  self.managedObjectContext = [appDelegate managedObjectContext];
+
+  self.tabBarController.delegate = self;
+  defaultTableHeaderView = [self.tableView tableHeaderView];
+  
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reachabilityDidChange:) name:kReachabilityChangedNotification object:nil];
+}
+
+- (void)reachabilityDidChange:(NSNotification *)notification {
+  if (appDelegate.isOnline) {
+    [self.tableView setTableHeaderView:defaultTableHeaderView];
+
+    [self.tableView reloadData];
+  } else {
+    [self.tableView setTableHeaderView:nil];
+    //if the tableview is empty then show the no internet warning
+    if ([self.tableView numberOfRowsInSection:0] == 0) [self.tableView reloadData];
+  }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-//  UIViewController *uiViewController = [self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count-2];
-//  
-//  if ([uiViewController isKindOfClass:[LocationSearchViewController class]]) {
-//    NSMutableArray *navigationArray = [[NSMutableArray alloc] initWithArray: self.navigationController.viewControllers];
-//    
-//    // [navigationArray removeAllObjects];    // This is just for remove all view controller from navigation stack.
-////    [navigationArray removeObjectAtIndex: 1];  // You can pass your index here
-//    self.navigationController.viewControllers = navigationArray;
-//  }
-  
-  //  NSLog(@"aaa %@",[self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count-2]);
-//    NSLog(@"bbb %@",[self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count-1]);
-//  NSLog([[[self.navigationController topViewController] class] description]);
-//  ([[self.navigationController topViewController] isKindOfClass:[RootViewController class]])
-//    [[self.navigationController viewControllers] count] - 2;
   self.tabBarController.navigationItem.title = @"Nearby Search";
-  
-//  [self.tableView reloadData];
-//  [self.tableView setNeedsLayout];
-//  [self.tableView setNeedsDisplay];
-//  [self.searchBar becomeFirstResponder];
-  self.tabBarController.navigationItem.rightBarButtonItem = self.editButtonItem;
+  self.tabBarController.navigationItem.rightBarButtonItem = nil;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -51,9 +53,6 @@
     [self.searchBar becomeFirstResponder];
   } else {
     searchFilters = [NSArray arrayWithObjects:@"Attractions",@"Restaurants",@"Hotels",@"Popular", nil];
-    
-    appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    self.managedObjectContext = [appDelegate managedObjectContext];
     
     lat = [NSString stringWithFormat:@"%.5f", self.currentLocation.latitude];
     lng = [NSString stringWithFormat:@"%.5f", self.currentLocation.longitude];
@@ -86,13 +85,21 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-  // Return the number of rows in the section.
+  NSUInteger rows;
+  
   if (self.searching == NO) {
-    return self.results.count;
+    rows = self.results.count;
   } else {
-    return ([searchFilters count] + 1);
-//    return 5;
+    rows = ([searchFilters count] + 1);
   }
+
+  if (rows > 0) {
+    self.tabBarController.navigationItem.rightBarButtonItem = self.editButtonItem;
+  }
+  
+  if (!appDelegate.isOnline) rows = 1;
+
+  return rows;
 }
 
 //- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
@@ -120,12 +127,14 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-  NSString *CellIdentifier;
   UITableViewCell *cell;
-
+  
+  if (!appDelegate.isOnline) {
+    return [self.tableView dequeueReusableCellWithIdentifier:@"NoInternet"];
+  }
+  
   if (self.searching == NO) {
-    CellIdentifier = @"SearchCell";
-    cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    cell = [self.tableView dequeueReusableCellWithIdentifier:@"SearchCell"];
     
     Place *place = [self getPlace:indexPath.row];
     
@@ -134,16 +143,14 @@
     cell.detailTextLabel.text = [place formattedDistanceTo:self.currentLocation];;
   } else {
     if (indexPath.row == 0) {
-      CellIdentifier = @"LocationCell";
-      cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+      cell = [self.tableView dequeueReusableCellWithIdentifier:@"LocationCell"];
 
       cell.detailTextLabel.text = @"Current Location";
       if (appDelegate.selectedLocation) {
         cell.detailTextLabel.text = appDelegate.selectedLocation.name;
       }      
     } else {
-      CellIdentifier = @"FilterCell";
-      cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+      cell = [self.tableView dequeueReusableCellWithIdentifier:@"FilterCell"];
       NSString *filterName = [searchFilters objectAtIndex:(indexPath.row -1)];
       cell.textLabel.text = filterName;
     }

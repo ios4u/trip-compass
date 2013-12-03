@@ -10,7 +10,7 @@
 #import "SearchViewController.h"
 #import "PlaceModel.h"
 #import "Util.h"
-#import "Reachability.h"
+#import "AppDelegate.h"
 
 @interface MainViewController () <CLLocationManagerDelegate, UIAlertViewDelegate>
   
@@ -20,16 +20,13 @@
   CLLocationManager *locationManager;
   NSString *selectedLocation;
   float GeoAngle;
-  id appDelegate;
-  BOOL isOnline;
+  AppDelegate *appDelegate;
 }
 
 - (void)viewDidLoad {
   [super viewDidLoad];
   
-  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reachabilityDidChange:) name:kReachabilityChangedNotification object:nil];
-  
-  appDelegate = [[UIApplication sharedApplication] delegate];
+  appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
   self.managedObjectContext = [appDelegate managedObjectContext];
   
   locationManager = [[CLLocationManager alloc] init];
@@ -45,16 +42,6 @@
   }
 }
 
-- (void)reachabilityDidChange:(NSNotification *)notification {
-  Reachability *reachability = (Reachability *)[notification object];
-  isOnline = [reachability isReachable];
-  
-  if ([reachability isReachable]) {
-    NSLog(@"Reachable");
-  } else {
-    NSLog(@"Unreachable");
-  }
-}
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
   self.currentLocation = [locations lastObject];
@@ -109,23 +96,27 @@
 
 #pragma mark - Flipside View
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-  int searchTab = 0;
-  int favoritesTab = 1;
-
-  UITabBarController *tabBarController = (UITabBarController *)segue.destinationViewController;
-  
-  if (isOnline) {
-    //default to search view if connected
-    tabBarController.selectedIndex = searchTab;
-  } else {
-    //default to favorites view if offline
-    tabBarController.selectedIndex = favoritesTab;
-    
-    //disable search tab if not online
-    [[[[tabBarController tabBar] items] objectAtIndex:searchTab]setEnabled:FALSE];
-  }
-}
+//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+//  int searchTab = 0;
+//  int favoritesTab = 1;
+//
+//  UITabBarController *tabBarController = (UITabBarController *)segue.destinationViewController;
+//  UITabBarItem* search = [[[tabBarController tabBar] items] objectAtIndex:searchTab];
+//  
+//  if (appDelegate.isOnline) {
+//    //default to search view if connected
+//    search.badgeValue = nil;
+//    tabBarController.selectedIndex = searchTab;
+//    
+//  } else {
+//    //default to favorites view if offline
+//    tabBarController.selectedIndex = favoritesTab;
+//    
+//    search.badgeValue = @"!";
+//    
+//    //[[[[tabBarController tabBar] items] objectAtIndex:searchTab]setEnabled:FALSE];
+//  }
+//}
 
 - (IBAction)checkpointAction:(id)sender {
   UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Add Checkpoint" message:@"Save your current location to make sure you never get lost." delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];

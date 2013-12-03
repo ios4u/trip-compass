@@ -26,6 +26,8 @@
   //TODO: get the initial size dynamically from the constraints
   self.tableView.estimatedRowHeight = 43;
   
+//  self.tabBarController.delegate = self;
+  
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(preferredContentSizeChanged:) name:UIContentSizeCategoryDidChangeNotification object:nil];
 }
 
