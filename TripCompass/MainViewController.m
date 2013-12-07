@@ -42,7 +42,6 @@
   }
 }
 
-
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
   self.currentLocation = [locations lastObject];
   

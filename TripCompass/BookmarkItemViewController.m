@@ -8,7 +8,7 @@
 @end
 
 @implementation BookmarkItemViewController {
-  int savedPlacesCount;
+  NSUInteger savedPlacesCount;
   id delegate;
 }
 

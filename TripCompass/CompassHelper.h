@@ -9,5 +9,5 @@
 #import <Foundation/Foundation.h>
 
 @interface CompassHelper : NSObject
-- (float) getBearingFromCoordinate:(float)from toCoordinate:(float)to;
+- (void) getBearingFromCoordinate:(float)from toCoordinate:(float)to;
 @end

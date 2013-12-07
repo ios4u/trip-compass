@@ -10,7 +10,7 @@
 
 @implementation CompassHelper
 
-- (float) getBearingFromCoordinate:(float)from toCoordinate:(float)to
+- (void) getBearingFromCoordinate:(float)from toCoordinate:(float)to
 {
   NSLog(@"+++here");
   

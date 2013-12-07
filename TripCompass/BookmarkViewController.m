@@ -9,7 +9,7 @@
 
 @implementation BookmarkViewController {
   CLLocationManager *locationManager;
-  int savedPlacesCount;
+  NSInteger savedPlacesCount;
 }
 
 - (void)viewDidLoad {

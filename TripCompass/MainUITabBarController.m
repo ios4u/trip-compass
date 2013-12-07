@@ -44,5 +44,5 @@
 - (void)reachabilityDidChange:(NSNotification *)notification {
   [self updateTabBarItem];
 }
-
+//http://www.lextech.com/2012/10/ios-6-pull-to-refresh-tutorial/
 @end

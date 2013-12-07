@@ -42,6 +42,10 @@
 		3DA654AA179D7B4A00424430 /* Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA654A9179D7B4A00424430 /* Util.m */; };
 		3DA6B10F183A75F1007A041B /* BookmarkCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DA6B10E183A75F1007A041B /* BookmarkCell.xib */; };
 		3DB281C81827F7AE008C7B82 /* CustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DB281C71827F7AE008C7B82 /* CustomCell.xib */; };
+		3DB8FAF0184F950A005853D6 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DB8FAEF184F950A005853D6 /* SystemConfiguration.framework */; };
+		3DB8FAF81850E4E3005853D6 /* NewRelicAgent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DB8FAF71850E4E3005853D6 /* NewRelicAgent.framework */; };
+		3DB8FAFA1850E524005853D6 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DB8FAF91850E524005853D6 /* CoreTelephony.framework */; };
+		3DB8FAFB1850E537005853D6 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DB8FAED184F94C0005853D6 /* libz.dylib */; };
 		3DD35A5F17B925EB0066D58E /* 07-map-marker.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DD35A5E17B925EB0066D58E /* 07-map-marker.png */; };
 		3DD93F2E1787A6F1003908A7 /* CompassHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DD93F2D1787A6F1003908A7 /* CompassHelper.m */; };
 		3DDBDFD91846DE2400C48C08 /* alert-circled.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DDBDFD81846DE2400C48C08 /* alert-circled.png */; };
@@ -110,8 +114,13 @@
 		3D8E2CF0179049CC00AA0F0D /* Place.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Place.h; sourceTree = "<group>"; };
 		3DA654A8179D7B4A00424430 /* Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Util.h; sourceTree = "<group>"; };
 		3DA654A9179D7B4A00424430 /* Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Util.m; sourceTree = "<group>"; };
-		3DA6B10E183A75F1007A041B /* BookmarkCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BookmarkCell.xib; path = TripCompass/BookmarkCell.xib; sourceTree = "<group>"; };
+		3DA6B10E183A75F1007A041B /* BookmarkCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BookmarkCell.xib; sourceTree = "<group>"; };
 		3DB281C71827F7AE008C7B82 /* CustomCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomCell.xib; sourceTree = "<group>"; };
+		3DB8FAED184F94C0005853D6 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		3DB8FAEF184F950A005853D6 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		3DB8FAF3184F964F005853D6 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		3DB8FAF71850E4E3005853D6 /* NewRelicAgent.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = NewRelicAgent.framework; sourceTree = "<group>"; };
+		3DB8FAF91850E524005853D6 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		3DD35A5E17B925EB0066D58E /* 07-map-marker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "07-map-marker.png"; sourceTree = "<group>"; };
 		3DD93F2C1787A6F1003908A7 /* CompassHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompassHelper.h; sourceTree = "<group>"; };
 		3DD93F2D1787A6F1003908A7 /* CompassHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompassHelper.m; sourceTree = "<group>"; };
@@ -132,8 +141,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3DB8FAFB1850E537005853D6 /* libz.dylib in Frameworks */,
+				3DB8FAFA1850E524005853D6 /* CoreTelephony.framework in Frameworks */,
+				3DB8FAF0184F950A005853D6 /* SystemConfiguration.framework in Frameworks */,
 				3D6276421781C7A000A4B675 /* CoreLocation.framework in Frameworks */,
 				3D6275FE1781C65B00A4B675 /* UIKit.framework in Frameworks */,
+				3DB8FAF81850E4E3005853D6 /* NewRelicAgent.framework in Frameworks */,
 				3D6276001781C65B00A4B675 /* Foundation.framework in Frameworks */,
 				3D6276021781C65B00A4B675 /* CoreGraphics.framework in Frameworks */,
 				3D6276041781C65B00A4B675 /* CoreData.framework in Frameworks */,
@@ -158,7 +171,6 @@
 		3D6275F11781C65B00A4B675 = {
 			isa = PBXGroup;
 			children = (
-				3DA6B10E183A75F1007A041B /* BookmarkCell.xib */,
 				3D6276051781C65B00A4B675 /* TripCompass */,
 				3D6276301781C65B00A4B675 /* TripCompassTests */,
 				3D6275FC1781C65B00A4B675 /* Frameworks */,
@@ -179,6 +191,11 @@
 		3D6275FC1781C65B00A4B675 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3DB8FAF91850E524005853D6 /* CoreTelephony.framework */,
+				3DB8FAF71850E4E3005853D6 /* NewRelicAgent.framework */,
+				3DB8FAF3184F964F005853D6 /* AdSupport.framework */,
+				3DB8FAEF184F950A005853D6 /* SystemConfiguration.framework */,
+				3DB8FAED184F94C0005853D6 /* libz.dylib */,
 				3D6276411781C7A000A4B675 /* CoreLocation.framework */,
 				3D6275FD1781C65B00A4B675 /* UIKit.framework */,
 				3D6275FF1781C65B00A4B675 /* Foundation.framework */,
@@ -193,40 +210,41 @@
 		3D6276051781C65B00A4B675 /* TripCompass */ = {
 			isa = PBXGroup;
 			children = (
-				3D49863C17A8245C00CB2CF2 /* README */,
 				3D62760E1781C65B00A4B675 /* AppDelegate.h */,
-				3D4F871217C262500032B61C /* BookmarkItemViewController.h */,
-				3D32397917AAA3EF005ACF01 /* BookmarkViewController.h */,
-				3DD93F2C1787A6F1003908A7 /* CompassHelper.h */,
-				3D6276201781C65B00A4B675 /* FlipsideViewController.h */,
-				3DDDDE5817D8CD22006FD52D /* LocationSearchViewController.h */,
-				3D62761D1781C65B00A4B675 /* MainViewController.h */,
-				3D8E2CF0179049CC00AA0F0D /* Place.h */,
-				3D32397617A9549A005ACF01 /* PlaceModel.h */,
-				3D8E2CED178EF4AD00AA0F0D /* SearchViewController.h */,
-				3D75608217FF1E3A00F0ED65 /* UINavigationItem+BackButton.h */,
-				3DA654A8179D7B4A00424430 /* Util.h */,
 				3D62760F1781C65B00A4B675 /* AppDelegate.m */,
+				3DA6B10E183A75F1007A041B /* BookmarkCell.xib */,
+				3D4F871217C262500032B61C /* BookmarkItemViewController.h */,
 				3D4F871317C262500032B61C /* BookmarkItemViewController.m */,
+				3D32397917AAA3EF005ACF01 /* BookmarkViewController.h */,
 				3D32397A17AAA3EF005ACF01 /* BookmarkViewController.m */,
+				3DD93F2C1787A6F1003908A7 /* CompassHelper.h */,
 				3DD93F2D1787A6F1003908A7 /* CompassHelper.m */,
-				3D6276211781C65B00A4B675 /* FlipsideViewController.m */,
-				3DDDDE5917D8CD22006FD52D /* LocationSearchViewController.m */,
-				3D62761E1781C65B00A4B675 /* MainViewController.m */,
-				3D32397417A953B2005ACF01 /* Place.m */,
-				3D32397717A9549A005ACF01 /* PlaceModel.m */,
-				3D8E2CEE178EF4AD00AA0F0D /* SearchViewController.m */,
-				3D75608317FF1E3A00F0ED65 /* UINavigationItem+BackButton.m */,
-				3DA654A9179D7B4A00424430 /* Util.m */,
-				3DB281C71827F7AE008C7B82 /* CustomCell.xib */,
-				3D6276171781C65B00A4B675 /* MainStoryboard.storyboard */,
-				3D6276061781C65B00A4B675 /* Supporting Files */,
-				3D62761A1781C65B00A4B675 /* TripCompass.xcdatamodeld */,
 				3DE62CD11827FE7300FD7522 /* CustomCell.h */,
 				3DE62CD21827FE7300FD7522 /* CustomCell.m */,
-				3DE62CD41827FE8800FD7522 /* CustomCell.xib */,
+				3DB281C71827F7AE008C7B82 /* CustomCell.xib */,
+				3D6276201781C65B00A4B675 /* FlipsideViewController.h */,
+				3D6276211781C65B00A4B675 /* FlipsideViewController.m */,
+				3DDDDE5817D8CD22006FD52D /* LocationSearchViewController.h */,
+				3DDDDE5917D8CD22006FD52D /* LocationSearchViewController.m */,
+				3D6276171781C65B00A4B675 /* MainStoryboard.storyboard */,
 				3DDBDFE0184CEA5F00C48C08 /* MainUITabBarController.h */,
 				3DDBDFE1184CEA5F00C48C08 /* MainUITabBarController.m */,
+				3D62761D1781C65B00A4B675 /* MainViewController.h */,
+				3D62761E1781C65B00A4B675 /* MainViewController.m */,
+				3D8E2CF0179049CC00AA0F0D /* Place.h */,
+				3D32397417A953B2005ACF01 /* Place.m */,
+				3D32397617A9549A005ACF01 /* PlaceModel.h */,
+				3D32397717A9549A005ACF01 /* PlaceModel.m */,
+				3D49863C17A8245C00CB2CF2 /* README */,
+				3D8E2CED178EF4AD00AA0F0D /* SearchViewController.h */,
+				3D8E2CEE178EF4AD00AA0F0D /* SearchViewController.m */,
+				3D6276061781C65B00A4B675 /* Supporting Files */,
+				3D62761A1781C65B00A4B675 /* TripCompass.xcdatamodeld */,
+				3D75608217FF1E3A00F0ED65 /* UINavigationItem+BackButton.h */,
+				3D75608317FF1E3A00F0ED65 /* UINavigationItem+BackButton.m */,
+				3DA654A8179D7B4A00424430 /* Util.h */,
+				3DA654A9179D7B4A00424430 /* Util.m */,
+				3DE62CD41827FE8800FD7522 /* CustomCell.xib */,
 			);
 			path = TripCompass;
 			sourceTree = "<group>";
@@ -548,12 +566,17 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 71BB837CDB524BE6BD1B4999 /* Pods.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				ARCHS = "$(ARCHS_STANDARD)";
 				CODE_SIGN_IDENTITY = "iPhone Developer: Eduardo Sasso (P9L3K9LEWJ)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/eduardosasso/Dropbox/TripCompass,
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TripCompass/TripCompass-Prefix.pch";
 				INFOPLIST_FILE = "TripCompass/TripCompass-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -565,12 +588,17 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 71BB837CDB524BE6BD1B4999 /* Pods.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				ARCHS = "$(ARCHS_STANDARD)";
 				CODE_SIGN_IDENTITY = "iPhone Developer: Eduardo Sasso (P9L3K9LEWJ)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/eduardosasso/Dropbox/TripCompass,
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TripCompass/TripCompass-Prefix.pch";
 				INFOPLIST_FILE = "TripCompass/TripCompass-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
