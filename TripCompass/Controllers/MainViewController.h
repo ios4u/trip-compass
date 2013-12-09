@@ -6,7 +6,6 @@
 //  Copyright (c) 2013 Context Software. All rights reserved.
 //
 
-#import "FlipsideViewController.h"
 #import <CoreData/CoreData.h>
 #import <CoreLocation/CoreLocation.h>
 #import "Place.h"

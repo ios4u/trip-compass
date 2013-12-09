@@ -9,6 +9,16 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-GoogleAnalytics-iOS-SDK.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-NewRelicAgent.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-Reachability.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -22,17 +32,27 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>4931D3EBD8384F83B615392D</key>
+		<key>0EF8601CA37C4D208E030D0B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B77BB21359364E23A46F2869</key>
+		<key>3F3EB619833B4096BD267E7D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>BE8B1E47A21642929A441404</key>
+		<key>7D87B314ADCF498BB52F696F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>EB07718FBABA4B57AFBAE262</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F49316F393BF47F9A2251136</key>
 		<dict>
 			<key>primary</key>
 			<true/>

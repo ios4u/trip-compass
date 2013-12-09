@@ -26,9 +26,7 @@
 		3D6276141781C65B00A4B675 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D6276131781C65B00A4B675 /* Default@2x.png */; };
 		3D6276161781C65B00A4B675 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D6276151781C65B00A4B675 /* Default-568h@2x.png */; };
 		3D6276191781C65B00A4B675 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D6276171781C65B00A4B675 /* MainStoryboard.storyboard */; };
-		3D62761C1781C65B00A4B675 /* TripCompass.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3D62761A1781C65B00A4B675 /* TripCompass.xcdatamodeld */; };
 		3D62761F1781C65B00A4B675 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D62761E1781C65B00A4B675 /* MainViewController.m */; };
-		3D6276221781C65B00A4B675 /* FlipsideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D6276211781C65B00A4B675 /* FlipsideViewController.m */; };
 		3D62762A1781C65B00A4B675 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D6276291781C65B00A4B675 /* SenTestingKit.framework */; };
 		3D62762B1781C65B00A4B675 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D6275FD1781C65B00A4B675 /* UIKit.framework */; };
 		3D62762C1781C65B00A4B675 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D6275FF1781C65B00A4B675 /* Foundation.framework */; };
@@ -37,13 +35,13 @@
 		3D6276381781C65B00A4B675 /* TripCompassTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D6276371781C65B00A4B675 /* TripCompassTests.m */; };
 		3D6276421781C7A000A4B675 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D6276411781C7A000A4B675 /* CoreLocation.framework */; };
 		3D75608417FF1E3A00F0ED65 /* UINavigationItem+BackButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D75608317FF1E3A00F0ED65 /* UINavigationItem+BackButton.m */; };
+		3D76BECD1853A0D8002FD16F /* TripCompass.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3D76BECB1853A0D8002FD16F /* TripCompass.xcdatamodeld */; };
+		3D76BED01853A2FC002FD16F /* BookmarkCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D76BECF1853A2FC002FD16F /* BookmarkCell.xib */; };
 		3D8E2CE61787B44900AA0F0D /* CompassHelperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D8E2CE51787B44900AA0F0D /* CompassHelperTests.m */; };
 		3D8E2CEF178EF4AD00AA0F0D /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D8E2CEE178EF4AD00AA0F0D /* SearchViewController.m */; };
 		3DA654AA179D7B4A00424430 /* Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA654A9179D7B4A00424430 /* Util.m */; };
-		3DA6B10F183A75F1007A041B /* BookmarkCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DA6B10E183A75F1007A041B /* BookmarkCell.xib */; };
 		3DB281C81827F7AE008C7B82 /* CustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DB281C71827F7AE008C7B82 /* CustomCell.xib */; };
 		3DB8FAF0184F950A005853D6 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DB8FAEF184F950A005853D6 /* SystemConfiguration.framework */; };
-		3DB8FAF81850E4E3005853D6 /* NewRelicAgent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DB8FAF71850E4E3005853D6 /* NewRelicAgent.framework */; };
 		3DB8FAFA1850E524005853D6 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DB8FAF91850E524005853D6 /* CoreTelephony.framework */; };
 		3DB8FAFB1850E537005853D6 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DB8FAED184F94C0005853D6 /* libz.dylib */; };
 		3DD35A5F17B925EB0066D58E /* 07-map-marker.png in Resources */ = {isa = PBXBuildFile; fileRef = 3DD35A5E17B925EB0066D58E /* 07-map-marker.png */; };
@@ -52,7 +50,6 @@
 		3DDBDFE2184CEA5F00C48C08 /* MainUITabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DDBDFE1184CEA5F00C48C08 /* MainUITabBarController.m */; };
 		3DDDDE5A17D8CD22006FD52D /* LocationSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DDDDE5917D8CD22006FD52D /* LocationSearchViewController.m */; };
 		3DE62CD31827FE7300FD7522 /* CustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE62CD21827FE7300FD7522 /* CustomCell.m */; };
-		3DE62CD51827FE8800FD7522 /* CustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DE62CD41827FE8800FD7522 /* CustomCell.xib */; };
 		A01548ADA0B341BEB2D8F853 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E8ADDE2DB8744F0B935F7809 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -93,11 +90,8 @@
 		3D6276131781C65B00A4B675 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		3D6276151781C65B00A4B675 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		3D6276181781C65B00A4B675 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
-		3D62761B1781C65B00A4B675 /* TripCompass.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TripCompass.xcdatamodel; sourceTree = "<group>"; };
 		3D62761D1781C65B00A4B675 /* MainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		3D62761E1781C65B00A4B675 /* MainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
-		3D6276201781C65B00A4B675 /* FlipsideViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FlipsideViewController.h; sourceTree = "<group>"; };
-		3D6276211781C65B00A4B675 /* FlipsideViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FlipsideViewController.m; sourceTree = "<group>"; };
 		3D6276281781C65B00A4B675 /* TripCompassTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TripCompassTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D6276291781C65B00A4B675 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		3D6276321781C65B00A4B675 /* TripCompassTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TripCompassTests-Info.plist"; sourceTree = "<group>"; };
@@ -105,8 +99,10 @@
 		3D6276361781C65B00A4B675 /* TripCompassTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TripCompassTests.h; sourceTree = "<group>"; };
 		3D6276371781C65B00A4B675 /* TripCompassTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TripCompassTests.m; sourceTree = "<group>"; };
 		3D6276411781C7A000A4B675 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		3D75608217FF1E3A00F0ED65 /* UINavigationItem+BackButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationItem+BackButton.h"; sourceTree = "<group>"; };
-		3D75608317FF1E3A00F0ED65 /* UINavigationItem+BackButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationItem+BackButton.m"; sourceTree = "<group>"; };
+		3D75608217FF1E3A00F0ED65 /* UINavigationItem+BackButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UINavigationItem+BackButton.h"; path = "../Categories/UINavigationItem+BackButton.h"; sourceTree = "<group>"; };
+		3D75608317FF1E3A00F0ED65 /* UINavigationItem+BackButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UINavigationItem+BackButton.m"; path = "../Categories/UINavigationItem+BackButton.m"; sourceTree = "<group>"; };
+		3D76BECC1853A0D8002FD16F /* TripCompass.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TripCompass.xcdatamodel; sourceTree = "<group>"; };
+		3D76BECF1853A2FC002FD16F /* BookmarkCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BookmarkCell.xib; sourceTree = "<group>"; };
 		3D8E2CE41787B44900AA0F0D /* CompassHelperTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompassHelperTests.h; sourceTree = "<group>"; };
 		3D8E2CE51787B44900AA0F0D /* CompassHelperTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompassHelperTests.m; sourceTree = "<group>"; };
 		3D8E2CED178EF4AD00AA0F0D /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
@@ -114,12 +110,10 @@
 		3D8E2CF0179049CC00AA0F0D /* Place.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Place.h; sourceTree = "<group>"; };
 		3DA654A8179D7B4A00424430 /* Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Util.h; sourceTree = "<group>"; };
 		3DA654A9179D7B4A00424430 /* Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Util.m; sourceTree = "<group>"; };
-		3DA6B10E183A75F1007A041B /* BookmarkCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BookmarkCell.xib; sourceTree = "<group>"; };
 		3DB281C71827F7AE008C7B82 /* CustomCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomCell.xib; sourceTree = "<group>"; };
 		3DB8FAED184F94C0005853D6 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		3DB8FAEF184F950A005853D6 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		3DB8FAF3184F964F005853D6 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
-		3DB8FAF71850E4E3005853D6 /* NewRelicAgent.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = NewRelicAgent.framework; sourceTree = "<group>"; };
 		3DB8FAF91850E524005853D6 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		3DD35A5E17B925EB0066D58E /* 07-map-marker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "07-map-marker.png"; sourceTree = "<group>"; };
 		3DD93F2C1787A6F1003908A7 /* CompassHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompassHelper.h; sourceTree = "<group>"; };
@@ -131,7 +125,6 @@
 		3DDDDE5917D8CD22006FD52D /* LocationSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationSearchViewController.m; sourceTree = "<group>"; };
 		3DE62CD11827FE7300FD7522 /* CustomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCell.h; sourceTree = "<group>"; };
 		3DE62CD21827FE7300FD7522 /* CustomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCell.m; sourceTree = "<group>"; };
-		3DE62CD41827FE8800FD7522 /* CustomCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomCell.xib; sourceTree = "<group>"; };
 		71BB837CDB524BE6BD1B4999 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		E8ADDE2DB8744F0B935F7809 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -146,7 +139,6 @@
 				3DB8FAF0184F950A005853D6 /* SystemConfiguration.framework in Frameworks */,
 				3D6276421781C7A000A4B675 /* CoreLocation.framework in Frameworks */,
 				3D6275FE1781C65B00A4B675 /* UIKit.framework in Frameworks */,
-				3DB8FAF81850E4E3005853D6 /* NewRelicAgent.framework in Frameworks */,
 				3D6276001781C65B00A4B675 /* Foundation.framework in Frameworks */,
 				3D6276021781C65B00A4B675 /* CoreGraphics.framework in Frameworks */,
 				3D6276041781C65B00A4B675 /* CoreData.framework in Frameworks */,
@@ -192,10 +184,8 @@
 			isa = PBXGroup;
 			children = (
 				3DB8FAF91850E524005853D6 /* CoreTelephony.framework */,
-				3DB8FAF71850E4E3005853D6 /* NewRelicAgent.framework */,
 				3DB8FAF3184F964F005853D6 /* AdSupport.framework */,
 				3DB8FAEF184F950A005853D6 /* SystemConfiguration.framework */,
-				3DB8FAED184F94C0005853D6 /* libz.dylib */,
 				3D6276411781C7A000A4B675 /* CoreLocation.framework */,
 				3D6275FD1781C65B00A4B675 /* UIKit.framework */,
 				3D6275FF1781C65B00A4B675 /* Foundation.framework */,
@@ -203,6 +193,7 @@
 				3D6276031781C65B00A4B675 /* CoreData.framework */,
 				3D6276291781C65B00A4B675 /* SenTestingKit.framework */,
 				E8ADDE2DB8744F0B935F7809 /* libPods.a */,
+				3DB8FAED184F94C0005853D6 /* libz.dylib */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -210,41 +201,17 @@
 		3D6276051781C65B00A4B675 /* TripCompass */ = {
 			isa = PBXGroup;
 			children = (
+				3D49863C17A8245C00CB2CF2 /* README */,
 				3D62760E1781C65B00A4B675 /* AppDelegate.h */,
 				3D62760F1781C65B00A4B675 /* AppDelegate.m */,
-				3DA6B10E183A75F1007A041B /* BookmarkCell.xib */,
-				3D4F871217C262500032B61C /* BookmarkItemViewController.h */,
-				3D4F871317C262500032B61C /* BookmarkItemViewController.m */,
-				3D32397917AAA3EF005ACF01 /* BookmarkViewController.h */,
-				3D32397A17AAA3EF005ACF01 /* BookmarkViewController.m */,
-				3DD93F2C1787A6F1003908A7 /* CompassHelper.h */,
-				3DD93F2D1787A6F1003908A7 /* CompassHelper.m */,
-				3DE62CD11827FE7300FD7522 /* CustomCell.h */,
-				3DE62CD21827FE7300FD7522 /* CustomCell.m */,
-				3DB281C71827F7AE008C7B82 /* CustomCell.xib */,
-				3D6276201781C65B00A4B675 /* FlipsideViewController.h */,
-				3D6276211781C65B00A4B675 /* FlipsideViewController.m */,
-				3DDDDE5817D8CD22006FD52D /* LocationSearchViewController.h */,
-				3DDDDE5917D8CD22006FD52D /* LocationSearchViewController.m */,
 				3D6276171781C65B00A4B675 /* MainStoryboard.storyboard */,
-				3DDBDFE0184CEA5F00C48C08 /* MainUITabBarController.h */,
-				3DDBDFE1184CEA5F00C48C08 /* MainUITabBarController.m */,
-				3D62761D1781C65B00A4B675 /* MainViewController.h */,
-				3D62761E1781C65B00A4B675 /* MainViewController.m */,
-				3D8E2CF0179049CC00AA0F0D /* Place.h */,
-				3D32397417A953B2005ACF01 /* Place.m */,
-				3D32397617A9549A005ACF01 /* PlaceModel.h */,
-				3D32397717A9549A005ACF01 /* PlaceModel.m */,
-				3D49863C17A8245C00CB2CF2 /* README */,
-				3D8E2CED178EF4AD00AA0F0D /* SearchViewController.h */,
-				3D8E2CEE178EF4AD00AA0F0D /* SearchViewController.m */,
+				3D76BEC7185398E8002FD16F /* Models */,
+				3D76BEC818539902002FD16F /* Views */,
+				3D76BEC6185398D3002FD16F /* Controllers */,
+				3D76BED11853A3F4002FD16F /* Helpers */,
+				3D76BECE1853A268002FD16F /* Categories */,
+				3D76BED21853B14B002FD16F /* Images */,
 				3D6276061781C65B00A4B675 /* Supporting Files */,
-				3D62761A1781C65B00A4B675 /* TripCompass.xcdatamodeld */,
-				3D75608217FF1E3A00F0ED65 /* UINavigationItem+BackButton.h */,
-				3D75608317FF1E3A00F0ED65 /* UINavigationItem+BackButton.m */,
-				3DA654A8179D7B4A00424430 /* Util.h */,
-				3DA654A9179D7B4A00424430 /* Util.m */,
-				3DE62CD41827FE8800FD7522 /* CustomCell.xib */,
 			);
 			path = TripCompass;
 			sourceTree = "<group>";
@@ -252,18 +219,10 @@
 		3D6276061781C65B00A4B675 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				3DDBDFD81846DE2400C48C08 /* alert-circled.png */,
-				3DD35A5E17B925EB0066D58E /* 07-map-marker.png */,
-				3D4985FC17A16A5500CB2CF2 /* border.png */,
-				3D4985FD17A16A5500CB2CF2 /* numbers.png */,
-				3D4985FE17A16A5500CB2CF2 /* pointer.png */,
-				3D6276071781C65B00A4B675 /* TripCompass-Info.plist */,
-				3D6276081781C65B00A4B675 /* InfoPlist.strings */,
 				3D62760B1781C65B00A4B675 /* main.m */,
+				3D6276081781C65B00A4B675 /* InfoPlist.strings */,
+				3D6276071781C65B00A4B675 /* TripCompass-Info.plist */,
 				3D62760D1781C65B00A4B675 /* TripCompass-Prefix.pch */,
-				3D6276111781C65B00A4B675 /* Default.png */,
-				3D6276131781C65B00A4B675 /* Default@2x.png */,
-				3D6276151781C65B00A4B675 /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -271,9 +230,9 @@
 		3D6276301781C65B00A4B675 /* TripCompassTests */ = {
 			isa = PBXGroup;
 			children = (
+				3D6276311781C65B00A4B675 /* Supporting Files */,
 				3D6276361781C65B00A4B675 /* TripCompassTests.h */,
 				3D6276371781C65B00A4B675 /* TripCompassTests.m */,
-				3D6276311781C65B00A4B675 /* Supporting Files */,
 				3D8E2CE41787B44900AA0F0D /* CompassHelperTests.h */,
 				3D8E2CE51787B44900AA0F0D /* CompassHelperTests.m */,
 			);
@@ -283,10 +242,88 @@
 		3D6276311781C65B00A4B675 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				3D6276321781C65B00A4B675 /* TripCompassTests-Info.plist */,
 				3D6276331781C65B00A4B675 /* InfoPlist.strings */,
+				3D6276321781C65B00A4B675 /* TripCompassTests-Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		3D76BEC6185398D3002FD16F /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				3D62761D1781C65B00A4B675 /* MainViewController.h */,
+				3D62761E1781C65B00A4B675 /* MainViewController.m */,
+				3DDBDFE0184CEA5F00C48C08 /* MainUITabBarController.h */,
+				3DDBDFE1184CEA5F00C48C08 /* MainUITabBarController.m */,
+				3D8E2CED178EF4AD00AA0F0D /* SearchViewController.h */,
+				3D8E2CEE178EF4AD00AA0F0D /* SearchViewController.m */,
+				3DDDDE5817D8CD22006FD52D /* LocationSearchViewController.h */,
+				3DDDDE5917D8CD22006FD52D /* LocationSearchViewController.m */,
+				3D32397917AAA3EF005ACF01 /* BookmarkViewController.h */,
+				3D32397A17AAA3EF005ACF01 /* BookmarkViewController.m */,
+				3D4F871217C262500032B61C /* BookmarkItemViewController.h */,
+				3D4F871317C262500032B61C /* BookmarkItemViewController.m */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		3D76BEC7185398E8002FD16F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				3D76BECB1853A0D8002FD16F /* TripCompass.xcdatamodeld */,
+				3D8E2CF0179049CC00AA0F0D /* Place.h */,
+				3D32397617A9549A005ACF01 /* PlaceModel.h */,
+				3D32397417A953B2005ACF01 /* Place.m */,
+				3D32397717A9549A005ACF01 /* PlaceModel.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		3D76BEC818539902002FD16F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				3DE62CD11827FE7300FD7522 /* CustomCell.h */,
+				3DE62CD21827FE7300FD7522 /* CustomCell.m */,
+				3DB281C71827F7AE008C7B82 /* CustomCell.xib */,
+				3D76BECF1853A2FC002FD16F /* BookmarkCell.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		3D76BECE1853A268002FD16F /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				3D75608217FF1E3A00F0ED65 /* UINavigationItem+BackButton.h */,
+				3D75608317FF1E3A00F0ED65 /* UINavigationItem+BackButton.m */,
+			);
+			name = Categories;
+			path = Support;
+			sourceTree = "<group>";
+		};
+		3D76BED11853A3F4002FD16F /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				3DD93F2C1787A6F1003908A7 /* CompassHelper.h */,
+				3DD93F2D1787A6F1003908A7 /* CompassHelper.m */,
+				3DA654A8179D7B4A00424430 /* Util.h */,
+				3DA654A9179D7B4A00424430 /* Util.m */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		3D76BED21853B14B002FD16F /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				3DDBDFD81846DE2400C48C08 /* alert-circled.png */,
+				3DD35A5E17B925EB0066D58E /* 07-map-marker.png */,
+				3D4985FC17A16A5500CB2CF2 /* border.png */,
+				3D4985FD17A16A5500CB2CF2 /* numbers.png */,
+				3D4985FE17A16A5500CB2CF2 /* pointer.png */,
+				3D6276111781C65B00A4B675 /* Default.png */,
+				3D6276131781C65B00A4B675 /* Default@2x.png */,
+				3D6276151781C65B00A4B675 /* Default-568h@2x.png */,
+			);
+			path = Images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -336,7 +373,7 @@
 		3D6275F21781C65B00A4B675 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0460;
+				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "Context Software";
 			};
 			buildConfigurationList = 3D6275F51781C65B00A4B675 /* Build configuration list for PBXProject "TripCompass" */;
@@ -367,11 +404,10 @@
 				3D6276121781C65B00A4B675 /* Default.png in Resources */,
 				3D6276141781C65B00A4B675 /* Default@2x.png in Resources */,
 				3D6276161781C65B00A4B675 /* Default-568h@2x.png in Resources */,
-				3DA6B10F183A75F1007A041B /* BookmarkCell.xib in Resources */,
 				3D6276191781C65B00A4B675 /* MainStoryboard.storyboard in Resources */,
-				3DE62CD51827FE8800FD7522 /* CustomCell.xib in Resources */,
 				3D4985FF17A16A5500CB2CF2 /* border.png in Resources */,
 				3D49860017A16A5500CB2CF2 /* numbers.png in Resources */,
+				3D76BED01853A2FC002FD16F /* BookmarkCell.xib in Resources */,
 				3D49860117A16A5500CB2CF2 /* pointer.png in Resources */,
 				3D49863D17A8245C00CB2CF2 /* README in Resources */,
 				3DD35A5F17B925EB0066D58E /* 07-map-marker.png in Resources */,
@@ -442,10 +478,9 @@
 			files = (
 				3D62760C1781C65B00A4B675 /* main.m in Sources */,
 				3D6276101781C65B00A4B675 /* AppDelegate.m in Sources */,
-				3D62761C1781C65B00A4B675 /* TripCompass.xcdatamodeld in Sources */,
 				3D62761F1781C65B00A4B675 /* MainViewController.m in Sources */,
-				3D6276221781C65B00A4B675 /* FlipsideViewController.m in Sources */,
 				3DD93F2E1787A6F1003908A7 /* CompassHelper.m in Sources */,
+				3D76BECD1853A0D8002FD16F /* TripCompass.xcdatamodeld in Sources */,
 				3DDBDFE2184CEA5F00C48C08 /* MainUITabBarController.m in Sources */,
 				3D8E2CEF178EF4AD00AA0F0D /* SearchViewController.m in Sources */,
 				3DA654AA179D7B4A00424430 /* Util.m in Sources */,
@@ -531,7 +566,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
@@ -555,7 +590,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -566,7 +601,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 71BB837CDB524BE6BD1B4999 /* Pods.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD)";
 				CODE_SIGN_IDENTITY = "iPhone Developer: Eduardo Sasso (P9L3K9LEWJ)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -588,7 +622,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 71BB837CDB524BE6BD1B4999 /* Pods.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD)";
 				CODE_SIGN_IDENTITY = "iPhone Developer: Eduardo Sasso (P9L3K9LEWJ)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -673,12 +706,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		3D62761A1781C65B00A4B675 /* TripCompass.xcdatamodeld */ = {
+		3D76BECB1853A0D8002FD16F /* TripCompass.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				3D62761B1781C65B00A4B675 /* TripCompass.xcdatamodel */,
+				3D76BECC1853A0D8002FD16F /* TripCompass.xcdatamodel */,
 			);
-			currentVersion = 3D62761B1781C65B00A4B675 /* TripCompass.xcdatamodel */;
+			currentVersion = 3D76BECC1853A0D8002FD16F /* TripCompass.xcdatamodel */;
 			path = TripCompass.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
