@@ -31,6 +31,10 @@
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(preferredContentSizeChanged:) name:UIContentSizeCategoryDidChangeNotification object:nil];
 }
 
+- (NSString *)googleAnalyticsScreenName {
+  return @"Bookmark";
+}
+
 - (void)preferredContentSizeChanged:(NSNotification *)aNotification {
   [self.tableView reloadData];
 }

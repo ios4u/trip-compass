@@ -18,6 +18,10 @@
   [self.searchBar becomeFirstResponder];
 }
 
+- (NSString *)googleAnalyticsScreenName {
+  return @"Location Search";
+}
+
 - (void)viewDidLoad {
   [super viewDidLoad];
   self.places = [[NSMutableArray alloc] init];

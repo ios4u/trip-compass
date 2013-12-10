@@ -30,6 +30,10 @@
   [self.tableView reloadData];
 }
 
+-(NSString *)googleAnalyticsScreenName {
+  return @"Bookmark Item";
+}
+
 -(void)viewWillAppear:(BOOL)animated {
   self.navigationItem.rightBarButtonItem = self.editButtonItem;
   self.navigationItem.title = self.selectedAreaGroup;

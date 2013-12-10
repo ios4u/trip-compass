@@ -50,6 +50,7 @@
 		3DDBDFE2184CEA5F00C48C08 /* MainUITabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DDBDFE1184CEA5F00C48C08 /* MainUITabBarController.m */; };
 		3DDDDE5A17D8CD22006FD52D /* LocationSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DDDDE5917D8CD22006FD52D /* LocationSearchViewController.m */; };
 		3DE62CD31827FE7300FD7522 /* CustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE62CD21827FE7300FD7522 /* CustomCell.m */; };
+		3DF62A9418576D970052D245 /* GAUITableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF62A9318576D970052D245 /* GAUITableViewController.m */; };
 		A01548ADA0B341BEB2D8F853 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E8ADDE2DB8744F0B935F7809 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -125,6 +126,8 @@
 		3DDDDE5917D8CD22006FD52D /* LocationSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationSearchViewController.m; sourceTree = "<group>"; };
 		3DE62CD11827FE7300FD7522 /* CustomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCell.h; sourceTree = "<group>"; };
 		3DE62CD21827FE7300FD7522 /* CustomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCell.m; sourceTree = "<group>"; };
+		3DF62A9218576D970052D245 /* GAUITableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAUITableViewController.h; sourceTree = "<group>"; };
+		3DF62A9318576D970052D245 /* GAUITableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GAUITableViewController.m; sourceTree = "<group>"; };
 		71BB837CDB524BE6BD1B4999 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		E8ADDE2DB8744F0B935F7809 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -263,6 +266,8 @@
 				3D32397A17AAA3EF005ACF01 /* BookmarkViewController.m */,
 				3D4F871217C262500032B61C /* BookmarkItemViewController.h */,
 				3D4F871317C262500032B61C /* BookmarkItemViewController.m */,
+				3DF62A9218576D970052D245 /* GAUITableViewController.h */,
+				3DF62A9318576D970052D245 /* GAUITableViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -477,6 +482,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3D62760C1781C65B00A4B675 /* main.m in Sources */,
+				3DF62A9418576D970052D245 /* GAUITableViewController.m in Sources */,
 				3D6276101781C65B00A4B675 /* AppDelegate.m in Sources */,
 				3D62761F1781C65B00A4B675 /* MainViewController.m in Sources */,
 				3DD93F2E1787A6F1003908A7 /* CompassHelper.m in Sources */,

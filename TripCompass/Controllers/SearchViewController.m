@@ -31,6 +31,10 @@
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reachabilityDidChange:) name:kReachabilityChangedNotification object:nil];
 }
 
+- (NSString *)googleAnalyticsScreenName {
+  return @"Search";
+}
+
 - (void)reachabilityDidChange:(NSNotification *)notification {
   if (appDelegate.isOnline) {
     [self.tableView setTableHeaderView:defaultTableHeaderView];

@@ -10,6 +10,7 @@
 #import "MainViewController.h"
 #import <CoreLocation/CoreLocation.h>
 #import "Reachability.h"
+#import "GAI.h"
 
 @implementation AppDelegate {
   CLLocationManager *locationManager;
@@ -23,6 +24,9 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
   [NewRelicAgent startWithApplicationToken:@"AA95f3a9d6f4639454016ea81cba6b6205c22a448d"];
+
+  [self setupGoogleAnalytics];
+  
   
   [self checkInternetConnectivity];
   
@@ -45,6 +49,13 @@
   }
   
   return YES;
+}
+
+- (void)setupGoogleAnalytics {
+  [[GAI sharedInstance] setTrackUncaughtExceptions:YES];
+  //TODO should change the loglevel for final app
+  [[[GAI sharedInstance] logger] setLogLevel:kGAILogLevelVerbose];
+  [[GAI sharedInstance] trackerWithTrackingId:@"UA-17707312-2"];
 }
 
 - (void)checkInternetConnectivity {

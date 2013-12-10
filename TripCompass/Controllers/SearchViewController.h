@@ -10,8 +10,9 @@
 #import <CoreLocation/CoreLocation.h>
 #import <CoreData/CoreData.h>
 #import "Place.h"
+#import "GAUITableViewController.h"
 
-@interface SearchViewController : UITableViewController <NSFetchedResultsControllerDelegate, UISearchBarDelegate, UITabBarControllerDelegate>
+@interface SearchViewController : GAUITableViewController <NSFetchedResultsControllerDelegate, UISearchBarDelegate, UITabBarControllerDelegate>
 
 @property (retain, nonatomic) NSArray *results;
 @property (nonatomic, assign) CLLocationCoordinate2D currentLocation;

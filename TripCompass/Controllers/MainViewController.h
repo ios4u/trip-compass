@@ -9,8 +9,9 @@
 #import <CoreData/CoreData.h>
 #import <CoreLocation/CoreLocation.h>
 #import "Place.h"
+#import "GAITrackedViewController.h"
 
-@interface MainViewController : UIViewController
+@interface MainViewController : GAITrackedViewController
 
 @property (nonatomic, retain) CLLocation *currentLocation;
 @property (weak, nonatomic) IBOutlet UIImageView *compassImage;

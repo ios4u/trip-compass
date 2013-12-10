@@ -26,6 +26,8 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
   
+  self.screenName = @"Main";
+  
   appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
   self.managedObjectContext = [appDelegate managedObjectContext];
   

@@ -1,7 +1,8 @@
 #import <UIKit/UIKit.h>
 #import "CustomCell.h"
+#import "GAUITableViewController.h"
 
-@interface BookmarkItemViewController : UITableViewController <NSFetchedResultsControllerDelegate>
+@interface BookmarkItemViewController : GAUITableViewController <NSFetchedResultsControllerDelegate>
 
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
