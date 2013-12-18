@@ -1,5 +1,4 @@
 #import "LocationSearchViewController.h"
-#import "AFNetworking.h"
 #import "AppDelegate.h"
 #import "SearchViewController.h"
 
@@ -56,21 +55,21 @@
 }
 
 - (void)keywordSearch:(NSString *)apiUrl {
-  NSURL *url = [NSURL URLWithString:apiUrl];
-  NSURLRequest *request = [NSURLRequest requestWithURL:url];
-  
-  [self.places removeAllObjects];
-  
-  AFJSONRequestOperation *operation = [AFJSONRequestOperation
-                                       JSONRequestOperationWithRequest:request
-                                       success:^(NSURLRequest *request, NSHTTPURLResponse *response, id json) {
-                                         self.results = [[json objectForKey:@"results"] mutableCopy];
-                                         [self.tableView reloadData];
-                                       } failure:^(NSURLRequest *request , NSURLResponse *response , NSError *error , id JSON){
-                                         NSLog(@"Failed: %@",[error localizedDescription]);
-                                       }];
-  
-  [operation start];
+//  NSURL *url = [NSURL URLWithString:apiUrl];
+//  NSURLRequest *request = [NSURLRequest requestWithURL:url];
+//  
+//  [self.places removeAllObjects];
+//  
+//  AFJSONRequestOperation *operation = [AFJSONRequestOperation
+//                                       JSONRequestOperationWithRequest:request
+//                                       success:^(NSURLRequest *request, NSHTTPURLResponse *response, id json) {
+//                                         self.results = [[json objectForKey:@"results"] mutableCopy];
+//                                         [self.tableView reloadData];
+//                                       } failure:^(NSURLRequest *request , NSURLResponse *response , NSError *error , id JSON){
+//                                         NSLog(@"Failed: %@",[error localizedDescription]);
+//                                       }];
+//  
+//  [operation start];
 }
 
 #pragma mark Table View

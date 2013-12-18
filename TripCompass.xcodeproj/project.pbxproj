@@ -51,6 +51,8 @@
 		3DDDDE5A17D8CD22006FD52D /* LocationSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DDDDE5917D8CD22006FD52D /* LocationSearchViewController.m */; };
 		3DE62CD31827FE7300FD7522 /* CustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE62CD21827FE7300FD7522 /* CustomCell.m */; };
 		3DF62A9418576D970052D245 /* GAUITableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF62A9318576D970052D245 /* GAUITableViewController.m */; };
+		3DF62A981858CAC00052D245 /* API.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF62A971858CAC00052D245 /* API.m */; };
+		3DF62A9B1860AAFE0052D245 /* NSString+QueryString.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF62A9A1860AAFE0052D245 /* NSString+QueryString.m */; };
 		A01548ADA0B341BEB2D8F853 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E8ADDE2DB8744F0B935F7809 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -128,6 +130,10 @@
 		3DE62CD21827FE7300FD7522 /* CustomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCell.m; sourceTree = "<group>"; };
 		3DF62A9218576D970052D245 /* GAUITableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GAUITableViewController.h; sourceTree = "<group>"; };
 		3DF62A9318576D970052D245 /* GAUITableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GAUITableViewController.m; sourceTree = "<group>"; };
+		3DF62A961858CAC00052D245 /* API.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = API.h; sourceTree = "<group>"; };
+		3DF62A971858CAC00052D245 /* API.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = API.m; sourceTree = "<group>"; };
+		3DF62A991860AAFE0052D245 /* NSString+QueryString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+QueryString.h"; path = "TripCompass/Categories/NSString+QueryString.h"; sourceTree = SOURCE_ROOT; };
+		3DF62A9A1860AAFE0052D245 /* NSString+QueryString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+QueryString.m"; path = "TripCompass/Categories/NSString+QueryString.m"; sourceTree = SOURCE_ROOT; };
 		71BB837CDB524BE6BD1B4999 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		E8ADDE2DB8744F0B935F7809 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -280,6 +286,8 @@
 				3D32397617A9549A005ACF01 /* PlaceModel.h */,
 				3D32397417A953B2005ACF01 /* Place.m */,
 				3D32397717A9549A005ACF01 /* PlaceModel.m */,
+				3DF62A961858CAC00052D245 /* API.h */,
+				3DF62A971858CAC00052D245 /* API.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -300,6 +308,8 @@
 			children = (
 				3D75608217FF1E3A00F0ED65 /* UINavigationItem+BackButton.h */,
 				3D75608317FF1E3A00F0ED65 /* UINavigationItem+BackButton.m */,
+				3DF62A991860AAFE0052D245 /* NSString+QueryString.h */,
+				3DF62A9A1860AAFE0052D245 /* NSString+QueryString.m */,
 			);
 			name = Categories;
 			path = Support;
@@ -486,7 +496,9 @@
 				3D6276101781C65B00A4B675 /* AppDelegate.m in Sources */,
 				3D62761F1781C65B00A4B675 /* MainViewController.m in Sources */,
 				3DD93F2E1787A6F1003908A7 /* CompassHelper.m in Sources */,
+				3DF62A9B1860AAFE0052D245 /* NSString+QueryString.m in Sources */,
 				3D76BECD1853A0D8002FD16F /* TripCompass.xcdatamodeld in Sources */,
+				3DF62A981858CAC00052D245 /* API.m in Sources */,
 				3DDBDFE2184CEA5F00C48C08 /* MainUITabBarController.m in Sources */,
 				3D8E2CEF178EF4AD00AA0F0D /* SearchViewController.m in Sources */,
 				3DA654AA179D7B4A00424430 /* Util.m in Sources */,

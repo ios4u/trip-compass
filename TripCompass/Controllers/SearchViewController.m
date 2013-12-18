@@ -2,11 +2,11 @@
 #import "MainViewController.h"
 #import "Place.h"
 #import "PlaceModel.h"
-#import "AFNetworking.h"
 #import "BookmarkItemViewController.h"
 #import "LocationSearchViewController.h"
 #import "AppDelegate.h"
 #import "Reachability.h"
+#import "API.h"
 
 @interface SearchViewController ()
 @end
@@ -17,6 +17,7 @@
   NSString *lat;
   NSString *lng;
   UIView *defaultTableHeaderView;
+  API *api;
 }
 
 - (void)viewDidLoad {
@@ -24,6 +25,11 @@
   
   appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
   self.managedObjectContext = [appDelegate managedObjectContext];
+  
+  CLLocationCoordinate2D currentLocation = [(AppDelegate*)appDelegate currentLocation];
+  
+  api = [[API alloc] initWithLatitude:currentLocation.latitude longitude:currentLocation.longitude];
+  [api getPlacesNearby];
 
   self.tabBarController.delegate = self;
   defaultTableHeaderView = [self.tableView tableHeaderView];
@@ -33,6 +39,7 @@
 
 - (NSString *)googleAnalyticsScreenName {
   return @"Search";
+  
 }
 
 - (void)reachabilityDidChange:(NSNotification *)notification {
@@ -65,21 +72,21 @@
       lng = [appDelegate.selectedLocation.lng stringValue];
     }
     
-    NSString *api = [NSString stringWithFormat:@"http://api.gogobot.com/api/v2/search/nearby.json?_v=2.3.8&page=1&lng=%@&lat=%@&per_page=20&source=create&bypass=1", lng, lat];
-    
-    NSURL *url = [NSURL URLWithString:api];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    
-    AFJSONRequestOperation *operation = [AFJSONRequestOperation
-                                         JSONRequestOperationWithRequest:request
-                                         success:^(NSURLRequest *request, NSHTTPURLResponse *response, id json) {
-                                           self.results = [json objectForKey:@"results"];
-                                           [self reloadTableViewData];
-                                         } failure:^(NSURLRequest *request , NSURLResponse *response , NSError *error , id JSON){
-                                           NSLog(@"Failed: %@",[error localizedDescription]);
-                                         }];
-    
-    [operation start];
+//    NSString *api = [NSString stringWithFormat:@"http://api.gogobot.com/api/v2/search/nearby.json?_v=2.3.8&page=1&lng=%@&lat=%@&per_page=20&source=create&bypass=1", lng, lat];
+//    
+//    NSURL *url = [NSURL URLWithString:api];
+//    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+//    
+//    AFJSONRequestOperation *operation = [AFJSONRequestOperation
+//                                         JSONRequestOperationWithRequest:request
+//                                         success:^(NSURLRequest *request, NSHTTPURLResponse *response, id json) {
+//                                           self.results = [json objectForKey:@"results"];
+//                                           [self reloadTableViewData];
+//                                         } failure:^(NSURLRequest *request , NSURLResponse *response , NSError *error , id JSON){
+//                                           NSLog(@"Failed: %@",[error localizedDescription]);
+//                                         }];
+//    
+//    [operation start];
 
   }
 }
@@ -193,19 +200,19 @@
 //    api = [NSString stringWithFormat:@"http://api.gogobot.com/api/v2/search/nearby.json?_v=2.3.8&page=1&lng=%@&lat=%@&per_page=20&source=create&bypass=1", lon, lat];
 //  }
   
-  NSURL *url = [NSURL URLWithString:apiUrl];
-  NSURLRequest *request = [NSURLRequest requestWithURL:url];
+//  NSURL *url = [NSURL URLWithString:apiUrl];
+//  NSURLRequest *request = [NSURLRequest requestWithURL:url];
   
-  AFJSONRequestOperation *operation = [AFJSONRequestOperation
-                                       JSONRequestOperationWithRequest:request
-                                       success:^(NSURLRequest *request, NSHTTPURLResponse *response, id json) {
-                                         self.results = [json objectForKey:@"results"];
-                                         [self reloadTableViewData];
-                                       } failure:^(NSURLRequest *request , NSURLResponse *response , NSError *error , id JSON){
-                                         NSLog(@"Failed: %@",[error localizedDescription]);
-                                       }];
-
-  [operation start];
+//  AFJSONRequestOperation *operation = [AFJSONRequestOperation
+//                                       JSONRequestOperationWithRequest:request
+//                                       success:^(NSURLRequest *request, NSHTTPURLResponse *response, id json) {
+//                                         self.results = [json objectForKey:@"results"];
+//                                         [self reloadTableViewData];
+//                                       } failure:^(NSURLRequest *request , NSURLResponse *response , NSError *error , id JSON){
+//                                         NSLog(@"Failed: %@",[error localizedDescription]);
+//                                       }];
+//
+//  [operation start];
 }
 
 
