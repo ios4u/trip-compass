@@ -14,6 +14,7 @@
 		3D49860017A16A5500CB2CF2 /* numbers.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D4985FD17A16A5500CB2CF2 /* numbers.png */; };
 		3D49860117A16A5500CB2CF2 /* pointer.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D4985FE17A16A5500CB2CF2 /* pointer.png */; };
 		3D4F871417C262500032B61C /* BookmarkItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D4F871317C262500032B61C /* BookmarkItemViewController.m */; };
+		3D5CBCE018634A2B009BFDAD /* GogobotSignature.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D5CBCDF18634A2B009BFDAD /* GogobotSignature.m */; };
 		3D6275FE1781C65B00A4B675 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D6275FD1781C65B00A4B675 /* UIKit.framework */; };
 		3D6276001781C65B00A4B675 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D6275FF1781C65B00A4B675 /* Foundation.framework */; };
 		3D6276021781C65B00A4B675 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D6276011781C65B00A4B675 /* CoreGraphics.framework */; };
@@ -77,6 +78,8 @@
 		3D4985FE17A16A5500CB2CF2 /* pointer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pointer.png; sourceTree = "<group>"; };
 		3D4F871217C262500032B61C /* BookmarkItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookmarkItemViewController.h; sourceTree = "<group>"; };
 		3D4F871317C262500032B61C /* BookmarkItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookmarkItemViewController.m; sourceTree = "<group>"; };
+		3D5CBCDE18634A2B009BFDAD /* GogobotSignature.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GogobotSignature.h; path = TripCompass/Helpers/GogobotSignature.h; sourceTree = SOURCE_ROOT; };
+		3D5CBCDF18634A2B009BFDAD /* GogobotSignature.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GogobotSignature.m; path = TripCompass/Helpers/GogobotSignature.m; sourceTree = SOURCE_ROOT; };
 		3D6275FA1781C65B00A4B675 /* TripCompass.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TripCompass.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D6275FD1781C65B00A4B675 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		3D6275FF1781C65B00A4B675 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -310,6 +313,8 @@
 				3D75608317FF1E3A00F0ED65 /* UINavigationItem+BackButton.m */,
 				3DF62A991860AAFE0052D245 /* NSString+QueryString.h */,
 				3DF62A9A1860AAFE0052D245 /* NSString+QueryString.m */,
+				3D5CBCDE18634A2B009BFDAD /* GogobotSignature.h */,
+				3D5CBCDF18634A2B009BFDAD /* GogobotSignature.m */,
 			);
 			name = Categories;
 			path = Support;
@@ -495,6 +500,7 @@
 				3DF62A9418576D970052D245 /* GAUITableViewController.m in Sources */,
 				3D6276101781C65B00A4B675 /* AppDelegate.m in Sources */,
 				3D62761F1781C65B00A4B675 /* MainViewController.m in Sources */,
+				3D5CBCE018634A2B009BFDAD /* GogobotSignature.m in Sources */,
 				3DD93F2E1787A6F1003908A7 /* CompassHelper.m in Sources */,
 				3DF62A9B1860AAFE0052D245 /* NSString+QueryString.m in Sources */,
 				3D76BECD1853A0D8002FD16F /* TripCompass.xcdatamodeld in Sources */,
