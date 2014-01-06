@@ -52,6 +52,7 @@
                                               if (httpResponse.statusCode == 200) {
                                                 [self handleResults:data];
                                               } else {
+                                                //TODO verify if need this else statement.
                                                 NSString *error = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
                                                 NSLog(@"Received HTTP %d: %@", httpResponse.statusCode, error);
                                               }
@@ -65,12 +66,12 @@
   NSDictionary *response = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&jsonError];
   
   if (response) {
-    NSLog(@"resuts %@", response[@"results"]);
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"apiResultsNotification" object:self userInfo:response];
   } else {
+    //TODO this error shuold go somewhere
     NSLog(@"Error, %@", jsonError);
   }
 }
-
 
 -(NSArray *)getPlacesNearby {
   [self makeRequest];

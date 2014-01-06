@@ -23,14 +23,11 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
   
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(apiResultsNotificationReceived:) name:@"apiResultsNotification" object:nil];
+  
   appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
   self.managedObjectContext = [appDelegate managedObjectContext];
   
-  CLLocationCoordinate2D currentLocation = [(AppDelegate*)appDelegate currentLocation];
-  
-  api = [[API alloc] initWithLatitude:currentLocation.latitude longitude:currentLocation.longitude];
-  [api getPlacesNearby];
-
   self.tabBarController.delegate = self;
   defaultTableHeaderView = [self.tableView tableHeaderView];
   
@@ -39,10 +36,10 @@
 
 - (NSString *)googleAnalyticsScreenName {
   return @"Search";
-  
 }
 
 - (void)reachabilityDidChange:(NSNotification *)notification {
+  //TODO remove this here. App Delegate should be responsible for this.
   if (appDelegate.isOnline) {
     [self.tableView setTableHeaderView:defaultTableHeaderView];
 
@@ -65,30 +62,15 @@
   } else {
     searchFilters = [NSArray arrayWithObjects:@"Attractions",@"Restaurants",@"Hotels",@"Popular", nil];
     
-    lat = [NSString stringWithFormat:@"%.5f", self.currentLocation.latitude];
-    lng = [NSString stringWithFormat:@"%.5f", self.currentLocation.longitude];
-    if (appDelegate.selectedLocation) {
-      lat = [appDelegate.selectedLocation.lat stringValue];
-      lng = [appDelegate.selectedLocation.lng stringValue];
-    }
-    
-//    NSString *api = [NSString stringWithFormat:@"http://api.gogobot.com/api/v2/search/nearby.json?_v=2.3.8&page=1&lng=%@&lat=%@&per_page=20&source=create&bypass=1", lng, lat];
-//    
-//    NSURL *url = [NSURL URLWithString:api];
-//    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-//    
-//    AFJSONRequestOperation *operation = [AFJSONRequestOperation
-//                                         JSONRequestOperationWithRequest:request
-//                                         success:^(NSURLRequest *request, NSHTTPURLResponse *response, id json) {
-//                                           self.results = [json objectForKey:@"results"];
-//                                           [self reloadTableViewData];
-//                                         } failure:^(NSURLRequest *request , NSURLResponse *response , NSError *error , id JSON){
-//                                           NSLog(@"Failed: %@",[error localizedDescription]);
-//                                         }];
-//    
-//    [operation start];
-
+    CLLocationCoordinate2D currentLocation = [(AppDelegate*)appDelegate currentLocation];
+    api = [[API alloc] initWithLatitude:currentLocation.latitude longitude:currentLocation.longitude];
+    [api getPlacesNearby];
   }
+}
+
+- (void) apiResultsNotificationReceived:(NSNotification *) notification {
+  self.results = [[notification userInfo] valueForKey:@"results"];
+  [self reloadTableViewData];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
