@@ -11,14 +11,16 @@
 
 @interface API : NSObject
 
--(id)initWithLatitude:(double)newLat longitude:(double)newLng;
+-(id)initWithLatitude:(double)latitude longitude:(double)longitude;
 
--(NSArray*) getPlacesNearby;
+-(void)getPlacesNearby;
 
--(NSArray*) getPopularRestaurantsNearby;
+-(void)searchPlacesNearby:(NSString *)query;
 
--(NSArray*) getPopularAttractionsNearby;
+-(void) getRestaurantsNearby;
 
--(NSArray*) getPopularHotelsNearby;
+-(void) getAttractionsNearby;
+
+-(void) getHotelsNearby;
 
 @end

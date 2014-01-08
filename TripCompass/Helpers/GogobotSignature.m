@@ -7,11 +7,13 @@
 //
 
 #import "GogobotSignature.h"
-#import "NSString+QueryString.h"
+//#import "NSString+QueryString.h"
+#import "NSDictionary+QueryString.h"
 #import "NSData+Base64.h"
 
 #include <CommonCrypto/CommonHMAC.h>
 
+//TODO Generate my own client_id at Gogobot
 #define GOGOBOT_OAUTH_CLIENT_ID @"0b4a01e2dd2cd6bf74f52a0e34db5626e32552ff6b86690e51fd3e73f9c6ac56"
 #define GOGOBOT_OAUTH_CLIENT_SECRET @"a7894673ccf9f2f0d2db879dd5cd4b6a72bb0b18aec67b32be756faa544c65f7"
 
@@ -34,8 +36,7 @@
   
   NSURL *url = [request URL];
   
-  params = [url query] ? [[[url query] httpParams] mutableCopy] : [NSMutableDictionary dictionary];
-  
+  params = [url query] ? [[NSDictionary dictionaryWithQueryString:[url query]] mutableCopy] : [NSMutableDictionary dictionary];
   [params setValue:GOGOBOT_OAUTH_CLIENT_ID forKey:@"client_id"];
   
   NSMutableString* signature = [NSMutableString stringWithCapacity:512];

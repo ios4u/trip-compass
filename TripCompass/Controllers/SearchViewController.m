@@ -199,12 +199,10 @@
 
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
-  NSString *encodedSearchString = [searchText stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
-  NSString *apiUrl = [NSString stringWithFormat:@"http://api.gogobot.com/api/v2/search/nearby.json?_v=2.3.8&page=1&lng=%@&lat=%@&term=%@&per_page=20&source=create&bypass=1", lng, lat, encodedSearchString];
+  [api searchPlacesNearby:searchText];
   
-  [self keywordSearch:apiUrl];
   self.searching = NO;
-  [self reloadTableViewData];
+//  [self reloadTableViewData];
 }
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
@@ -212,16 +210,13 @@
   self.searching = NO;
   searchBar.text = nil;
   
-  NSString *apiUrl = [NSString stringWithFormat:@"http://api.gogobot.com/api/v2/search/nearby.json?_v=2.3.8&page=1&lng=%@&lat=%@&per_page=20&source=create&bypass=1", lng, lat];
-  
-  [self keywordSearch:apiUrl];
-  [self reloadTableViewData];
+  [api getPlacesNearby];
+//  [self reloadTableViewData];
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
   [searchBar resignFirstResponder];
 }
-
 
 - (void)searchDisplayController:(UISearchDisplayController *)controller didHideSearchResultsTableView:(UITableView *)tableView {
   self.searchDisplayController.searchResultsTableView.hidden = YES;
@@ -241,17 +236,22 @@
     self.searching = NO;
     self.searchBar.text = nil;
     
-    NSString *source = @"create";
+//    NSString *source = @"create";
+//    
+//    if ([type isEqual: @"Popular"]) {
+//      type = @"all";
+//      source = @"explore";
+//    }
+    
+//    NSString *apiUrl = [NSString stringWithFormat:@"http://api.gogobot.com/api/v2/search/nearby.json?_v=2.3.8&type=%@&page=1&lng=%@&lat=%@&per_page=20&source=%@&bypass=1", type, lng, lat, source];
+    
+//    [self keywordSearch:apiUrl];
+//    [self reloadTableViewData];
     NSString *type = cell.textLabel.text;
-    if ([type isEqual: @"Popular"]) {
-      type = @"all";
-      source = @"explore";
-    }
     
-    NSString *apiUrl = [NSString stringWithFormat:@"http://api.gogobot.com/api/v2/search/nearby.json?_v=2.3.8&type=%@&page=1&lng=%@&lat=%@&per_page=20&source=%@&bypass=1", type, lng, lat, source];
-    
-    [self keywordSearch:apiUrl];
-    [self reloadTableViewData];
+    if ([type isEqualToString:@"Restaurants"]) [api getRestaurantsNearby];
+    if ([type isEqualToString:@"Attractions"]) [api getAttractionsNearby];
+    if ([type isEqualToString:@"Hotels"]) [api getHotelsNearby];
   }
 }
 

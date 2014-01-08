@@ -9,6 +9,7 @@
 #import "API.h"
 #import <CoreLocation/CoreLocation.h>
 #import "GogobotSignature.h"
+#import "NSDictionary+QueryString.h"
 
 #define BASE_URL @"http://api.gogobot.com/api/v3"
 #define NEARBY_ENDPOINT @"/search/nearby_search.json"
@@ -20,21 +21,21 @@
 
 //TODO define type constants for POI's
 
--(id)initWithLatitude:(double)newLat longitude:(double)newLng {
+-(id)initWithLatitude:(double)latitude longitude:(double)longitude {
   self = [super init];
 
-  lat = newLat;
-  lng = newLng;
+  lat = latitude;
+  lng = longitude;
   
   return self;
 }
 
--(void) makeRequest {
+-(void)makeRequestWithEndpoint:(NSString *)endpoint params:(NSDictionary *)params {
   [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:TRUE];
   
   NSString *api = BASE_URL;
-  api = [api stringByAppendingString:NEARBY_ENDPOINT];
-  api = [api stringByAppendingFormat:@"?lat=%f&lng=%f", lat,lng];
+  api = [api stringByAppendingString:endpoint];
+  api = [api stringByAppendingFormat:@"?%@", [params queryStringValue]];
   
   NSURL *url = [NSURL URLWithString:api];
   
@@ -68,26 +69,58 @@
   if (response) {
     [[NSNotificationCenter defaultCenter] postNotificationName:@"apiResultsNotification" object:self userInfo:response];
   } else {
-    //TODO this error shuold go somewhere
+    //TODO this error should go somewhere
     NSLog(@"Error, %@", jsonError);
   }
 }
 
--(NSArray *)getPlacesNearby {
-  [self makeRequest];
-  return nil;
+//TODO DRY - too much repeated stuff here
+-(void)getPlacesNearby {
+  NSDictionary *params = @{
+                           @"lat" : [[NSNumber numberWithDouble: lat] stringValue],
+                           @"lng" : [[NSNumber numberWithDouble: lng] stringValue]
+                          };
+  
+  [self makeRequestWithEndpoint:NEARBY_ENDPOINT params:params];
 }
 
--(NSArray *)getPopularRestaurantsNearby {
-  return nil;
+-(void)searchPlacesNearby:(NSString *)query {
+  NSDictionary *params = @{
+                           @"lat" : [[NSNumber numberWithDouble: lat] stringValue],
+                           @"lng" : [[NSNumber numberWithDouble: lng] stringValue],
+                           @"query" : query
+                          };
+  
+  [self makeRequestWithEndpoint:NEARBY_ENDPOINT params:params];
 }
 
--(NSArray *)getPopularAttractionsNearby {
-  return nil;
+-(void)getRestaurantsNearby {
+  NSDictionary *params = @{
+                           @"lat" : [[NSNumber numberWithDouble: lat] stringValue],
+                           @"lng" : [[NSNumber numberWithDouble: lng] stringValue],
+                           @"type" : @"Restaurant"
+                           };
+  
+  [self makeRequestWithEndpoint:NEARBY_ENDPOINT params:params];
 }
 
--(NSArray *)getPopularHotelsNearby {
-  return nil;
+-(void)getAttractionsNearby {
+  NSDictionary *params = @{
+                           @"lat" : [[NSNumber numberWithDouble: lat] stringValue],
+                           @"lng" : [[NSNumber numberWithDouble: lng] stringValue],
+                           @"type" : @"Attraction"
+                           };
+  
+  [self makeRequestWithEndpoint:NEARBY_ENDPOINT params:params];
+}
+
+-(void)getHotelsNearby {
+  NSDictionary *params = @{
+                           @"lat" : [[NSNumber numberWithDouble: lat] stringValue],
+                           @"lng" : [[NSNumber numberWithDouble: lng] stringValue],
+                           @"type" : @"Hotel"
+                           };
+  [self makeRequestWithEndpoint:NEARBY_ENDPOINT params:params];
 }
 
 @end

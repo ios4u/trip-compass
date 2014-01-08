@@ -13,6 +13,8 @@
 		3D4985FF17A16A5500CB2CF2 /* border.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D4985FC17A16A5500CB2CF2 /* border.png */; };
 		3D49860017A16A5500CB2CF2 /* numbers.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D4985FD17A16A5500CB2CF2 /* numbers.png */; };
 		3D49860117A16A5500CB2CF2 /* pointer.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D4985FE17A16A5500CB2CF2 /* pointer.png */; };
+		3D4E6B56187C548600454293 /* NSDictionary+QueryString.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D4E6B55187C548600454293 /* NSDictionary+QueryString.m */; };
+		3D4E6B59187C551700454293 /* NSString+URLEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D4E6B58187C551700454293 /* NSString+URLEncoding.m */; };
 		3D4F871417C262500032B61C /* BookmarkItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D4F871317C262500032B61C /* BookmarkItemViewController.m */; };
 		3D5CBCE018634A2B009BFDAD /* GogobotSignature.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D5CBCDF18634A2B009BFDAD /* GogobotSignature.m */; };
 		3D6275FE1781C65B00A4B675 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D6275FD1781C65B00A4B675 /* UIKit.framework */; };
@@ -76,6 +78,10 @@
 		3D4985FC17A16A5500CB2CF2 /* border.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = border.png; sourceTree = "<group>"; };
 		3D4985FD17A16A5500CB2CF2 /* numbers.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = numbers.png; sourceTree = "<group>"; };
 		3D4985FE17A16A5500CB2CF2 /* pointer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pointer.png; sourceTree = "<group>"; };
+		3D4E6B54187C548600454293 /* NSDictionary+QueryString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDictionary+QueryString.h"; path = "TripCompass/Categories/NSDictionary+QueryString.h"; sourceTree = SOURCE_ROOT; };
+		3D4E6B55187C548600454293 /* NSDictionary+QueryString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDictionary+QueryString.m"; path = "TripCompass/Categories/NSDictionary+QueryString.m"; sourceTree = SOURCE_ROOT; };
+		3D4E6B57187C551700454293 /* NSString+URLEncoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+URLEncoding.h"; path = "TripCompass/Categories/NSString+URLEncoding.h"; sourceTree = SOURCE_ROOT; };
+		3D4E6B58187C551700454293 /* NSString+URLEncoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+URLEncoding.m"; path = "TripCompass/Categories/NSString+URLEncoding.m"; sourceTree = SOURCE_ROOT; };
 		3D4F871217C262500032B61C /* BookmarkItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookmarkItemViewController.h; sourceTree = "<group>"; };
 		3D4F871317C262500032B61C /* BookmarkItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookmarkItemViewController.m; sourceTree = "<group>"; };
 		3D5CBCDE18634A2B009BFDAD /* GogobotSignature.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GogobotSignature.h; path = TripCompass/Helpers/GogobotSignature.h; sourceTree = SOURCE_ROOT; };
@@ -315,6 +321,10 @@
 				3DF62A9A1860AAFE0052D245 /* NSString+QueryString.m */,
 				3D5CBCDE18634A2B009BFDAD /* GogobotSignature.h */,
 				3D5CBCDF18634A2B009BFDAD /* GogobotSignature.m */,
+				3D4E6B54187C548600454293 /* NSDictionary+QueryString.h */,
+				3D4E6B55187C548600454293 /* NSDictionary+QueryString.m */,
+				3D4E6B57187C551700454293 /* NSString+URLEncoding.h */,
+				3D4E6B58187C551700454293 /* NSString+URLEncoding.m */,
 			);
 			name = Categories;
 			path = Support;
@@ -508,6 +518,8 @@
 				3DDBDFE2184CEA5F00C48C08 /* MainUITabBarController.m in Sources */,
 				3D8E2CEF178EF4AD00AA0F0D /* SearchViewController.m in Sources */,
 				3DA654AA179D7B4A00424430 /* Util.m in Sources */,
+				3D4E6B59187C551700454293 /* NSString+URLEncoding.m in Sources */,
+				3D4E6B56187C548600454293 /* NSDictionary+QueryString.m in Sources */,
 				3D32397517A953B2005ACF01 /* Place.m in Sources */,
 				3D32397817A9549A005ACF01 /* PlaceModel.m in Sources */,
 				3D32397B17AAA3EF005ACF01 /* BookmarkViewController.m in Sources */,
