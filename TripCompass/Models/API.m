@@ -39,6 +39,8 @@
   
   NSURL *url = [NSURL URLWithString:api];
   
+  NSLog(@"API: %@", url);
+  
   NSURLRequest *request = [GogobotSignature requestWithSignature:[NSURLRequest requestWithURL:url]];
   
   NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
@@ -76,9 +78,14 @@
 
 //TODO DRY - too much repeated stuff here
 -(void)getPlacesNearby {
+  [self getPlacesNearbyPage:1];
+}
+
+-(void)getPlacesNearbyPage:(NSInteger)page {
   NSDictionary *params = @{
-                           @"lat" : [[NSNumber numberWithDouble: lat] stringValue],
-                           @"lng" : [[NSNumber numberWithDouble: lng] stringValue]
+                           @"lat"  : [[NSNumber numberWithDouble: lat] stringValue],
+                           @"lng"  : [[NSNumber numberWithDouble: lng] stringValue],
+                           @"page" : [[NSNumber numberWithInt: page] stringValue]
                           };
   
   [self makeRequestWithEndpoint:NEARBY_ENDPOINT params:params];

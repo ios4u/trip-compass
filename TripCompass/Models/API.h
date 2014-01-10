@@ -14,6 +14,7 @@
 -(id)initWithLatitude:(double)latitude longitude:(double)longitude;
 
 -(void)getPlacesNearby;
+-(void)getPlacesNearbyPage:(NSInteger)page;
 
 -(void)searchPlacesNearby:(NSString *)query;
 

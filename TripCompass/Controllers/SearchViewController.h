@@ -14,7 +14,6 @@
 
 @interface SearchViewController : GAUITableViewController <NSFetchedResultsControllerDelegate, UISearchBarDelegate, UITabBarControllerDelegate>
 
-@property (retain, nonatomic) NSArray *results;
 @property (nonatomic, assign) CLLocationCoordinate2D currentLocation;
 
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;

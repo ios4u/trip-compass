@@ -8,20 +8,27 @@
 #import "Reachability.h"
 #import "API.h"
 
+const int kLoadingCellTag = 1273;
+
 @interface SearchViewController ()
 @end
 
 @implementation SearchViewController {
+  //TODO why declare var here as oposed to property? or in the interface?
   NSArray *searchFilters;
   AppDelegate *appDelegate;
   NSString *lat;
   NSString *lng;
   UIView *defaultTableHeaderView;
   API *api;
+  NSMutableArray *results;
+  NSInteger currentPage;
 }
 
 - (void)viewDidLoad {
   [super viewDidLoad];
+
+  currentPage = 0;
   
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(apiResultsNotificationReceived:) name:@"apiResultsNotification" object:nil];
   
@@ -69,7 +76,14 @@
 }
 
 - (void) apiResultsNotificationReceived:(NSNotification *) notification {
-  self.results = [[notification userInfo] valueForKey:@"results"];
+  NSArray *apiResults = [[notification userInfo] valueForKey:@"results"];
+  
+  if (currentPage > 1) {
+    [results addObjectsFromArray:apiResults];
+  } else {
+    results = [apiResults mutableCopy];
+  }
+  
   [self reloadTableViewData];
 }
 
@@ -78,21 +92,36 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-  NSUInteger rows;
-  
-  if (self.searching == NO) {
-    rows = self.results.count;
-  } else {
-    rows = ([searchFilters count] + 1);
-  }
-
-  if (rows > 0) {
-    self.tabBarController.navigationItem.rightBarButtonItem = self.editButtonItem;
+  if (self.searching) {
+    return [searchFilters count] + 1;
   }
   
-  if (!appDelegate.isOnline) rows = 1;
+  //1 is for the loading row
+  
+  if (results) {
+    return results.count + 1;
+  }
+  
+  return 1;
 
-  return rows;
+//  NSUInteger rows;
+
+  //TODO this logic with the search is confusing simplify
+//  if (self.searching == NO) {
+//    NSInteger loadingRow = 1;
+////    rows = results.count + loadingRow;
+//    rows = results.count;
+//  } else {
+//    rows = ([searchFilters count] + 1);
+//  }
+
+//  if (rows > 0) {
+//    self.tabBarController.navigationItem.rightBarButtonItem = self.editButtonItem;
+//  }
+//  
+//  if (!appDelegate.isOnline) rows = 1;
+//
+//  return rows;
 }
 
 //- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
@@ -104,7 +133,7 @@
 //}
 
 - (Place *)getPlace:(NSInteger)row {
-  NSDictionary *result = [self.results objectAtIndex:row];
+  NSDictionary *result = [results objectAtIndex:row];
   
   id place_lat = [result valueForKeyPath:@"address.lat"];
   id place_lng = [result valueForKeyPath:@"address.lng"];
@@ -119,6 +148,23 @@
   return place;
 }
 
+//TODO do this in the storyboard
+- (UITableViewCell *)loadingCell {
+  UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
+                                                  reuseIdentifier:nil];
+  
+  UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc]
+                                                initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+  activityIndicator.center = cell.center;
+  [cell addSubview:activityIndicator];
+  
+  [activityIndicator startAnimating];
+  
+  cell.tag = kLoadingCellTag;
+  
+  return cell;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
   UITableViewCell *cell;
   
@@ -126,29 +172,41 @@
     return [self.tableView dequeueReusableCellWithIdentifier:@"NoInternet"];
   }
   
-  if (self.searching == NO) {
-    cell = [self.tableView dequeueReusableCellWithIdentifier:@"SearchCell"];
-    
-    Place *place = [self getPlace:indexPath.row];
-    
-    cell.textLabel.text = place.name;
-    
-    cell.detailTextLabel.text = [place formattedDistanceTo:self.currentLocation];;
-  } else {
-    if (indexPath.row == 0) {
-      cell = [self.tableView dequeueReusableCellWithIdentifier:@"LocationCell"];
-
-      cell.detailTextLabel.text = @"Current Location";
-      if (appDelegate.selectedLocation) {
-        cell.detailTextLabel.text = appDelegate.selectedLocation.name;
-      }      
+  if (indexPath.row < results.count) {
+    if (self.searching == NO) {
+      cell = [self.tableView dequeueReusableCellWithIdentifier:@"SearchCell"];
+      
+      Place *place = [self getPlace:indexPath.row];
+      
+      cell.textLabel.text = place.name;
+      
+      cell.detailTextLabel.text = [place formattedDistanceTo:self.currentLocation];;
     } else {
-      cell = [self.tableView dequeueReusableCellWithIdentifier:@"FilterCell"];
-      NSString *filterName = [searchFilters objectAtIndex:(indexPath.row -1)];
-      cell.textLabel.text = filterName;
+      if (indexPath.row == 0) {
+        cell = [self.tableView dequeueReusableCellWithIdentifier:@"LocationCell"];
+
+        cell.detailTextLabel.text = @"Current Location";
+        if (appDelegate.selectedLocation) {
+          cell.detailTextLabel.text = appDelegate.selectedLocation.name;
+        }      
+      } else {
+        cell = [self.tableView dequeueReusableCellWithIdentifier:@"FilterCell"];
+        NSString *filterName = [searchFilters objectAtIndex:(indexPath.row -1)];
+        cell.textLabel.text = filterName;
+      }
     }
+  } else {
+    return [self loadingCell];
   }
+  
   return cell;
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+  if (cell.tag == kLoadingCellTag) {
+    currentPage++;
+    [api getPlacesNearbyPage:currentPage];
+  }
 }
 
 - (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar {
@@ -169,34 +227,6 @@
   
 	return YES;
 }
-
-- (void)keywordSearch:(NSString *)apiUrl {
-//  NSString *lat = [NSString stringWithFormat:@"%.5f", self.currentLocation.latitude];
-//  NSString *lon = [NSString stringWithFormat:@"%.5f", self.currentLocation.longitude];
-  
-//  NSString* encodedSearchString = [searchString stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
-//  NSString *api;
-//  if (searchString) {
-//    api = [NSString stringWithFormat:@"http://api.gogobot.com/api/v2/search/nearby.json?_v=2.3.8&page=1&lng=%@&lat=%@&term=%@&per_page=20&source=create&bypass=1", lon, lat, encodedSearchString];
-//  } else {
-//    api = [NSString stringWithFormat:@"http://api.gogobot.com/api/v2/search/nearby.json?_v=2.3.8&page=1&lng=%@&lat=%@&per_page=20&source=create&bypass=1", lon, lat];
-//  }
-  
-//  NSURL *url = [NSURL URLWithString:apiUrl];
-//  NSURLRequest *request = [NSURLRequest requestWithURL:url];
-  
-//  AFJSONRequestOperation *operation = [AFJSONRequestOperation
-//                                       JSONRequestOperationWithRequest:request
-//                                       success:^(NSURLRequest *request, NSHTTPURLResponse *response, id json) {
-//                                         self.results = [json objectForKey:@"results"];
-//                                         [self reloadTableViewData];
-//                                       } failure:^(NSURLRequest *request , NSURLResponse *response , NSError *error , id JSON){
-//                                         NSLog(@"Failed: %@",[error localizedDescription]);
-//                                       }];
-//
-//  [operation start];
-}
-
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
   [api searchPlacesNearby:searchText];
