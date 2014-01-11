@@ -16,3 +16,7 @@ http://stackoverflow.com/questions/4434855/uisearchdisplaycontroller-without-ins
 http://pinkstone.co.uk/tag/uisearchdisplaycontroller/
 http://stackoverflow.com/questions/2388906/iphone-sdk-setting-the-size-of-uisearchdisplaycontrollers-table-view
 http://stackoverflow.com/questions/1912446/remove-transparent-overlay-uisearchbar
+
+
+http://www.intertech.com/Blog/ios-6-pull-to-refresh-uirefreshcontrol/
+http://www.techrepublic.com/blog/software-engineer/ios-6-best-practices-introducing-the-uirefreshcontrol/

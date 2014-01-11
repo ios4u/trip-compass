@@ -14,13 +14,12 @@
 
 @interface SearchViewController : GAUITableViewController <NSFetchedResultsControllerDelegate, UISearchBarDelegate, UITabBarControllerDelegate>
 
-@property (nonatomic, assign) CLLocationCoordinate2D currentLocation;
-
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (nonatomic, assign) BOOL searching;
-@property (nonatomic, assign) BOOL currentLocationChanged;
+
+- (IBAction)pullToRefresh:(id)sender;
 
 @end
 

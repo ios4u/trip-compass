@@ -7,6 +7,7 @@
 #import "AppDelegate.h"
 #import "Reachability.h"
 #import "API.h"
+#import "CustomCell.h"
 
 const int kLoadingCellTag = 1273;
 
@@ -27,6 +28,13 @@ const int kLoadingCellTag = 1273;
 
 - (void)viewDidLoad {
   [super viewDidLoad];
+  
+  self.tableView.contentInset = UIEdgeInsetsMake(self.tabBarController.topLayoutGuide.length, 0, 0, 0);
+  
+  [self.tableView registerNib:[UINib nibWithNibName:@"CustomCell" bundle:nil] forCellReuseIdentifier:@"customCell"];
+  
+  //TODO: get the initial size dynamically from the constraints
+  self.tableView.estimatedRowHeight = 43;
 
   currentPage = 0;
   
@@ -59,6 +67,7 @@ const int kLoadingCellTag = 1273;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+  [self.refreshControl endRefreshing];
   self.tabBarController.navigationItem.title = @"Nearby Search";
   self.tabBarController.navigationItem.rightBarButtonItem = nil;
 }
@@ -83,7 +92,8 @@ const int kLoadingCellTag = 1273;
   } else {
     results = [apiResults mutableCopy];
   }
-  
+
+  [self.refreshControl endRefreshing];
   [self reloadTableViewData];
 }
 
@@ -168,19 +178,21 @@ const int kLoadingCellTag = 1273;
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
   UITableViewCell *cell;
   
+  //TODO this if/else logic sucks... too nested REDO
   if (!appDelegate.isOnline) {
     return [self.tableView dequeueReusableCellWithIdentifier:@"NoInternet"];
   }
   
   if (indexPath.row < results.count) {
     if (self.searching == NO) {
-      cell = [self.tableView dequeueReusableCellWithIdentifier:@"SearchCell"];
+      CustomCell *customCell = [tableView dequeueReusableCellWithIdentifier:@"customCell"];
       
       Place *place = [self getPlace:indexPath.row];
       
-      cell.textLabel.text = place.name;
+      customCell.placeLabel.text = place.name;
+      customCell.detailLabel.text = [place formattedDistanceTo:[(AppDelegate*)appDelegate currentLocation]];
       
-      cell.detailTextLabel.text = [place formattedDistanceTo:self.currentLocation];;
+      return customCell;
     } else {
       if (indexPath.row == 0) {
         cell = [self.tableView dequeueReusableCellWithIdentifier:@"LocationCell"];
@@ -200,6 +212,18 @@ const int kLoadingCellTag = 1273;
   }
   
   return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+  if (indexPath.row < results.count) {
+    CustomCell *cell = [tableView dequeueReusableCellWithIdentifier:@"customCell"];
+    Place *place = [self getPlace:indexPath.row];
+    
+    return [cell calculateHeight:place.name];
+  } else {
+    //TODO find a better way to return the default size
+    return 43;
+  }
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -282,6 +306,8 @@ const int kLoadingCellTag = 1273;
     if ([type isEqualToString:@"Restaurants"]) [api getRestaurantsNearby];
     if ([type isEqualToString:@"Attractions"]) [api getAttractionsNearby];
     if ([type isEqualToString:@"Hotels"]) [api getHotelsNearby];
+  } else {
+    [self performSegueWithIdentifier:@"toMainView" sender:self];
   }
 }
 
@@ -342,13 +368,12 @@ const int kLoadingCellTag = 1273;
   
 }
 
-
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
 //  if([[segue identifier] isEqualToString:@"LocationSearch"]) {
 //    [self.searchBar becomeFirstResponder];
 //  }
   
-  if([[segue identifier] isEqualToString:@"SearchSelection"]) {
+  if([[segue identifier] isEqualToString:@"toMainView"]) {
     NSIndexPath *path = [self.tableView indexPathForSelectedRow];
     
     UINavigationController *navigationController = (UINavigationController *)segue.destinationViewController;
@@ -364,6 +389,11 @@ const int kLoadingCellTag = 1273;
 //  locationSearchViewController
   self.searching = locationSearchViewController.closeButtonClicked;
   [self reloadTableViewData];
+}
+
+- (IBAction)pullToRefresh:(id)sender {
+  //TODO here it should be aware of the type (Attraction, Hotel, Restaurant) to refresh
+  [api getPlacesNearby];
 }
 
 @end
