@@ -29,12 +29,20 @@ const int kLoadingCellTag = 1273;
 - (void)viewDidLoad {
   [super viewDidLoad];
   
-  self.tableView.contentInset = UIEdgeInsetsMake(self.tabBarController.topLayoutGuide.length, 0, 0, 0);
+  // Fix the header under status bar
+//  self.tableView.contentInset = UIEdgeInsetsMake(self.tabBarController.topLayoutGuide.length, 0, self.tabBarController.bottomLayoutGuide.length, 0);
+  
+//  self.edgesForExtendedLayout = UIRectEdgeAll;
+  self.tableView.contentInset = UIEdgeInsetsMake(self.tabBarController.topLayoutGuide.length, 0, CGRectGetHeight(self.tabBarController.tabBar.frame), 0);
+  
+//  [self.navigationController.navigationBar setAlpha:0.98f];
+  
+//    [self.navigationController.navigationBar setBarTintColor:[UIColor redColor]];
   
   [self.tableView registerNib:[UINib nibWithNibName:@"CustomCell" bundle:nil] forCellReuseIdentifier:@"customCell"];
   
   //TODO: get the initial size dynamically from the constraints
-  self.tableView.estimatedRowHeight = 43;
+  self.tableView.estimatedRowHeight = self.tabBarController.topLayoutGuide.length;
 
   currentPage = 0;
   
@@ -222,7 +230,7 @@ const int kLoadingCellTag = 1273;
     return [cell calculateHeight:place.name];
   } else {
     //TODO find a better way to return the default size
-    return 43;
+    return self.tabBarController.topLayoutGuide.length;
   }
 }
 

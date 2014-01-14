@@ -27,7 +27,6 @@
 
   [self setupGoogleAnalytics];
   
-  
   [self checkInternetConnectivity];
   
   UINavigationController *navigationController = (UINavigationController *)self.window.rootViewController;
@@ -47,6 +46,10 @@
   if( [CLLocationManager locationServicesEnabled] &&  [CLLocationManager headingAvailable]) {
     [locationManager startUpdatingLocation];
   }
+  
+  //Gives a blur/frost effect to the bars
+  [[UINavigationBar appearance] setBarTintColor:[[UIColor whiteColor] colorWithAlphaComponent:0.0f]];
+  [[UITabBar appearance] setBarTintColor:[[UIColor whiteColor] colorWithAlphaComponent:0.0f]];
   
   return YES;
 }
